@@ -18,7 +18,9 @@ export default function DimoLogin() {
     return (
         <LoginWithDimo
             mode="popup"
-            onSuccess={(authData: any) => console.log("Success:", authData)}
+            onSuccess={(authData: any) => {
+                console.log("Success:", authData);
+            }}
             onError={(error: any) => console.error("Error:", error)}
             permissionTemplateId={"1"}
         />

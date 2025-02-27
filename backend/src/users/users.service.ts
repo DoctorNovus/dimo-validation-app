@@ -12,7 +12,7 @@ export class UsersService {
     getVehicleQuery(address: string) {
         return `
         query DevLicenseVehicles {
-            vehicles(filterBy: { privileged: "0x49CdA1a1de49Bb4B52151652aF8469A0da53B678" }, first: 100) {
+            vehicles(filterBy: { privileged: "${address}" }, first: 100) {
               nodes {
                 syntheticDevice {
                   id
