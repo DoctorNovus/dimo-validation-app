@@ -4,6 +4,7 @@ import dynamic from "next/dynamic";
 import DimoLogin from "./DimoLogin";
 
 import { useState } from "react";
+import VehicleInterface from "../Vehicle/VehicleInterface";
 
 const Wrapper = dynamic(() => import("./DimoWrapper"), { ssr: false });
 
@@ -12,7 +13,14 @@ export default function DimoInterface() {
 
     return (
         <Wrapper>
-            <DimoLogin />
+            <div>
+                <div>
+                    <DimoLogin />
+                </div>
+                <div>
+                    <VehicleInterface />
+                </div>
+            </div>
         </Wrapper>
     )
 }
