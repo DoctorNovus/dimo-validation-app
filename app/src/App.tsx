@@ -16,26 +16,38 @@ function App() {
     apiKey: process.env.REACT_APP_DIMO_API_KEY!
   });
 
-  const { isAuthenticated, email, walletAddress } = useDimoAuthState();
-
+  const { isAuthenticated, email, walletAddress, getValidJWT } = useDimoAuthState();
 
   useEffect(() => {
     if (isAuthenticated) {
       //makeAuthenticatedRequest(getValidJWT())
       console.log(email);
       console.log(walletAddress);
+      console.log("GVT", getValidJWT());
     }
-  }, [isAuthenticated, email, walletAddress])
+  }, [isAuthenticated, email, walletAddress]);
 
   const permissionsEnabled = "1";
 
   return (
     <div>
-      {isAuthenticated ? (
+      {!isAuthenticated ? (
         <div>
           <ShareVehiclesWithDimo
             mode="popup"
-            onSuccess={(authData) => console.log("Success:", authData)}
+            onSuccess={(authData) => {
+              console.log("Success:", authData);
+
+              fetch("http://localhost:8080/vehicles", {
+                method: "POST",
+                headers: {
+                  "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                  token: authData.token
+                })
+              })
+            }}
             onError={(error) => console.error("Error:", error)}
             permissionTemplateId={"1"}
           //expirationDate={} //OPTIONAL ISO STRING
