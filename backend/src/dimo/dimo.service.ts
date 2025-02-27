@@ -3,6 +3,7 @@ import { Injectable } from "@outwalk/firefly";
 
 @Injectable()
 export class DimoService {
+
     apiURI = "https://identity-api.dimo.zone/query";
     dimo = new DIMO('Production');
 
@@ -26,4 +27,5 @@ export class DimoService {
             private_key: process.env.DIMO_CLIENT_KEY,
         });
     }
+    
 }

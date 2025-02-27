@@ -10,3 +10,14 @@ export function useVehicles(address: string) {
         queryFn: () => getVehicles(address)
     });
 }
+
+async function getVehicleById(id: number) {
+    return await (await fetch(`http://localhost:8080/vehicle/${id}`)).json();
+}
+
+export function useVehicleById(id: number){
+    return useQuery({
+        queryKey: ["vehicle", id],
+        queryFn: () => getVehicleById(id)
+    });
+}
