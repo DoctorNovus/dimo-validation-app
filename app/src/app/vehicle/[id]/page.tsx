@@ -4,6 +4,10 @@ import VehicleIcon from "@/_components/Vehicle/VehicleIcon";
 import { useVehicleById } from "@/_hooks/vehicles";
 import { useParams } from "next/navigation";
 
+import { Input } from "@heroui/input";
+import { Divider } from "@heroui/react";
+
+
 export default function VehicleIdentityPage() {
     const { id } = useParams();
     const vehicle = useVehicleById(parseInt(id?.toString() || "-1"));
@@ -24,7 +28,7 @@ export default function VehicleIdentityPage() {
 
     return (
         <div className="px-4 py-2 flex flex-col gap-4">
-            <div className="w-2/3 flex flex-row gap-4 bg-red-700 px-4 rounded-lg">
+            <div className="w-2/3 flex flex-row gap-4 border border-red-700/50 shadow-md shadow-red-700 px-4 rounded-lg">
                 <div className="w-20 h-20">
                     <VehicleIcon fill="white" />
                 </div>
@@ -62,21 +66,25 @@ export default function VehicleIdentityPage() {
                                 val = value;
 
                             return (
-                                <div key={key} className="flex flex-row justify-between gap-2 shadow-md border border-red-700/30 bg-red-700 rounded-lg px-4 py-4">
-                                    <div className="flex flex-col justify-start gap-2">
-                                        <div className="flex items-center h-10 bg-white px-2 rounded-lg">
-                                            <span className="flex text-center text-lg text-black">{name}</span>
+                                <div key={key} className="flex flex-col shadow-md rounded-lg py-4 gap-2">
+                                    <div className="flex flex-row gap-2 justify-between">
+                                        <div className="flex flex-col justify-start gap-2">
+                                            <span className="text-sm text-gray-500/70">{name}</span>
+                                            <span>{val}</span>
                                         </div>
-                                        <span className="text-base text-white">{val}</span>
+
+                                        <div className="px-2">
+                                            <select className="w-full h-10 flex bg-red-500 rounded-lg px-2 py-2 text-white">
+                                                <option value="accurate">Accurate</option>
+                                                <option value="inaccurate">Inaccurate</option>
+                                                <option value="outdated">Outdated</option>
+                                                <option value="skip">Unsure (Skip)</option>
+                                            </select>
+                                        </div>
                                     </div>
-                                    <div className="px-2">
-                                        <select className="w-full h-10 flex bg-white rounded-lg px-2 py-2 text-black">
-                                            <option value="accurate">Accurate</option>
-                                            <option value="inaccurate">Inaccurate</option>
-                                            <option value="outdated">Outdated</option>
-                                            <option value="skip">Unsure (Skip)</option>
-                                        </select>
-                                    </div>
+
+                                    <Divider />
+
                                 </div>
                             )
                         })

@@ -2,6 +2,9 @@ import type { Metadata } from "next";
 
 import ReactQueryProvider from "@/_components/ReactQueryProvider";
 
+// 1. import `HeroUIProvider` component
+import { HeroUIProvider } from "@heroui/react";
+
 import "./globals.css";
 import NavWrapper from "@/_components/Navigation/NavWrapper";
 
@@ -21,9 +24,11 @@ export default function RootLayout({
         className="overflow-hidden"
       >
         <ReactQueryProvider>
-          <NavWrapper>
-            {children}
-          </NavWrapper>
+          <HeroUIProvider>
+            <NavWrapper>
+              {children}
+            </NavWrapper>
+          </HeroUIProvider>
         </ReactQueryProvider>
       </body>
     </html>
