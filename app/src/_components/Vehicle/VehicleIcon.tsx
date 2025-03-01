@@ -1,6 +1,6 @@
-export default function VehicleIcon() {
+export default function VehicleIcon({ fill }: { fill: string }) {
     return (
-        <svg className="w-full h-full" fill="red" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" width="800px" height="800px" viewBox="0 0 31.445 31.445">
+        <svg className="w-full h-full" fill={fill || "red"} version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" width="800px" height="800px" viewBox="0 0 31.445 31.445">
             <g>
                 <g>
                     <path d="M7.592,16.86c-1.77,0-3.203,1.434-3.203,3.204s1.434,3.204,3.203,3.204c1.768,0,3.203-1.434,3.203-3.204

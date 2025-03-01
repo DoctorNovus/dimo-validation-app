@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import ReactQueryProvider from "@/_components/ReactQueryProvider";
 
 import "./globals.css";
+import NavWrapper from "@/_components/Navigation/NavWrapper";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -17,10 +18,12 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className=""
+        className="overflow-hidden"
       >
         <ReactQueryProvider>
-          {children}
+          <NavWrapper>
+            {children}
+          </NavWrapper>
         </ReactQueryProvider>
       </body>
     </html>

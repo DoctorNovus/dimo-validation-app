@@ -1,38 +1,60 @@
 import { DimoService } from "@/dimo/dimo.service";
 import { Inject, Injectable } from "@outwalk/firefly";
 
-interface TokenData {
-
-}
-
 @Injectable()
 export class VehicleService {
 
-    @Inject() dimoService: DimoService;
+  @Inject() dimoService: DimoService;
 
-    async getVehicleToken(id: number) {
-        const authToken = await this.dimoService.getToken();
+  async getVehicleToken(id: number) {
+    const authToken = await this.dimoService.getToken();
 
-        return await this.dimoService.dimo.tokenexchange.exchange({
-            ...authToken,
-            privileges: [1, 2, 3, 4, 5, 6],
-            tokenId: id
-        });
+    return await this.dimoService.dimo.tokenexchange.exchange({
+      ...authToken,
+      privileges: [1, 2, 3, 4, 5, 6],
+      tokenId: id
+    });
+  }
+
+  async getVehicleById(id: number) {
+
+    const vehicleData: VehicleData = await this.getVehicleDataById(id);
+
+    const vehicleIdentity = await this.dimoService.dimo.identity.query({
+      query: this.getVehicleQuery(id)
+    });
+
+    return {
+      vehicle: vehicleIdentity.data.vehicle,
+      data: vehicleData.data.signalsLatest
     }
+  }
 
-    async getVehicleById(id: number) {
-        const vehicleToken = await this.getVehicleToken(id);
+  async getVehicleDataById(id: number) {
+    const vehicleToken = await this.getVehicleToken(id);
 
-        console.log(vehicleToken);
+    return await this.dimoService.dimo.telemetry.query({
+      ...vehicleToken,
+      query: this.getVehicleDataQuery(id)
+    });
+  }
 
-        return await this.dimoService.dimo.telemetry.query({
-            ...vehicleToken,
-            query: this.getVehicleQuery(id)
-        });
-    }
+  getVehicleQuery(id: number) {
+    return `
+      query {
+        vehicle(tokenId: ${id}){
+          definition {
+            make
+            model
+            year
+          }
+        }
+      }
+      `;
+  }
 
-    getVehicleQuery(id: number) {
-        return `
+  getVehicleDataQuery(id: number) {
+    return `
         query {
             signalsLatest(tokenId: ${id}) {
               lastSeen,
@@ -307,5 +329,5 @@ export class VehicleService {
             }
           }
         `;
-    }
+  }
 }

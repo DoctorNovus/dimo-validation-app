@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@dimo-network/login-with-dimo": "^0.0.19",
+    "@heroui/react": "^2.7.4",
     "@tanstack/react-query": "^5.66.9",
     "next": "15.2.0",
     "react": "^19.0.0",
