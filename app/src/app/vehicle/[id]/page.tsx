@@ -60,7 +60,7 @@ export default function VehicleIdentityPage() {
                         data[elem.name] = elem.value;
                 }
 
-                await fetch("http://localhost:8080/data/update", {
+                await fetch(`${process.env.NEXT_PUBLIC_SERVER_URI}/data/update`, {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json"
