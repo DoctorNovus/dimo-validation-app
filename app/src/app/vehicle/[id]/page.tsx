@@ -6,6 +6,7 @@ import { useParams } from "next/navigation";
 
 import { Input } from "@heroui/input";
 import { Divider } from "@heroui/react";
+import VehicleProperties from "@/_components/Vehicle/VehicleProperties";
 
 
 export default function VehicleIdentityPage() {
@@ -48,49 +49,37 @@ export default function VehicleIdentityPage() {
                 </div>
             </div>
 
-            <div>
+            <form className="py-4" onSubmit={async (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+
+                const data = {};
+
+                for (let elem of e.target) {
+                    if (elem.name.trim() != "")
+                        data[elem.name] = elem.value;
+                }
+
+                await fetch("http://localhost:8080/data/update", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify(data)
+                });
+            }}>
                 <div className="flex flex-col gap-2.5">
                     {
-                        Object.entries(signals).map(([name, value], key) => {
-                            let val, timestamp;
-
-                            if (name == "lastSeen")
-                                return null;
-
-                            if (!value) {
-                                return null;
-                            } else if (typeof value == "object") {
-                                val = value.value;
-                                timestamp = value.timestamp;
-                            } else
-                                val = value;
-
-                            return (
-                                <div key={key} className="flex flex-col shadow-md rounded-lg py-4 gap-2">
-                                    <div className="flex flex-row gap-2 justify-between">
-                                        <div className="flex flex-col justify-start gap-2">
-                                            <span className="text-sm text-gray-500/70">{name}</span>
-                                            <span>{val}</span>
-                                        </div>
-
-                                        <div className="px-2">
-                                            <select className="w-full h-10 flex bg-gray-500 rounded-lg px-2 py-2 text-white">
-                                                <option value="accurate">Accurate</option>
-                                                <option value="inaccurate">Inaccurate</option>
-                                                <option value="outdated">Outdated</option>
-                                                <option value="skip">Unsure (Skip)</option>
-                                            </select>
-                                        </div>
-                                    </div>
-
-                                    <Divider className="text-gray-500" />
-
-                                </div>
-                            )
-                        })
+                        Object.entries(signals).map(([name, value], key) => <VehicleProperties key={key} name={name} value={value} />)
                     }
                 </div>
-            </div>
-        </div>
+
+                <div className="flex flex-row gap-2">
+                    <button type="submit" className="px-3 py-2 text-lg bg-gray-500 text-white rounded-lg cursor-pointer my-2">Send Data</button>
+                    <button type="submit" className="px-3 py-2 text-lg text-gray-500 border border-white rounded-lg cursor-pointer my-2">Reset Data</button>
+                </div>
+
+            </form>
+        </div >
     )
 }
