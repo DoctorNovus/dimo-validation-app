@@ -28,7 +28,7 @@ export default function VehicleIdentityPage() {
 
     return (
         <div className="px-4 py-2 flex flex-col gap-4">
-            <div className="w-2/3 flex flex-row gap-4 border border-red-700/50 shadow-md shadow-red-700 px-4 rounded-lg">
+            <div className="w-1/2 flex flex-row gap-4 border border-red-700/50 shadow-md shadow-red-700 px-4 rounded-lg">
                 <div className="w-20 h-20">
                     <VehicleIcon fill="white" />
                 </div>
@@ -74,7 +74,7 @@ export default function VehicleIdentityPage() {
                                         </div>
 
                                         <div className="px-2">
-                                            <select className="w-full h-10 flex bg-red-500 rounded-lg px-2 py-2 text-white">
+                                            <select className="w-full h-10 flex bg-gray-500 rounded-lg px-2 py-2 text-white">
                                                 <option value="accurate">Accurate</option>
                                                 <option value="inaccurate">Inaccurate</option>
                                                 <option value="outdated">Outdated</option>
@@ -83,7 +83,7 @@ export default function VehicleIdentityPage() {
                                         </div>
                                     </div>
 
-                                    <Divider />
+                                    <Divider className="text-gray-500" />
 
                                 </div>
                             )
