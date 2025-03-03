@@ -1,0 +1,27 @@
+✔ Implement login functionality using DIMO authentication APIs @done(25-03-03 12:41)
+✔ Link login process to DIMO Developer Documentation and SDK @done(25-03-03 12:41)
+✔ Create a dashboard displaying user vehicles after login @done(25-03-03 12:41)
+✔ Allow users to select a vehicle to view available signals @done(25-03-03 12:41)
+✔ Display the most recent data for each signal in the dashboard @done(25-03-03 12:41)
+✔ Implement data validation options: Accurate, Inaccurate, Outdated, Unsure @done(25-03-03 12:41)
+✔ Allow users to skip fields they do not understand @done(25-03-03 12:41)
+☐ Implement an inaccuracy reporting flow:
+    ☐ Input correct value
+    ☐ Submit validation (optionally attach a picture)
+    ☐ Allow users to provide additional details
+☐ Implement an outdated reading flow:
+    ☐ Specify when the most recent data should be from
+    ☐ Input the correct updated value
+    ☐ Display a guide on integration update frequency
+    ☐ Allow users to submit additional data for unavailable signals
+☐ Structure collected validation data into a spreadsheet for analysis
+☐ Provide a Calendly link for users to schedule meetings with the data team
+✔ Ensure integration details retrieval via the Telemetry API @done(25-03-03 12:42)
+☐ Design a simple UI for login, data review, and submission
+☐ Ensure seamless login experience with DIMO authentication APIs
+☐ Define the spreadsheet format for submitted validation data
+☐ Develop wireframes to visualize user flow
+☐ Consider future enhancements:
+    ☐ Auto-detection of stale data
+    ☐ Intelligent correction suggestions
+    ☐ Enable users to push a button to collect and send device logs to DIMO
