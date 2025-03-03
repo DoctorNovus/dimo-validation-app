@@ -5,8 +5,8 @@
 ✔ Display the most recent data for each signal in the dashboard @done(25-03-03 12:41)
 ✔ Implement data validation options: Accurate, Inaccurate, Outdated, Unsure @done(25-03-03 12:41)
 ✔ Allow users to skip fields they do not understand @done(25-03-03 12:41)
-☐ Implement an inaccuracy reporting flow:
-    ☐ Input correct value
+✔ Implement an inaccuracy reporting flow: @done(25-03-03 12:46)
+    ✔ Input correct value @done(25-03-03 12:46)
     ☐ Submit validation (optionally attach a picture)
     ☐ Allow users to provide additional details
 ☐ Implement an outdated reading flow:
@@ -25,3 +25,8 @@
     ☐ Auto-detection of stale data
     ☐ Intelligent correction suggestions
     ☐ Enable users to push a button to collect and send device logs to DIMO
+
+✔ Implement Permissions Based View for Vehicles @done(25-03-03 13:39)
+☐ Add Lat/Long Map
+☐ Remove Aftermarket HDOP & NSAT
+☐ Implement resharing permissions

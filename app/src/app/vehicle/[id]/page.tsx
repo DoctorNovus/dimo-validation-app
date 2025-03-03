@@ -13,7 +13,7 @@ export default function VehicleIdentityPage() {
     if (vehicle.isLoading)
         return <>Loading...</>
 
-    const signals = vehicle.data.data;
+    const signals = vehicle.data.signals;
 
     const lastSeen = new Date(signals.lastSeen).toLocaleDateString('en-US', {
         day: "2-digit",

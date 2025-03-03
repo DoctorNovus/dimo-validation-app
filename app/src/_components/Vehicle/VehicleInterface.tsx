@@ -12,15 +12,26 @@ export default function VehicleInterface() {
     if (vehicles.isLoading)
         return <></>
 
-    const vehicleData = vehicles.data.data.vehicles.nodes;
+    const vehicleData = vehicles.data;
 
     return (
-        <div className="flex flex-col gap-2">
-            <span>Vehicles</span>
-            <div className="flex flex-row gap-2">
-                {
-                    vehicleData.map((vehicle, key) => <VehiclePreview key={key} vehicle={vehicle} />)
-                }
+        <div className="flex flex-col gap-4">
+            <div className="flex flex-col gap-2">
+                <span className="text-lg">Shared Vehicles</span>
+                <div className="flex flex-row gap-2">
+                    {
+                        vehicleData.shared.map((vehicle, key) => <VehiclePreview key={key} vehicle={vehicle} />)
+                    }
+                </div>
+            </div>
+
+            <div className="flex flex-col gap-2">
+                <span className="text-lg">Vehicles Not Shared</span>
+                <div className="flex flex-row gap-2">
+                    {
+                        vehicleData.notShared.map((vehicle, key) => <VehiclePreview disabled key={key} vehicle={vehicle} />)
+                    }
+                </div>
             </div>
         </div>
     )

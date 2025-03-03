@@ -1,10 +1,12 @@
 import { Controller, Get, Inject } from "@outwalk/firefly";
 import { UsersService } from "./users.service";
+import { DimoService } from "@/dimo/dimo.service";
 
 @Controller()
 export class UserController {
 
     @Inject() usersService: UsersService;
+    @Inject() dimoService: DimoService;
 
     @Get()
     getHelloWorld() {
@@ -15,7 +17,25 @@ export class UserController {
     async getUserVehicles({ params }) {
         const { address } = params;
 
-        return await this.usersService.getVehicles(address);
+        const vehicles = await this.usersService.getVehicles(address);
+
+        const data = {
+            shared: [],
+            notShared: []
+        };
+
+        for (const vehicle of vehicles.data.vehicles.nodes) {
+            const granted = await this.dimoService.isVehicleGranted(vehicle.tokenId);
+            if (granted)
+                data.shared.push(vehicle);
+            else
+                data.notShared.push(vehicle);
+        }
+
+        return data;
+
+        // const permissions = await this.dimoService.getVehiclePermissions();
+
     }
-    
+
 }
