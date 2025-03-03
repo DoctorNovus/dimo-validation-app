@@ -17,7 +17,7 @@ export default function VehicleProperties({ name, value }: { name: string, value
         val = value;
 
     return (
-        <div className="flex flex-col shadow-md rounded-lg py-4 gap-2">
+        <div className="flex flex-col rounded-lg py-4 gap-2">
 
             <VehicleStatusSelector name={name} value={val} />
 

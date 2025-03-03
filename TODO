@@ -18,7 +18,7 @@
 ☐ Provide a Calendly link for users to schedule meetings with the data team
 ✔ Ensure integration details retrieval via the Telemetry API @done(25-03-03 12:42)
 ☐ Design a simple UI for login, data review, and submission
-☐ Ensure seamless login experience with DIMO authentication APIs
+✔ Ensure seamless login experience with DIMO authentication APIs @done(25-03-03 14:25)
 ☐ Define the spreadsheet format for submitted validation data
 ☐ Develop wireframes to visualize user flow
 ☐ Consider future enhancements:
@@ -30,3 +30,4 @@
 ☐ Add Lat/Long Map
 ☐ Remove Aftermarket HDOP & NSAT
 ✔ Implement resharing permissions @done(25-03-03 14:23)
+✔ Light/Dark Mode Text Fix @done(25-03-03 14:33)

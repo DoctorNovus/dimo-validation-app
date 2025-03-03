@@ -10,8 +10,11 @@ export default function VehicleIdentityPage() {
     const { id } = useParams();
     const vehicle = useVehicleById(parseInt(id?.toString() || "-1"));
 
+
     if (vehicle.isLoading)
         return <>Loading...</>
+
+    const theme = window.matchMedia?.("(prefers-color-scheme: dark)").matches ? "dark" : "light"
 
     const signals = vehicle.data.signals;
 
@@ -28,7 +31,7 @@ export default function VehicleIdentityPage() {
         <div className="px-4 py-2 flex flex-col gap-4">
             <div className="w-1/2 flex flex-row gap-4 border border-red-700/50 shadow-md shadow-red-700 px-4 rounded-lg">
                 <div className="w-20 h-20">
-                    <VehicleIcon fill="white" />
+                    <VehicleIcon fill={theme == "light" ? "black" : "white"} />
                 </div>
                 <div className="w-full flex flex-col gap-1 justify-center">
                     <div className="flex flex-row justify-between gap-2">

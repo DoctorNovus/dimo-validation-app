@@ -41,7 +41,7 @@ export default function VehiclePreview({ vehicle, disabled }) {
                     <span>{vehicle.definition.year}</span>
                 </div>
                 <div>
-                    <button className="px-2 bg-red-500 rounded-md cursor-pointer" onClick={redirect}>Validate</button>
+                    <button className="px-2 bg-red-500 text-white rounded-md cursor-pointer" onClick={redirect}>Validate</button>
                 </div>
             </div>
         </div>
