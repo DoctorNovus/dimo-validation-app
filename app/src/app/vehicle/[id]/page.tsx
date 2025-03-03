@@ -1,13 +1,10 @@
 'use client';
 
-import VehicleIcon from "@/_components/Vehicle/VehicleIcon";
 import { useVehicleById } from "@/_hooks/vehicles";
 import { useParams } from "next/navigation";
 
-import { Input } from "@heroui/input";
-import { Divider } from "@heroui/react";
 import VehicleProperties from "@/_components/Vehicle/VehicleProperties";
-
+import VehicleIcon from "@/_components/Vehicle/VehicleIcon";
 
 export default function VehicleIdentityPage() {
     const { id } = useParams();

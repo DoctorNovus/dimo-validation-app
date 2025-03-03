@@ -9,7 +9,7 @@ export default function NavWrapper({ children }) {
 
             <div className="w-full h-full flex flex-row">
                 <NavSidebar />
-                <div className="w-full h-screen px-2 py-1 overflow-x-hidden overflow-y-scroll pb-20 [&::-webkit-scrollbar]:hidden">
+                <div className="w-full h-screen p-4 overflow-x-hidden overflow-y-scroll pb-20 [&::-webkit-scrollbar]:hidden">
                     {children}
                 </div>
             </div>
