@@ -1,6 +1,26 @@
 import { DIMO } from "@dimo-network/data-sdk";
 import { Injectable } from "@outwalk/firefly";
 
+interface QueryResultPermissions {
+    data: {
+        vehicle: {
+            sacds: {
+                nodes: PermissionRaw[]
+            }
+        }
+    }
+};
+
+interface PermissionRaw {
+    permissions: string,
+    grantee: string
+}
+
+interface Permission {
+    permissions: number[],
+    grantee: string
+}
+
 @Injectable()
 export class DimoService {
 
@@ -53,14 +73,14 @@ export class DimoService {
         return false;
     }
 
-    async getVehiclePermissions(id: number) {
-        const perms = await this.executeIdentityQuery(this.getPermissionsQuery(id));
+    async getVehiclePermissions(id: number): Promise<Permission[]> {
+        const perms = await this.executeIdentityQuery(this.getPermissionsQuery(id)) as unknown as QueryResultPermissions;
 
-        return perms.data.vehicle.sacds.nodes.map((perm) => {
+        return perms.data?.vehicle.sacds.nodes.map((perm: PermissionRaw) => {
             return {
                 permissions: this.decodePermissionBits(perm.permissions),
                 grantee: perm.grantee
-            }
+            };
         });
     }
 

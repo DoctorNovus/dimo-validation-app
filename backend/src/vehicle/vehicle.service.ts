@@ -19,43 +19,43 @@ export class VehicleService {
   @Inject() dimoService: DimoService;
 
   async getVehicleToken(id: number) {
-    if (!id) return null;
+      if (!id) return null;
 
-    const authToken = await this.dimoService.getToken();
+      const authToken = await this.dimoService.getToken();
 
-    return await this.dimoService.dimo.tokenexchange.exchange({
-      ...authToken,
-      privileges: [1, 2, 3, 4, 5, 6],
-      tokenId: id
-    });
+      return await this.dimoService.dimo.tokenexchange.exchange({
+          ...authToken,
+          privileges: [1, 2, 3, 4, 5, 6],
+          tokenId: id
+      });
   }
 
   async getVehicleById(id: number) {
 
-    const vehicleData: VehicleData = await this.getVehicleDataById(id);
+      const vehicleData: VehicleData = await this.getVehicleDataById(id);
 
-    const vehicleIdentity: VehicleIdentity = await this.dimoService.dimo.identity.query({
-      query: this.getVehicleQuery(id)
-    }) as unknown as VehicleIdentity;
+      const vehicleIdentity: VehicleIdentity = await this.dimoService.dimo.identity.query({
+          query: this.getVehicleQuery(id)
+      }) as unknown as VehicleIdentity;
 
-    return {
-      vehicle: vehicleIdentity.data.vehicle,
-      signals: vehicleData.data.signalsLatest
-    };
+      return {
+          vehicle: vehicleIdentity.data.vehicle,
+          signals: vehicleData.data.signalsLatest
+      };
   }
 
   async getVehicleDataById(id: number) {
 
-    const vehicleToken = await this.getVehicleToken(id);
+      const vehicleToken = await this.getVehicleToken(id);
 
-    return await this.dimoService.dimo.telemetry.query({
-      ...vehicleToken,
-      query: this.getVehicleDataQuery(id)
-    }) as unknown as VehicleData;
+      return await this.dimoService.dimo.telemetry.query({
+          ...vehicleToken,
+          query: this.getVehicleDataQuery(id)
+      }) as unknown as VehicleData;
   }
 
   getVehicleQuery(id: number) {
-    return `
+      return `
     query {
         vehicle(tokenId: ${id}){
             definition {
@@ -69,7 +69,7 @@ export class VehicleService {
   }
 
   getVehicleDataQuery(id: number) {
-    return `
+      return `
         query {
             signalsLatest(tokenId: ${id}) {
               lastSeen,

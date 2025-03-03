@@ -24,7 +24,7 @@ export class UserController {
             notShared: []
         };
 
-        for (const vehicle of vehicles.data.vehicles.nodes) {
+        for (const vehicle of vehicles) {
             const granted = await this.dimoService.isVehicleGranted(vehicle.tokenId);
             if (granted)
                 data.shared.push(vehicle);
