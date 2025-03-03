@@ -5,7 +5,7 @@ import { Injectable } from "@outwalk/firefly";
 export class DimoService {
 
     apiURI = "https://identity-api.dimo.zone/query";
-    dimo = new DIMO('Production');
+    dimo = new DIMO("Production");
 
     async executeIdentityQuery(query: string) {
         return await (await fetch(this.apiURI, {

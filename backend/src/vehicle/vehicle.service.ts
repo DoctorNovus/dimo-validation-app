@@ -1,60 +1,74 @@
 import { DimoService } from "@/dimo/dimo.service";
 import { Inject, Injectable } from "@outwalk/firefly";
 
+interface VehicleData {
+    data: {
+        signalsLatest: {}
+    }
+}
+
+interface VehicleIdentity {
+    data: {
+        vehicle: {}
+    }
+}
+
 @Injectable()
 export class VehicleService {
 
-  @Inject() dimoService: DimoService;
+    @Inject() dimoService: DimoService;
 
-  async getVehicleToken(id: number) {
-    const authToken = await this.dimoService.getToken();
+    async getVehicleToken(id: number) {
+        if (!id) return null;
 
-    return await this.dimoService.dimo.tokenexchange.exchange({
-      ...authToken,
-      privileges: [1, 2, 3, 4, 5, 6],
-      tokenId: id
-    });
-  }
+        const authToken = await this.dimoService.getToken();
 
-  async getVehicleById(id: number) {
-
-    const vehicleData: VehicleData = await this.getVehicleDataById(id);
-
-    const vehicleIdentity = await this.dimoService.dimo.identity.query({
-      query: this.getVehicleQuery(id)
-    });
-
-    return {
-      vehicle: vehicleIdentity.data.vehicle,
-      data: vehicleData.data.signalsLatest
+        return await this.dimoService.dimo.tokenexchange.exchange({
+            ...authToken,
+            privileges: [1, 2, 3, 4, 5, 6],
+            tokenId: id
+        });
     }
-  }
 
-  async getVehicleDataById(id: number) {
-    const vehicleToken = await this.getVehicleToken(id);
+    async getVehicleById(id: number) {
 
-    return await this.dimoService.dimo.telemetry.query({
-      ...vehicleToken,
-      query: this.getVehicleDataQuery(id)
-    });
-  }
+        const vehicleData: VehicleData = await this.getVehicleDataById(id);
 
-  getVehicleQuery(id: number) {
-    return `
-      query {
+        const vehicleIdentity: VehicleIdentity = await this.dimoService.dimo.identity.query({
+            query: this.getVehicleQuery(id)
+        }) as unknown as VehicleIdentity;
+
+        return {
+            vehicle: vehicleIdentity.data.vehicle,
+            data: vehicleData.data.signalsLatest
+        };
+    }
+
+    async getVehicleDataById(id: number) {
+        const vehicleToken = await this.getVehicleToken(id);
+
+        return await this.dimoService.dimo.telemetry.query({
+            ...vehicleToken,
+            query: this.getVehicleDataQuery(id)
+        }) as unknown as VehicleData;
+    }
+
+    getVehicleQuery(id: number) {
+        return `
+    query {
         vehicle(tokenId: ${id}){
-          definition {
-            make
-            model
-            year
-          }
+            definition {
+                make
+                model
+                year
+            }
         }
-      }
-      `;
-  }
+    }
+    `;
+    }
 
-  getVehicleDataQuery(id: number) {
-    return `
+    getVehicleDataQuery(id: number) {
+        return `
         query {
             signalsLatest(tokenId: ${id}) {
               lastSeen,
@@ -329,5 +343,5 @@ export class VehicleService {
             }
           }
         `;
-  }
+    }
 }

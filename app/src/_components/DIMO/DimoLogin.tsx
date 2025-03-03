@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 import { LoginWithDimo, initializeDimoSDK, useDimoAuthState } from "@dimo-network/login-with-dimo";
 
@@ -18,10 +18,10 @@ export default function DimoLogin() {
     return (
         <LoginWithDimo
             mode="popup"
-            onSuccess={(authData: any) => {
+            onSuccess={(authData: unknown) => {
                 console.log("Success:", authData);
             }}
-            onError={(error: any) => console.error("Error:", error)}
+            onError={(error: unknown) => console.error("Error:", error)}
             permissionTemplateId={"1"}
         />
     )

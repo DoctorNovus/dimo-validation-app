@@ -2,8 +2,8 @@ import { Divider } from "@heroui/react";
 
 import VehicleStatusSelector from "./VehicleStatus/VehicleStatusSelector";
 
-export default function VehicleProperties({ name, value }: { name: string, value: any }) {
-    let val, timestamp;
+export default function VehicleProperties({ name, value }: { name: string, value: string | { value: string } }) {
+    let val;
 
     if (name == "lastSeen")
         return null;
@@ -12,7 +12,7 @@ export default function VehicleProperties({ name, value }: { name: string, value
         return null;
     } else if (typeof value == "object") {
         val = value.value;
-        timestamp = value.timestamp;
+        // timestamp = value.timestamp;
     } else
         val = value;
 

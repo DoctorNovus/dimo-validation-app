@@ -52,7 +52,7 @@ export default function VehicleIdentityPage() {
 
                 const data = {};
 
-                for (let elem of e.target) {
+                for (const elem of e.target) {
                     if (elem.name.trim() != "")
                         data[elem.name] = elem.value;
                 }

@@ -1,6 +1,6 @@
 import { useState } from "react"
 
-export default function VehicleStatusInaccurate({ name, value, status }: { name: string, value: any, status: string }) {
+export default function VehicleStatusInaccurate({ name, value, status }: { name: string, value: string, status: string }) {
     const [validData, setValidData] = useState("");
 
     return (

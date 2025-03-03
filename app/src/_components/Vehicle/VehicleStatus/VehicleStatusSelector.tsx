@@ -4,7 +4,7 @@ import { useState } from "react";
 import VehicleStatusAccurate from "./VehicleStatusAccurate";
 import VehicleStatusInaccurate from "./VehicleStatusInaccurate";
 
-export default function VehicleStatusSelector({ name, value }: { name: string, value: any }) {
+export default function VehicleStatusSelector({ name, value }: { name: string, value: string }) {
 
     const [selection, setSelection] = useState("accurate");
 
