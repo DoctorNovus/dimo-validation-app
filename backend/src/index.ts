@@ -9,7 +9,7 @@ const platform = new ExpressPlatform();
 platform.use(cors());
 
 /* setup the database and global plugins */
-const database = new MongooseDatabase();
+// const database = new MongooseDatabase();
 
 /* start the application */
-new Application({ platform, database }).listen();
+new Application({ platform }).listen();
