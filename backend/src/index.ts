@@ -1,6 +1,6 @@
 import { Application } from "@outwalk/firefly";
 import { ExpressPlatform } from "@outwalk/firefly/express";
-import { MongooseDatabase } from "@outwalk/firefly/mongoose";
+// import { MongooseDatabase } from "@outwalk/firefly/mongoose";
 
 import cors from "cors";
 
