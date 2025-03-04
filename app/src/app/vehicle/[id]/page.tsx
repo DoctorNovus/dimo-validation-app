@@ -5,6 +5,7 @@ import { useParams } from "next/navigation";
 
 import VehicleProperties from "@/_components/Vehicle/VehicleProperties";
 import VehicleIcon from "@/_components/Vehicle/VehicleIcon";
+import MapboxMap from "@/_components/Mapbox/MapboxMap";
 
 export default function VehicleIdentityPage() {
     const { id } = useParams();
@@ -25,6 +26,8 @@ export default function VehicleIdentityPage() {
         minute: "2-digit",
         weekday: "short"
     });
+
+    console.log(signals);
 
     return (
         <div className="px-4 py-2 flex flex-col gap-4">
@@ -70,8 +73,33 @@ export default function VehicleIdentityPage() {
                 });
             }}>
                 <div className="flex flex-col gap-2.5">
+                    <div className="flex flex-row gap-4">
+                        <div className="w-1/3 aspect-square rounded-lg">
+                            <MapboxMap
+                                latitude={signals.currentLocationLatitude.value.value}
+                                longitude={signals.currentLocationLongitude.value.value}
+                                theme={theme}
+                            />
+                        </div>
+                        <div className="w-full flex flex-col gap-2">
+                            <VehicleProperties signal={"currentLocationLatitude"} name={signals.currentLocationLatitude.name} value={signals.currentLocationLatitude.value.value} />
+                            <VehicleProperties signal={"currentLocationLongitude"} name={signals.currentLocationLongitude.name} value={signals.currentLocationLongitude.value.value} />
+                        </div>
+                    </div>
+
                     {
-                        Object.entries(signals).map(([name, value], key) => <VehicleProperties key={key} signal={name} name={value.name} value={value.value} />)
+                        Object.entries(signals).filter(([name]) => {
+                            switch (name) {
+                                case "currentLocationLatitude":
+                                case "currentLocationLongitude":
+                                case "currentLocationAltitude":
+                                    return false;
+
+                                default:
+                                    return true;
+                            }
+                        })
+                            .map(([name, value], key) => <VehicleProperties key={key} signal={name} name={value.name} value={value.value} />)
                     }
                 </div>
 

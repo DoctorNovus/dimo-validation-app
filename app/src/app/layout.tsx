@@ -6,6 +6,7 @@ import ReactQueryProvider from "@/_components/ReactQueryProvider";
 import { HeroUIProvider } from "@heroui/react";
 
 import "./globals.css";
+import 'mapbox-gl/dist/mapbox-gl.css';
 import NavWrapper from "@/_components/Navigation/NavWrapper";
 
 export const metadata: Metadata = {

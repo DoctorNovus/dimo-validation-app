@@ -17,18 +17,19 @@
 ✔ Structure collected validation data into a spreadsheet for analysis @done(25-03-03 17:16)
 ☐ Provide a Calendly link for users to schedule meetings with the data team
 ✔ Ensure integration details retrieval via the Telemetry API @done(25-03-03 12:42)
-☐ Design a simple UI for login, data review, and submission
+✔ Design a simple UI for login, data review, and submission @done(25-03-03 20:32)
 ✔ Ensure seamless login experience with DIMO authentication APIs @done(25-03-03 14:25)
 ✔ Define the spreadsheet format for submitted validation data @done(25-03-03 17:16)
-☐ Develop wireframes to visualize user flow
+
+✔ Implement Permissions Based View for Vehicles @done(25-03-03 13:39)
+✔ Add Lat/Long Map @done(25-03-03 21:15)
+✔ Remove Aftermarket HDOP & NSAT @done(25-03-03 20:33)
+✔ Implement resharing permissions @done(25-03-03 14:23)
+✔ Light/Dark Mode Text Fix @done(25-03-03 14:33)
+☐ Add redirect and toast for prompt
+☐ Add Units
+
 ☐ Consider future enhancements:
     ☐ Auto-detection of stale data
     ☐ Intelligent correction suggestions
     ☐ Enable users to push a button to collect and send device logs to DIMO
-
-✔ Implement Permissions Based View for Vehicles @done(25-03-03 13:39)
-☐ Add Lat/Long Map
-☐ Remove Aftermarket HDOP & NSAT
-✔ Implement resharing permissions @done(25-03-03 14:23)
-✔ Light/Dark Mode Text Fix @done(25-03-03 14:33)
-☐ Add redirect and toast for prompt
