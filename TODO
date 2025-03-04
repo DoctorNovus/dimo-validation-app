@@ -11,15 +11,15 @@
     ☐ Allow users to provide additional details
 ☐ Implement an outdated reading flow:
     ☐ Specify when the most recent data should be from
-    ☐ Input the correct updated value
+    ✔ Input the correct updated value @done(25-03-03 17:16)
     ☐ Display a guide on integration update frequency
     ☐ Allow users to submit additional data for unavailable signals
-☐ Structure collected validation data into a spreadsheet for analysis
+✔ Structure collected validation data into a spreadsheet for analysis @done(25-03-03 17:16)
 ☐ Provide a Calendly link for users to schedule meetings with the data team
 ✔ Ensure integration details retrieval via the Telemetry API @done(25-03-03 12:42)
 ☐ Design a simple UI for login, data review, and submission
 ✔ Ensure seamless login experience with DIMO authentication APIs @done(25-03-03 14:25)
-☐ Define the spreadsheet format for submitted validation data
+✔ Define the spreadsheet format for submitted validation data @done(25-03-03 17:16)
 ☐ Develop wireframes to visualize user flow
 ☐ Consider future enhancements:
     ☐ Auto-detection of stale data

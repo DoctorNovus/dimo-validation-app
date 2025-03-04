@@ -5,11 +5,11 @@ import { useParams } from "next/navigation";
 
 import VehicleProperties from "@/_components/Vehicle/VehicleProperties";
 import VehicleIcon from "@/_components/Vehicle/VehicleIcon";
+import { useDimoAuthState } from "@dimo-network/login-with-dimo";
 
 export default function VehicleIdentityPage() {
     const { id } = useParams();
     const vehicle = useVehicleById(parseInt(id?.toString() || "-1"));
-
 
     if (vehicle.isLoading)
         return <>Loading...</>
@@ -53,14 +53,16 @@ export default function VehicleIdentityPage() {
                 e.preventDefault();
                 e.stopPropagation();
 
-                const data = {};
+                const data = {
+                    id
+                };
 
                 for (const elem of e.target) {
                     if (elem.name.trim() != "")
                         data[elem.name] = elem.value;
                 }
 
-                await fetch(`${process.env.NEXT_PUBLIC_SERVER_URI}/data/update`, {
+                await fetch(`${process.env.NEXT_PUBLIC_SERVER_URI}/data/submit`, {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json"
