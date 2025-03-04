@@ -4,7 +4,6 @@ import { useVehicleById } from "@/_hooks/vehicles";
 import { useParams } from "next/navigation";
 
 import VehicleProperties from "@/_components/Vehicle/VehicleProperties";
-import VehicleIcon from "@/_components/Vehicle/VehicleIcon";
 import MapboxMap from "@/_components/Mapbox/MapboxMap";
 import VehicleBanner from "@/_components/Vehicle/VehicleBanner";
 
