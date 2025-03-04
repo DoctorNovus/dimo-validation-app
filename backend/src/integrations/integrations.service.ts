@@ -35,15 +35,15 @@ export class IntegrationsService {
         return csvData;
     }
 
-    async createDiscordPayloadFromAnswers(body) {
+    async createDiscordPayloadFromAnswers(id, body) {
         const csvData = this.generateCSVDataFromAnswers(body);
 
         const blob = new Blob([csvData], { type: "text/csv" });
-        const file = new File([blob], "data.csv", { type: "text/csv" });
+        const file = new File([blob], `car_data_${id}.csv`, { type: "text/csv" });
 
         const formData = new FormData();
 
-        const payload = { content: "CSV file attached." };
+        const payload = { content: `Validation Data for Car ID ${id}` };
         formData.append("payload_json", JSON.stringify(payload));
         formData.append("files[0]", file);
 

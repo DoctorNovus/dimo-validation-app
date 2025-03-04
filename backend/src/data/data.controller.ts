@@ -9,8 +9,8 @@ export class DataController {
     @Post("/submit")
     async submitSignals({ body }){
         const id = body["id"];
-        
-        const payload = await this.integrationsService.createDiscordPayloadFromAnswers(body);
+
+        const payload = await this.integrationsService.createDiscordPayloadFromAnswers(id, body);
         await this.integrationsService.exportToDiscordWebhook(payload);
     }
 
