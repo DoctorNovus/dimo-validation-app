@@ -17,7 +17,8 @@ function MapboxMap({ latitude, longitude, theme }: { latitude: number, longitude
             accessToken: process.env.NEXT_PUBLIC_MAPBOX_TOKEN,
             style: `mapbox://styles/mapbox/${theme}-v11`,
             center: [longitude, latitude],
-            zoom: 15,
+            zoom: 16,
+            interactive: true
         });
 
         new Marker()
