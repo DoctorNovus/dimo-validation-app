@@ -58,7 +58,9 @@ export class IntegrationsService {
 
         const data = await response.json();
 
-        if (data)
+        if (data){
             console.log("Success:", data);
+            return 200;
+        }
     }
 }

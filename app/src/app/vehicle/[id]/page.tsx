@@ -5,7 +5,6 @@ import { useParams } from "next/navigation";
 
 import VehicleProperties from "@/_components/Vehicle/VehicleProperties";
 import VehicleIcon from "@/_components/Vehicle/VehicleIcon";
-import { useDimoAuthState } from "@dimo-network/login-with-dimo";
 
 export default function VehicleIdentityPage() {
     const { id } = useParams();

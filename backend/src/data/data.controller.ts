@@ -11,7 +11,7 @@ export class DataController {
         const id = body["id"];
 
         const payload = await this.integrationsService.createDiscordPayloadFromAnswers(id, body);
-        await this.integrationsService.exportToDiscordWebhook(payload);
+        return await this.integrationsService.exportToDiscordWebhook(payload);
     }
 
 }
