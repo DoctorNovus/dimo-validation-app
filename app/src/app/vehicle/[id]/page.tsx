@@ -6,9 +6,10 @@ import { useParams } from "next/navigation";
 import VehicleProperties from "@/_components/Vehicle/VehicleProperties";
 import VehicleIcon from "@/_components/Vehicle/VehicleIcon";
 import MapboxMap from "@/_components/Mapbox/MapboxMap";
+import VehicleBanner from "@/_components/Vehicle/VehicleBanner";
 
 export default function VehicleIdentityPage() {
-    const { id } = useParams();
+    const { id }: { id?: number } = useParams();
     const vehicle = useVehicleById(parseInt(id?.toString() || "-1"));
 
     if (vehicle.isLoading)
@@ -31,25 +32,7 @@ export default function VehicleIdentityPage() {
 
     return (
         <div className="px-4 py-2 flex flex-col gap-4">
-            <div className="w-1/2 flex flex-row gap-4 border border-red-700/50 shadow-md shadow-red-700 px-4 rounded-lg">
-                <div className="w-20 h-20">
-                    <VehicleIcon fill={theme == "light" ? "black" : "white"} />
-                </div>
-                <div className="w-full flex flex-col gap-1 justify-center">
-                    <div className="flex flex-row justify-between gap-2">
-                        <div className="flex flex-row gap-1">
-                            <span>{vehicle.data.vehicle.definition.make}</span>
-                            <span>{vehicle.data.vehicle.definition.model}</span>
-                            <span>{vehicle.data.vehicle.definition.year}</span>
-                        </div>
-                        <span>ID: {id}</span>
-                    </div>
-                    <div className="flex flex-row justify-between">
-                        <label>Last Synced</label>
-                        <span>{lastSeen}</span>
-                    </div>
-                </div>
-            </div>
+            <VehicleBanner theme={theme} vehicle={vehicle} id={id || 0} lastSeen={lastSeen} />
 
             <form className="py-4" onSubmit={async (e) => {
                 e.preventDefault();
@@ -73,8 +56,8 @@ export default function VehicleIdentityPage() {
                 });
             }}>
                 <div className="flex flex-col gap-2.5">
-                    <div className="flex flex-row gap-4">
-                        <div className="w-1/3 aspect-square rounded-lg">
+                    <div className="flex flex-col md:flex-row gap-4">
+                        <div className="w-full md:w-1/3 aspect-square rounded-lg">
                             <MapboxMap
                                 latitude={signals.currentLocationLatitude.value.value}
                                 longitude={signals.currentLocationLongitude.value.value}
@@ -103,9 +86,9 @@ export default function VehicleIdentityPage() {
                     }
                 </div>
 
-                <div className="flex flex-row gap-2">
-                    <button type="submit" className="px-3 py-2 text-lg bg-gray-500 text-white rounded-lg cursor-pointer my-2">Send Data</button>
-                    <button type="submit" className="px-3 py-2 text-lg text-gray-500 border border-white rounded-lg cursor-pointer my-2">Reset Data</button>
+                <div className="flex flex-row justify-center md:justify-start gap-2">
+                    <button type="submit" className="w-full md:w-auto px-3 py-2 text-lg bg-gray-500 text-white rounded-lg cursor-pointer my-2">Send Data</button>
+                    <button type="submit" className="w-full md:w-auto px-3 py-2 text-lg text-gray-500 border border-white rounded-lg cursor-pointer my-2">Reset Data</button>
                 </div>
 
             </form>

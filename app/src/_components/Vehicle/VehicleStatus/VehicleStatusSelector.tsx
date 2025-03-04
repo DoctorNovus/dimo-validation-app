@@ -36,7 +36,7 @@ export default function VehicleStatusSelector({ signal, name, value }: { signal:
         <div className="flex flex-row gap-2 justify-between">
             {selector}
 
-            <div className="px-2">
+            <div className="w-full md:w-fit px-2">
                 <select value={selection} className="w-full h-10 flex bg-gray-500 rounded-lg px-2 py-2 text-white" onChange={(e) => {
                     setSelection(e.target.value);
                 }}>
