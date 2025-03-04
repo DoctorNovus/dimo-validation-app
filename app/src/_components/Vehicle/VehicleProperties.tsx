@@ -2,10 +2,10 @@ import { Divider } from "@heroui/react";
 
 import VehicleStatusSelector from "./VehicleStatus/VehicleStatusSelector";
 
-export default function VehicleProperties({ name, value }: { name: string, value: string | { value: string } }) {
+export default function VehicleProperties({ signal, name, value }: { signal: string, name: string, value: string | { value: string } }) {
     let val;
 
-    if (name == "lastSeen")
+    if (signal == "lastSeen")
         return null;
 
     if (!value) {
@@ -19,7 +19,7 @@ export default function VehicleProperties({ name, value }: { name: string, value
     return (
         <div className="flex flex-col rounded-lg py-4 gap-2">
 
-            <VehicleStatusSelector name={name} value={val} />
+            <VehicleStatusSelector signal={signal} name={name} value={val} />
 
             <Divider className="text-gray-500" />
 

@@ -4,13 +4,13 @@ import { useState } from "react";
 import VehicleStatusAccurate from "./VehicleStatusAccurate";
 import VehicleStatusInaccurate from "./VehicleStatusInaccurate";
 
-export default function VehicleStatusSelector({ name, value }: { name: string, value: string }) {
+export default function VehicleStatusSelector({ signal, name, value }: { signal: string, name: string, value: string }) {
 
     const [selection, setSelection] = useState("accurate");
 
     const SELECTIONS = {
-        ACCURATE: <VehicleStatusAccurate status={selection} name={name} value={value} />,
-        INACCURATE: <VehicleStatusInaccurate status={selection} name={name} value={value} />
+        ACCURATE: <VehicleStatusAccurate status={selection} signal={signal} name={name} value={value} />,
+        INACCURATE: <VehicleStatusInaccurate status={selection} signal={signal} name={name} value={value} />
     }
 
     let selector;

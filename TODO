@@ -5,7 +5,7 @@
 ✔ Display the most recent data for each signal in the dashboard @done(25-03-03 12:41)
 ✔ Implement data validation options: Accurate, Inaccurate, Outdated, Unsure @done(25-03-03 12:41)
 ✔ Allow users to skip fields they do not understand @done(25-03-03 12:41)
-✔ Implement an inaccuracy reporting flow: @done(25-03-03 12:46)
+☐ Implement an inaccuracy reporting flow:
     ✔ Input correct value @done(25-03-03 12:46)
     ☐ Submit validation (optionally attach a picture)
     ☐ Allow users to provide additional details
@@ -31,3 +31,4 @@
 ☐ Remove Aftermarket HDOP & NSAT
 ✔ Implement resharing permissions @done(25-03-03 14:23)
 ✔ Light/Dark Mode Text Fix @done(25-03-03 14:33)
+☐ Add redirect and toast for prompt

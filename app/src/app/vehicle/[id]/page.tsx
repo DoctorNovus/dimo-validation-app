@@ -17,7 +17,7 @@ export default function VehicleIdentityPage() {
 
     const signals = vehicle.data.signals;
 
-    const lastSeen = new Date(signals.lastSeen).toLocaleDateString('en-US', {
+    const lastSeen = new Date(signals.lastSeen.value).toLocaleDateString('en-US', {
         day: "2-digit",
         month: "2-digit",
         year: "2-digit",
@@ -71,7 +71,7 @@ export default function VehicleIdentityPage() {
             }}>
                 <div className="flex flex-col gap-2.5">
                     {
-                        Object.entries(signals).map(([name, value], key) => <VehicleProperties key={key} name={name} value={value} />)
+                        Object.entries(signals).map(([name, value], key) => <VehicleProperties key={key} signal={name} name={value.name} value={value.value} />)
                     }
                 </div>
 
