@@ -4,7 +4,7 @@ import { Injectable } from "@outwalk/firefly";
 export class IntegrationsService {
 
     async exportToDiscordWebhook(discordWebhookData) {
-        const res = await fetch(process.env.DISCORD_WEBHOOK_URI, {
+        await fetch(process.env.DISCORD_WEBHOOK_URI, {
             method: "POST",
             headers: {
                 "Content-Type": "multipart/form-data"
