@@ -7,11 +7,11 @@ export class DataController {
     @Inject() integrationsService: IntegrationsService;
 
     @Post("/submit")
-    async submitSignals({ body }){
+    async submitSignals({ body }) {
         const id = body["id"];
 
-        const payload = await this.integrationsService.createDiscordPayloadFromAnswers(id, body);
-        return await this.integrationsService.exportToDiscordWebhook(payload);
+        await this.integrationsService.loadGoogleSpreadsheetInfo();
+        await this.integrationsService.addSheetData(id, body);
     }
 
 }

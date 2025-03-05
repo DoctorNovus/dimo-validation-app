@@ -1,66 +1,54 @@
+import { GoogleSpreadsheet } from "google-spreadsheet";
+import { JWT } from "google-auth-library";
+
+import { FRIENDLY_NAMES } from "@/vehicle/vehicle.service";
+
 import { Injectable } from "@outwalk/firefly";
 
 @Injectable()
 export class IntegrationsService {
 
-    async exportToDiscordWebhook(discordWebhookData) {
-        await fetch(process.env.DISCORD_WEBHOOK_URI, {
-            method: "POST",
-            headers: {
-                "Content-Type": "multipart/form-data"
-            },
-            body: discordWebhookData
-        });
+    googleServiceAccountAuth = new JWT({
+        email: process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL,
+        key: process.env.GOOGLE_SERVICE_ACCOUNT_KEY.replace(/\\n/g, "\n"),
+        scopes: ["https://www.googleapis.com/auth/spreadsheets"],
+    });
+
+    dataSpreadsheet = new GoogleSpreadsheet(process.env.GOOGLE_SHEET_ID, this.googleServiceAccountAuth);
+
+    async loadGoogleSpreadsheetInfo() {
+        return await this.dataSpreadsheet.loadInfo();
     }
 
-    generateCSVDataFromAnswers(body) {
-        let csvData = "Signal,Accurary,OldData,NewData\n";
+    generateSheetData(id, body) {
+
+        const data = {
+            "Car ID": id,
+            "User Submission Date": new Date().toLocaleDateString("en-us"),
+        };
 
         for (const key of Object.keys(body)) {
             if (key.startsWith("old") || key == "id")
                 continue;
 
             const [signal, accuracy] = key.split("_");
+            const oldData = body[`old_${key}`];
+            const newData = body[key];
 
-            if (accuracy == "accurate")
-                csvData += `${signal},${accuracy},,${body[key]}\n`;
-            else if (accuracy == "inaccurate")
-                csvData += `${signal},${accuracy},${body[`old_${key}`]},${body[key]}\n`;
-            else if (accuracy == "outdated")
-                csvData += `${signal},${accuracy},${body[`old_${key}`]},${body[key]}\n`;
-            else if (accuracy == "skip")
-                csvData += `${signal},${accuracy},,${body[key]}\n`;
+            data[`${FRIENDLY_NAMES[signal]} Signal`] = signal;
+            data[`${FRIENDLY_NAMES[signal]} Accurary`] = accuracy;
+            data[`${FRIENDLY_NAMES[signal]} OldData`] = oldData;
+            data[`${FRIENDLY_NAMES[signal]} NewData`] = newData;
         }
 
-        return csvData;
+        return data;
     }
 
-    async createDiscordPayloadFromAnswers(id, body) {
-        const csvData = this.generateCSVDataFromAnswers(body);
+    async addSheetData(id, body) {
+        const sheetData = this.generateSheetData(id, body);
 
-        const blob = new Blob([csvData], { type: "text/csv" });
-        const file = new File([blob], `car_data_${id}.csv`, { type: "text/csv" });
+        const sheet = await this.dataSpreadsheet.sheetsByTitle["Data"];
 
-        const formData = new FormData();
-
-        const payload = { content: `Validation Data for Car ID ${id}` };
-        formData.append("payload_json", JSON.stringify(payload));
-        formData.append("files[0]", file);
-
-        const response = await fetch(process.env.DISCORD_WEBHOOK_URI, {
-            method: "POST",
-            body: formData
-        });
-
-        if (!response.ok) {
-            throw new Error(`HTTP error! Status: ${response.status}`);
-        }
-
-        const data = await response.json();
-
-        if (data){
-            console.log("Success:", data);
-            return 200;
-        }
+        await sheet.addRow(sheetData);
     }
 }

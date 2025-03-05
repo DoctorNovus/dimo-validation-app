@@ -13,7 +13,7 @@ interface VehicleIdentity {
     }
 }
 
-const FRIENDLY_NAMES = {
+export const FRIENDLY_NAMES = {
     lastSeen: "Last Seen",
     currentLocationApproximateLongitude: "Current Longitude",
     currentLocationApproximateLatitude: "Current Aprox. Latitude",
