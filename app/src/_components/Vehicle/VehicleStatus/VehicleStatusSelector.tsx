@@ -8,36 +8,22 @@ export default function VehicleStatusSelector({ signal, name, value }: { signal:
 
     const [selection, setSelection] = useState("accurate");
 
-    const SELECTIONS = {
-        ACCURATE: <VehicleStatusAccurate status={selection} signal={signal} name={name} value={value} />,
-        INACCURATE: <VehicleStatusInaccurate status={selection} signal={signal} name={name} value={value} />
-    }
-
-    let selector;
-
-    switch (selection) {
-        case "accurate":
-            selector = SELECTIONS.ACCURATE;
-            break;
-
-        case "inaccurate":
-            selector = SELECTIONS.INACCURATE;
-            break;
-
-        case "outdated":
-            selector = SELECTIONS.INACCURATE;
-            break;
-
-        case "skip":
-            selector = SELECTIONS.ACCURATE;
-    }
-
     return (
         <div className="flex flex-row gap-2 justify-between">
-            {selector}
+            {
+                ["accurate", "skip"].includes(selection) && (
+                    <VehicleStatusAccurate status={selection} signal={signal} name={name} value={value} />
+                )
+            }
 
-            <div className="w-full md:w-fit px-2">
-                <select value={selection} className="w-full h-10 flex bg-gray-500 rounded-lg px-2 py-2 text-white" onChange={(e) => {
+            {
+                ["inaccurate", "outdated"].includes(selection) && (
+                    <VehicleStatusInaccurate status={selection} signal={signal} name={name} value={value} />
+                )
+            }
+
+            <div className="w-full md:w-fit flex items-center h-10 px-2 py-2 bg-gray-500 rounded-lg">
+                <select value={selection} className="w-full h-10 flex text-white outline-0" onChange={(e) => {
                     setSelection(e.target.value);
                 }}>
                     <option value="accurate">Accurate</option>

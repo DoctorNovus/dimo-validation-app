@@ -87,10 +87,10 @@ export default function VehicleIdentityPage() {
 
                 <div className="flex flex-row justify-center md:justify-start gap-2">
                     <button type="submit" className="w-full md:w-auto px-3 py-2 text-lg bg-gray-500 text-white rounded-lg cursor-pointer my-2">Send Data</button>
-                    <button type="submit" className="w-full md:w-auto px-3 py-2 text-lg text-gray-500 border border-white rounded-lg cursor-pointer my-2">Reset Data</button>
+                    <button type="submit" className="w-full md:w-auto px-3 py-2 text-lg text-gray-500 border-gray-500 dark:text-white border dark:border-white rounded-lg cursor-pointer my-2">Reset Data</button>
                 </div>
 
             </form>
-        </div >
+        </div>
     )
 }
