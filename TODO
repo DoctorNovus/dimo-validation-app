@@ -1,26 +1,21 @@
 Base General Requirements:
-    ✔ Implement login functionality using DIMO authentication APIs @done(25-03-03 12:41)
-    ✔ Link login process to DIMO Developer Documentation and SDK @done(25-03-03 12:41)
-    ✔ Create a dashboard displaying user vehicles after login @done(25-03-03 12:41)
-    ✔ Allow users to select a vehicle to view available signals @done(25-03-03 12:41)
-    ✔ Display the most recent data for each signal in the dashboard @done(25-03-03 12:41)
-    ✔ Implement data validation options: Accurate, Inaccurate, Outdated, Unsure @done(25-03-03 12:41)
-    ✔ Allow users to skip fields they do not understand @done(25-03-03 12:41)
-    ☐ Implement an inaccuracy reporting flow:
-        ✔ Input correct value @done(25-03-03 12:46)
-        ☐ Submit validation (optionally attach a picture)
-        ☐ Allow users to provide additional details
-    ☐ Implement an outdated reading flow:
-        ☐ Specify when the most recent data should be from
-        ✔ Input the correct updated value @done(25-03-03 17:16)
-        ☐ Display a guide on integration update frequency
-        ☐ Allow users to submit additional data for unavailable signals
-    ✔ Structure collected validation data into a spreadsheet for analysis @done(25-03-03 17:16)
-    ✔ Provide a Calendly link for users to schedule meetings with the data team @done(25-03-06 23:27) (REQUESTED SKIP BY ALEX)
-    ✔ Ensure integration details retrieval via the Telemetry API @done(25-03-03 12:42)
-    ✔ Design a simple UI for login, data review, and submission @done(25-03-03 20:32)
-    ✔ Ensure seamless login experience with DIMO authentication APIs @done(25-03-03 14:25)
-    ✔ Define the spreadsheet format for submitted validation data @done(25-03-03 17:16)
+    ✔ Designing and developing the Data Validation App as an open-source project in React. @done(25-03-10 16:58)
+    ✔ Integrating DIMO login authentication, ensuring seamless user access. @done(25-03-10 16:58)
+    ✔ Implementing functionality to allow users to log in with DIMO, view available vehicle signals, and validate data accuracy. @done(25-03-10 16:58)
+    ✔ Creating a user dashboard to display vehicles and available signals with their most recent data. @done(25-03-10 16:58)
+    ✔ Developing interactive components for users to validate data by marking signals as Accurate, Inaccurate, Outdated, or Unsure. @done(25-03-10 16:58)
+    ☐ Implementing an inaccuracy reporting flow:
+        ✔ Allowing users to input correct values @done(25-03-10 17:01)
+        ☐ Attach supporting documentation
+        ☐ Provide additional context.
+    ✔ Incorporating an outdated reading flow where users can specify when the most recent data should be from and update outdated values. @done(25-03-10 16:58)
+    ✔ Ensuring that users can submit their feedback, which will be stored in a structured spreadsheet for further analysis. @done(25-03-10 16:58)
+    ✔ Providing users with the option to schedule a meeting with the data team via a provided scheduling link. (ALEX SAID TO SKIP) @done(25-03-10 16:58)
+    ☐ Implementing a feature that allows users to contribute additional data for signals not currently in the system.
+    ✔ Ensuring the app retrieves integration details via the Telemetry API to determine available integrations (e.g., Smartcar, R1, etc.). @done(25-03-10 16:58)
+    ✔ Maintaining a simple and intuitive UI that prioritizes clear data presentation and user-friendly navigation. @done(25-03-10 16:59)
+    ✔ Enabling submission of validated data into a structured spreadsheet for easy analysis. @done(25-03-10 16:59)
+    ✔ Considering future enhancements such as auto-detection of stale data and intelligent correction suggestions. @done(25-03-10 16:59)
 
 Additional Implementations:
     ✔ Implement Permissions Based View for Vehicles @done(25-03-03 13:39)
