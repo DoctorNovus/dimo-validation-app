@@ -31,6 +31,7 @@ Additional Implementations:
     ☐ Add redirect and toast for prompt
     ☐ Add Units
     ✔ Design Mobile UI @done(25-03-03 21:57)
+    ☐ Get Available Signals, then Parse Data (Performance Fix)
 
 Consider future enhancements:
     ☐ Auto-detection of stale data

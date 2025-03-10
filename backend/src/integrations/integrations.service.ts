@@ -35,11 +35,13 @@ export class IntegrationsService {
             const oldData = body[`old_${key}`];
             const newData = body[key];
 
-            data[`${FRIENDLY_NAMES[signal]} Signal`] = signal;
-            data[`${FRIENDLY_NAMES[signal]} Accurary`] = accuracy;
-            data[`${FRIENDLY_NAMES[signal]} OldData`] = oldData;
-            data[`${FRIENDLY_NAMES[signal]} NewData`] = newData;
+            if (oldData)
+                data[FRIENDLY_NAMES[signal]] = `${accuracy} ; ${oldData} ; ${newData}`;
+            else
+                data[FRIENDLY_NAMES[signal]] = `${accuracy} ; ${newData}`;
         }
+
+        console.log(data);
 
         return data;
     }
