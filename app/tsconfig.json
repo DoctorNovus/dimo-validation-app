@@ -28,6 +28,9 @@
       ],
       "@components/*": [
         "./src/_components/*"
+      ],
+      "@styles/*": [
+        "./src/_styles/*"
       ]
     }
   },
