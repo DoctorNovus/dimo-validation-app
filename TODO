@@ -1,4 +1,5 @@
 Base General Requirements:
+    
     ✔ Designing and developing the Data Validation App as an open-source project in React. @done(25-03-10 16:58)
     ✔ Integrating DIMO login authentication, ensuring seamless user access. @done(25-03-10 16:58)
     ✔ Implementing functionality to allow users to log in with DIMO, view available vehicle signals, and validate data accuracy. @done(25-03-10 16:58)
@@ -18,6 +19,7 @@ Base General Requirements:
     ✔ Considering future enhancements such as auto-detection of stale data and intelligent correction suggestions. @done(25-03-10 16:59)
 
 Additional Implementations:
+
     ✔ Implement Permissions Based View for Vehicles @done(25-03-03 13:39)
     ✔ Add Lat/Long Map @done(25-03-03 21:15)
     ✔ Remove Aftermarket HDOP & NSAT @done(25-03-03 20:33)
@@ -28,7 +30,64 @@ Additional Implementations:
     ✔ Design Mobile UI @done(25-03-03 21:57)
     ☐ Get Available Signals, then Parse Data (Performance Fix)
 
-Consider future enhancements:
+
+Design & Improvements Requests (CS - Data Validation Improvements):
+
+    Landing Page Updates:
+        ☐ Clearly highlight the app's purpose
+        ☐ Label LWID and Sharing on landing page
+        ☐ List supported browsers (mention crypto wallet browsers are not supported)
+
+    Data Sharing and Privacy:
+        ☐ Determine optimal duration for data sharing (1 day, 7 days, or 1 year)
+        ☐ Allow users to revoke data at any time
+        ☐ Ensure users cannot access others' information (adjust URL access from 1000 to 10)
+
+    User Interface & Experience:
+        ☐ Implement basic and advanced system for data display
+        ☐ Add dropdown to select between Basic View (mirroring mobile app widgets) and Advanced View (dev mode, all collected data)
+        ☐ Ensure signal widget names are clear
+        ☐ Allow users to click on map box to input location
+        ☐ Display IPFS image or vehicle ID for each vehicle (via Identity API)
+        ☐ Fix submit button functionality & style
+
+    Data Accuracy & Submission:
+        ☐ Clarify how users should compare and submit validation data
+        ☐ Implement a guide on submitting valid data
+        ☐ Include units of measurement for all data points
+        ☐ Address scenario: parked cars may not provide certain types of data
+        ☐ Determine threshold for data inaccuracy that requires validation ticket submission
+
+    Data Storage & Analysis:
+        ☐ Implement database for analytical purposes
+        ☐ Decide whether to use a spreadsheet for CS purposes
+
+⸻
+
+V0 Requirements (Still Needed):
+
+    ☐ Region selector (Unit Conversion)
+    ☐ IPFS image integration for vehicles
+    ☐ Clear timestamp for last data update
+    ☐ Explicit indication of which data widgets users can validate
+
+    Basic required information for validation:
+        ☐ Location
+        ☐ Battery level (voltage)
+        ☐ Fuel type
+        ☐ Fuel Level/State of Charge
+        ☐ Odometer
+        ☐ PSI (if available)
+        ☐ Powertrain type
+
+Additional Considerations:
+
+    ☐ Plan for managing support ticket flood upon release
+    ☐ Consider impact on support team metrics & SLAs
+    ☐ Evaluate need for a dedicated data team or expanded permissions
+    ☐ Coordinate with backend, app dev, and Ruptella for issue resolution
+    ☐ Ensure CS agents (except eng & management) do not have access to location data
+    ☐ Explore support payloads to limit CS access to location data
     ☐ Auto-detection of stale data
     ☐ Intelligent correction suggestions
     ☐ Enable users to push a button to collect and send device logs to DIMO
