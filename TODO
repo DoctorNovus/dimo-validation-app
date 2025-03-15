@@ -39,8 +39,9 @@ Design & Improvements Requests (CS - Data Validation Improvements):
         ☐ List supported browsers (mention crypto wallet browsers are not supported)
 
     Data Sharing and Privacy:
-        ☐ Determine optimal duration for data sharing (1 day, 7 days, or 1 year)
-        ☐ Allow users to revoke data at any time
+        (Adjust internally)
+        ✔ Determine optimal duration for data sharing (1 day, 7 days, or 1 year) @done(25-03-14 22:07)
+        ✔ Allow users to revoke data at any time @done(25-03-14 22:07)
         ☐ Ensure users cannot access others' information (adjust URL access from 1000 to 10)
 
     User Interface & Experience:

@@ -5,10 +5,10 @@ import DimoCore from "./DimoCore";
 
 const Wrapper = dynamic(() => import("./DimoWrapper"), { ssr: false });
 
-export default function DimoInterface() {
+export default function DimoInterface({ children }) {
     return (
         <Wrapper>
-            <DimoCore />
+            {children}
         </Wrapper>
     )
 }

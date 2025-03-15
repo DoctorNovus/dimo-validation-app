@@ -1,5 +1,16 @@
-export default function NavBar(){
+import DimoLogin from "../DIMO/DimoLogin";
+
+export default function NavBar() {
     return (
-        <div className="hidden md:flex w-full h-20 border-b border-b-gray-500/45"></div>
+        <div className="hidden md:flex w-full h-20 border-b border-b-gray-500/45 justify-between items-center px-4">
+            <div>
+
+            </div>
+
+            <div className="w-1/4 flex justify-center items-center">
+                <DimoLogin />
+
+            </div>
+        </div>
     )
 }
