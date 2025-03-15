@@ -6,16 +6,26 @@ import { useParams } from "next/navigation";
 import VehicleProperties from "@/_components/Vehicle/VehicleProperties";
 import MapboxMap from "@/_components/Mapbox/MapboxMap";
 import VehicleBanner from "@/_components/Vehicle/VehicleBanner";
+import { useDimoAuthState } from "@dimo-network/login-with-dimo";
 
 export default function VehicleIdentityPage() {
+    const { walletAddress } = useDimoAuthState();
+
     const { id }: { id?: number } = useParams();
-    const vehicle = useVehicleById(parseInt(id?.toString() || "-1"));
+    const vehicle = useVehicleById(parseInt(id?.toString() || "-1"), walletAddress);
 
     if (vehicle.isLoading)
         return <>Loading...</>
 
-    if (vehicle.isError)
-        return <></>
+    if (vehicle.data.statusCode == 401) {
+        setTimeout(() => {
+            window.location.href = "/dashboard"
+        }, 2000);
+
+        return (
+            <span>Not Your Vehicle.</span>
+        )
+    }
 
     const theme = window.matchMedia?.("(prefers-color-scheme: dark)").matches ? "dark" : "light"
 
@@ -31,7 +41,7 @@ export default function VehicleIdentityPage() {
     });
 
     console.log(vehicle.data);
-    
+
     return (
         <div className="px-4 py-2 flex flex-col gap-4">
             <VehicleBanner theme={theme} vehicle={vehicle} id={id || 0} lastSeen={lastSeen} />

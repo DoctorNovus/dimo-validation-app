@@ -7,17 +7,19 @@ export class VehicleController {
     @Inject() vehicleService: VehicleService;
 
     @Get("/:id")
-    async getVehicleById({ params }) {
+    async getVehicleById({ params, query }) {
         const { id } = params;
+        const { walletAddress } = query;
 
-        return await this.vehicleService.getVehicleById(parseInt(id));
+        return await this.vehicleService.getVehicleById(parseInt(id), walletAddress);
     }
 
     @Get("/:id/image")
-    async getVehicleImageById({ params }) {
+    async getVehicleImageById({ params, query }) {
         const { id } = params;
+        const { walletAddress } = query;
 
-        return await this.vehicleService.getVehicleImage(parseInt(id));
+        return await this.vehicleService.getVehicleImage(parseInt(id), walletAddress);
     }
 
 }

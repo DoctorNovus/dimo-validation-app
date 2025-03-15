@@ -1,24 +1,21 @@
+import { useVehicleImage } from "@/_hooks/vehicles"
+import { useDimoAuthState } from "@dimo-network/login-with-dimo";
 import { useEffect, useState } from "react"
 
 export default function VehicleIcon({ id, fill }: { id: number, fill: string }) {
 
-    const [icon, setIcon] = useState();
+    const { walletAddress } = useDimoAuthState();
 
-    useEffect(() => {
-        if (!id)
-            return;
+    const icon = useVehicleImage(id, walletAddress);
 
-        fetch(`${process.env.NEXT_PUBLIC_SERVER_URI}/vehicle/${id}/image`)
-            .then(res => res.text())
-            .then(data => setIcon(data));
-    }, [icon, setIcon]);
+    console.log("Icon", icon.data);
 
-    if (icon)
+    if (icon.isSuccess)
         return (
             <div className="w-full h-full flex justify-center items-center rounded-md">
-                <img className="w-full aspect-square rounded-md" src={icon} alt="car image" width="128" height="128" />
+                <img className="w-full aspect-square rounded-md" src={icon.data} alt="car image" width="128" height="128" />
             </div>
-            )
+        )
 
     return (
         <svg className="w-full h-full" fill={fill || "red"} version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" width="800px" height="800px" viewBox="0 0 31.445 31.445">

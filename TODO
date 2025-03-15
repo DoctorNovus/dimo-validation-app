@@ -42,7 +42,7 @@ Design & Improvements Requests (CS - Data Validation Improvements):
         (Adjust internally)
         ✔ Determine optimal duration for data sharing (1 day, 7 days, or 1 year) @done(25-03-14 22:07)
         ✔ Allow users to revoke data at any time @done(25-03-14 22:07)
-        ☐ Ensure users cannot access others' information (adjust URL access from 1000 to 10)
+        ✔ Ensure users cannot access others' information (adjust URL access from 1000 to 10) @done(25-03-14 23:31)
 
     User Interface & Experience:
         ☐ Implement basic and advanced system for data display

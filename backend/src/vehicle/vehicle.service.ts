@@ -1,5 +1,6 @@
 import { DimoService } from "@/dimo/dimo.service";
 import { Inject, Injectable } from "@outwalk/firefly";
+import { Unauthorized } from "@outwalk/firefly/errors";
 
 interface VehicleData {
   data: {
@@ -112,7 +113,12 @@ export class VehicleService {
     });
   }
 
-  async getVehicleById(id: number) {
+  async getVehicleById(id: number, walletAddress: string) {
+
+    const owner = await this.getVehicleOwner(id);
+
+    if (owner != walletAddress)
+      return new Unauthorized("Not Your Car.");
 
     const vehicleData = await this.getVehicleDataById(id);
 
@@ -166,7 +172,12 @@ export class VehicleService {
     return (await res.json()).deviceDefinitions;
   }
 
-  async getVehicleImage(id: number) {
+  async getVehicleImage(id: number, walletAddress: string) {
+    const owner = await this.getVehicleOwner(id);
+
+    if (owner != walletAddress)
+      return new Unauthorized("Not Your Car.");
+
     const vehicleIdentity: VehicleIdentity = await this.dimoService.dimo.identity.query({
       query: this.getVehicleImageQuery(id)
     }) as unknown as VehicleIdentity;
@@ -174,6 +185,14 @@ export class VehicleService {
     const tokenURI = vehicleIdentity.data.vehicle.imageURI;
 
     return tokenURI.replace("ipfs://", "https://ipfs.io/ipfs/");
+  }
+
+  async getVehicleOwner(id: number) {
+    const vehicleIdentity: VehicleIdentity = await this.dimoService.dimo.identity.query({
+      query: this.getVehicleOwnerQuery(id)
+    }) as unknown as VehicleIdentity;
+
+    return vehicleIdentity.data.vehicle.owner;
   }
 
   getVehicleQuery(id: number) {
@@ -198,6 +217,16 @@ export class VehicleService {
           }
       	}
     	`;
+  }
+
+  getVehicleOwnerQuery(id: number) {
+    return `
+      query {
+        vehicle(tokenId: ${id}){
+          owner
+        }
+      }
+    `;
   }
 
   getVehicleDataQuery(id: number, interval: string = "12h", agg: string = "FIRST") {
