@@ -14,11 +14,14 @@ export default function VehicleIdentityPage() {
     if (vehicle.isLoading)
         return <>Loading...</>
 
+    if (vehicle.isError)
+        return <></>
+
     const theme = window.matchMedia?.("(prefers-color-scheme: dark)").matches ? "dark" : "light"
 
     const signals = vehicle.data.signals;
 
-    const lastSeen = new Date(signals.lastSeen.value).toLocaleDateString('en-US', {
+    const lastSeen = new Date(signals?.lastSeen?.value).toLocaleDateString('en-US', {
         day: "2-digit",
         month: "2-digit",
         year: "2-digit",
@@ -27,8 +30,8 @@ export default function VehicleIdentityPage() {
         weekday: "short"
     });
 
-    console.log(signals);
-
+    console.log(vehicle.data);
+    
     return (
         <div className="px-4 py-2 flex flex-col gap-4">
             <VehicleBanner theme={theme} vehicle={vehicle} id={id || 0} lastSeen={lastSeen} />

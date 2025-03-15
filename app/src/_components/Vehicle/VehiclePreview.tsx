@@ -10,7 +10,7 @@ export default function VehiclePreview({ vehicle, disabled }) {
             <div className={`flex flex-row gap-3 border shadow-md px-4 py-4 items-center rounded-md disabled`}>
                 <div className="flex">
                     <div className="w-12 h-12">
-                        <VehicleIcon />
+                        <VehicleIcon id={vehicle.tokenId} />
                     </div>
                 </div>
                 <div className="flex flex-col gap-2">
@@ -31,7 +31,7 @@ export default function VehiclePreview({ vehicle, disabled }) {
         <div className={`flex flex-row gap-3 border shadow-md px-4 py-4 items-center rounded-md disabled`}>
             <div className="flex">
                 <div className="w-12 h-12">
-                    <VehicleIcon />
+                    <VehicleIcon id={vehicle.tokenId} />
                 </div>
             </div>
             <div className="flex flex-col gap-2">

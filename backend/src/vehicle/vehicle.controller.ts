@@ -13,4 +13,11 @@ export class VehicleController {
         return await this.vehicleService.getVehicleById(parseInt(id));
     }
 
+    @Get("/:id/image")
+    async getVehicleImageById({ params }) {
+        const { id } = params;
+
+        return await this.vehicleService.getVehicleImage(parseInt(id));
+    }
+
 }

@@ -68,8 +68,8 @@ Design & Improvements Requests (CS - Data Validation Improvements):
 V0 Requirements (Still Needed):
 
     ☐ Region selector (Unit Conversion)
-    ☐ IPFS image integration for vehicles
-    ☐ Clear timestamp for last data update
+    ✔ IPFS image integration for vehicles @done(25-03-14 23:03)
+    ✔ Clear timestamp for last data update @done(25-03-14 23:03)
     ☐ Explicit indication of which data widgets users can validate
 
     Basic required information for validation:
