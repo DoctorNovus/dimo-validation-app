@@ -2,7 +2,7 @@ import VehicleIcon from "./VehicleIcon";
 
 export default function VehiclePreview({ vehicle, disabled }) {
     const redirect = () => {
-        window.location.href = `/vehicle/${vehicle.tokenId}`;
+        window.location.href = `/dashboard/vehicle/${vehicle.tokenId}`;
     }
 
     if (disabled) {

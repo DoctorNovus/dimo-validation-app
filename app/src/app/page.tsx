@@ -4,9 +4,9 @@ export default function LandingPage() {
 
     return (
         <div className="flex flex-col">
-            <div className="flex flex-row justify-between w-full px-4 py-6 md:py-2 shadow items-center h-12">
+            <div className="flex flex-row justify-between w-full px-4 py-6 md:py-2 shadow dark:border-b dark:border-b-white/50 items-center h-12">
                 <h1 className="text-lg md:text-xl">
-                    <b className="text-gray-700 uppercase">DIMO Validation App</b>
+                    <b className="text-gray-700 dark:text-white uppercase">DIMO Validation App</b>
                 </h1>
 
                 <Link href="/dashboard">
@@ -29,17 +29,17 @@ export default function LandingPage() {
                     </div>
                 </section>
 
-                <section>
+                {/* <section>
                     <h2 className="text-2xl my-2">Our Process</h2>
 
                     <p></p>
-                </section>
+                </section> */}
 
-                <section>
+                {/* <section>
                     <h2 className="text-2xl my-2">Our Data Flow</h2>
 
                     <p></p>
-                </section>
+                </section> */}
 
             </div>
         </div>
