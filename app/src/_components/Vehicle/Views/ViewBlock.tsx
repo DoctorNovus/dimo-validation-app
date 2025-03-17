@@ -1,11 +1,19 @@
 import { useState } from "react";
 import ViewInputBox from "./ViewInputBox";
+import MapboxMap from "@/_components/Mapbox/MapboxMap";
 
 export default function ViewBlock({ signal, label, value: tempVal, unit }) {
 
     const [validity, setValidity] = useState("accurate");
     const [editing, setEditing] = useState(false);
     const [value, setValue] = useState(tempVal);
+
+    const cleanUp = (value: number) => {
+        if (value.toFixed(2).toString().endsWith(".00"))
+            return value.toFixed(0);
+
+        return value.toFixed(2);
+    }
 
     return (
         <div className="flex flex-col w-full aspect-square border shadow-md dark:bg-[#1a1a1a] p-4 rounded-lg justify-between">
@@ -15,7 +23,7 @@ export default function ViewBlock({ signal, label, value: tempVal, unit }) {
             <div>
                 <span className="text-xl">{label}</span>
                 <div className="flex flex-row gap-0.5 text-gray-500">
-                    <span className="flex text-lg gap-1">{value}{tempVal != value && <span>({tempVal})</span>}</span>
+                    <span className="flex text-lg gap-1">{cleanUp(value)}{tempVal != value && <span>({cleanUp(tempVal)})</span>}</span>
                     <span className="text-lg">{unit}</span>
                 </div>
             </div>

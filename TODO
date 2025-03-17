@@ -92,3 +92,5 @@ Additional Considerations:
     ☐ Auto-detection of stale data
     ☐ Intelligent correction suggestions
     ☐ Enable users to push a button to collect and send device logs to DIMO
+    ☐ Add title bar for DIMO Validation
+    ☐ Process Friendly Names based on Car Type (ICE/EV)

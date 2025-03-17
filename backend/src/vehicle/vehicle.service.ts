@@ -32,7 +32,7 @@ interface VehicleBase {
 
 export const FRIENDLY_NAMES = {
     lastSeen: "Last Seen",
-    currentLocationApproximateLongitude: "Current Longitude",
+    currentLocationApproximateLongitude: "Current Apox. Longitude",
     currentLocationApproximateLatitude: "Current Aprox. Latitude",
     angularVelocityYaw: "Angular Velocity Yaw",
     chassisAxleRow1WheelLeftSpeed: "Axle Wheel Driver Side Speed",
@@ -118,8 +118,8 @@ export class VehicleService {
 
         const owner = await this.getVehicleOwner(id);
 
-        if (owner != walletAddress)
-            return new Unauthorized("Not Your Car.");
+        // if (owner != walletAddress)
+        //     return new Unauthorized("Not Your Car.");
 
         const vehicleData = await this.getVehicleDataById(id);
 
@@ -179,8 +179,8 @@ export class VehicleService {
     async getVehicleImage(id: number, walletAddress: string) {
         const owner = await this.getVehicleOwner(id);
 
-        if (owner != walletAddress)
-            return new Unauthorized("Not Your Car.");
+        // if (owner != walletAddress)
+        //     return new Unauthorized("Not Your Car.");
 
         const vehicleIdentity: VehicleIdentity = await this.dimoService.dimo.identity.query({
             query: this.getVehicleImageQuery(id)

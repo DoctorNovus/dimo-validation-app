@@ -5,44 +5,45 @@ export default function VehicleBasicMode({ id, signals }) {
     const ApplyBasicFilter = ([signal, data]) => {
         // if (!data.value) return null;
 
+        // ☐ Fuel Level/State of Charge
+        // ☐ Odometer
+        // ☐ PSI (if available)
+        // ☐ Powertrain type
+
         switch (signal) {
-            case "lastSeen":
-            case "currentLocationAltitude":
+            // Location
+            case "currentLocationApproximateLongitude":
+            case "currentLocationApproximateLatitude":
             case "currentLocationLatitude":
             case "currentLocationLongitude":
-            case "obdDistanceWithMIL":
-            case "powertrainCombustionEngineTPS":
-            case "powertrainFuelSystemAbsoluteLevel":
-            case "angularVelocityYaw":
-            case "chassisAxleRow1WheelLeftSpeed":
+                return null;
+
+            // Battery Level (Voltage)
+            case "lowVoltageBatteryCurrentVoltage":
+
+            // Fuel Type
+            case "powertrainFuelSystemSupportedFuelTypes":
+
+            // Fuel Level / State of Charge (EV Battery Level)
+            case "powertrainFuelSystemRelativeLevel":
+            case "powertrainTractionBatteryStateOfChargeCurrent":
+                
+            // Odemeter
+            case "powertrainTransmissionTravelledDistance":
+
+            // PSI
             case "chassisAxleRow1WheelLeftTirePressure":
-            case "chassisAxleRow1WheelRightSpeed":
             case "chassisAxleRow1WheelRightTirePressure":
             case "chassisAxleRow2WheelLeftTirePressure":
             case "chassisAxleRow2WheelRightTirePressure":
-            case "currentLocationHeading":
-            case "currentLocationIsRedacted":
-            case "obdBarometricPressure":
-            case "obdCommandedEGR":
-            case "obdCommandedEVAP":
-            case "obdDTCList":
-            case "obdDistanceSinceDTCClear":
-            case "obdEngineLoad":
-            case "obdFuelPressure":
-            case "obdIntakeTemp":
-            case "obdLongTermFuelTrim1":
-            case "obdMAP":
-            case "obdO2WRSensor1Voltage":
-            case "obdO2WRSensor2Voltage":
-            case "obdRunTime":
-            case "obdShortTermFuelTrim1":
-            case "obdWarmupsSinceDTCClear":
-            case "powertrainCombustionEngineMAF":
-            case "serviceDistanceToService":
-                return null;
+
+            // Powertrain Type
+            case "powertrainType":
+                return [signal, data];
+
         }
 
-        return [signal, data];
+        return null;
     }
 
     const filteredSignals = Object.entries(signals).filter(ApplyBasicFilter);
@@ -58,7 +59,7 @@ export default function VehicleBasicMode({ id, signals }) {
 
             for (const elem of e.target) {
                 if (elem.nodeName == "INPUT") {
-                    if (elem.name.trim() != ""){
+                    if (elem.name.trim() != "") {
                         data[elem.name] = elem.value;
                     }
                 }
