@@ -1,6 +1,7 @@
 import { useVehicleImage } from "@/_hooks/vehicles"
 import { useDimoAuthState } from "@dimo-network/login-with-dimo";
-import { useEffect, useState } from "react"
+
+import Image from "next/image";
 
 export default function VehicleIcon({ id, fill }: { id: number, fill: string }) {
 
@@ -13,7 +14,7 @@ export default function VehicleIcon({ id, fill }: { id: number, fill: string }) 
     if (icon.isSuccess)
         return (
             <div className="w-full h-full flex justify-center items-center rounded-md">
-                <img className="w-full aspect-square rounded-md" src={icon.data} alt="car image" width="128" height="128" />
+                <Image className="w-full aspect-square rounded-md" src={icon.data} alt="car image" width="128" height="128" />
             </div>
         )
 

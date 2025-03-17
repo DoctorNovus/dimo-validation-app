@@ -1,7 +1,6 @@
-import MapboxMap from "@components/Mapbox/MapboxMap";
 import ViewBlock from "./ViewBlock";
 
-export default function VehicleBasicMode({ id, signals, theme }) {
+export default function VehicleBasicMode({ id, signals }) {
 
     const ApplyBasicFilter = ([signal, data]) => {
         // if (!data.value) return null;

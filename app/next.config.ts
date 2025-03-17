@@ -5,7 +5,15 @@ const nextConfig: NextConfig = {
   typescript: {
     ignoreBuildErrors: true
   },
-  devIndicators: false
+  devIndicators: false,
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'ipfs.io',
+      },
+    ],
+  },
 };
 
 export default nextConfig;

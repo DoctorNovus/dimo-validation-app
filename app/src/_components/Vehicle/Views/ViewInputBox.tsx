@@ -1,6 +1,6 @@
-import { useRef, useState } from "react";
+import { useState } from "react";
 
-export default function ViewInputBox({ label, signal, value, setValue, unit, validity, setValidity, setEditing }) {
+export default function ViewInputBox({ label, value, setValue, unit, validity, setValidity, setEditing }) {
 
     const [data, setData] = useState(value);
 
