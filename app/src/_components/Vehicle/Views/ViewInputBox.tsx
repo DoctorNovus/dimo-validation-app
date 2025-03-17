@@ -1,0 +1,35 @@
+import { useRef, useState } from "react";
+
+export default function ViewInputBox({ label, signal, value, setValue, unit, validity, setValidity, setEditing }) {
+
+    const [data, setData] = useState(value);
+
+    return (
+        <div className="w-screen h-screen absolute top-0 left-0 bg-black/20 flex items-center justify-center">
+            <div className="w-1/2 h-48 bg-white dark:bg-[#2f2f2f] rounded-md px-4 py-2">
+                <div className="text-xl my-2 text-gray-500">{label} Validation ({validity})</div>
+
+                <div className="flex flex-row gap-6">
+                    <div className="w-1/2 flex flex-col gap-1">
+                        <span className="text-lg text-black dark:text-white">Old Value</span>
+
+                        <span className="text-gray-500/30 border-b border-black/30 dark:border-white/30">{value}<span>{unit}</span></span>
+                    </div>
+
+                    <div className="w-1/2 flex flex-col gap-1">
+                        <span className="text-lg text-black dark:text-white">New Value</span>
+
+                        <div className="text-gray-500 w-full border-b border-black text:border-white">
+                            <input value={data} onChange={(e) => setData(e.target.value)} className="outline-none" />
+                        </div>
+                    </div>
+                </div>
+
+                <div className="flex flex-row gap-2 my-4">
+                    <button type="button" className="bg-black dark:bg-white px-2 py-1 text-white dark:text-black rounded-md cursor-pointer" onClick={() => { setEditing(false); setValue(data) }}>Save</button>
+                    <button type="button" className="border border-black dark:border-white px-2 py-1 text-black dark:text-white rounded-md cursor-pointer" onClick={() => { setValidity("accurate"); setEditing(false); }}>Cancel</button>
+                </div>
+            </div>
+        </div>
+    )
+}

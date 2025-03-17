@@ -45,11 +45,11 @@ Design & Improvements Requests (CS - Data Validation Improvements):
         ✔ Ensure users cannot access others' information (adjust URL access from 1000 to 10) @done(25-03-14 23:31)
 
     User Interface & Experience:
-        ☐ Implement basic and advanced system for data display
-        ☐ Add dropdown to select between Basic View (mirroring mobile app widgets) and Advanced View (dev mode, all collected data)
-        ☐ Ensure signal widget names are clear
+        ✔ Implement basic and advanced system for data display @done(25-03-15 13:51)
+        ✔ Add dropdown to select between Basic View (mirroring mobile app widgets) and Advanced View (dev mode, all collected data) @done(25-03-15 13:51)
+        ✔ Ensure signal widget names are clear @done(25-03-15 13:51)
         ☐ Allow users to click on map box to input location
-        ☐ Display IPFS image or vehicle ID for each vehicle (via Identity API)
+        ✔ Display IPFS image or vehicle ID for each vehicle (via Identity API) @done(25-03-15 13:51)
         ☐ Fix submit button functionality & style
 
     Data Accuracy & Submission:
@@ -70,7 +70,7 @@ V0 Requirements (Still Needed):
     ☐ Region selector (Unit Conversion)
     ✔ IPFS image integration for vehicles @done(25-03-14 23:03)
     ✔ Clear timestamp for last data update @done(25-03-14 23:03)
-    ☐ Explicit indication of which data widgets users can validate
+    ✔ Explicit indication of which data widgets users can validate @done(25-03-15 13:51)
 
     Basic required information for validation:
         ☐ Location
