@@ -4,7 +4,7 @@ import { useState } from "react";
 import VehicleStatusAccurate from "./VehicleStatusAccurate";
 import VehicleStatusInaccurate from "./VehicleStatusInaccurate";
 
-export default function VehicleStatusSelector({ signal, name, value }: { signal: string, name: string, value: string }) {
+export default function VehicleStatusSelector({ signal, name, value, unit }: { signal: string, name: string, value: string, unit: string }) {
 
     const [selection, setSelection] = useState("accurate");
 
@@ -12,13 +12,13 @@ export default function VehicleStatusSelector({ signal, name, value }: { signal:
         <div className="flex flex-row gap-2 justify-between">
             {
                 ["accurate", "skip"].includes(selection) && (
-                    <VehicleStatusAccurate status={selection} signal={signal} name={name} value={value} />
+                    <VehicleStatusAccurate status={selection} signal={signal} name={name} value={value} unit={unit} />
                 )
             }
 
             {
                 ["inaccurate", "outdated"].includes(selection) && (
-                    <VehicleStatusInaccurate status={selection} signal={signal} name={name} value={value} />
+                    <VehicleStatusInaccurate status={selection} signal={signal} name={name} value={value} unit={unit} />
                 )
             }
 

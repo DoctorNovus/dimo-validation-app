@@ -228,7 +228,7 @@ export class VehicleService {
               case "km":
                   return "mi";
 
-              case "celcius":
+              case "celsius":
                   return "°F";
 
               case "percent":
@@ -264,7 +264,7 @@ export class VehicleService {
           case "degrees/s":
               return "°/s";
 
-          case "celcius":
+          case "celsius":
               return "°C";
 
           case "percent":

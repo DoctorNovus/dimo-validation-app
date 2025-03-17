@@ -2,6 +2,9 @@ import MapboxMap from "@components/Mapbox/MapboxMap";
 import VehicleProperties from "@components/Vehicle/VehicleProperties";
 
 export default function VehicleAdvancedMode({ id, signals, theme }) {
+    console.log("Signals");
+    console.log(signals);
+
     return (
         <form className="py-4" onSubmit={async (e) => {
             e.preventDefault();
@@ -28,14 +31,14 @@ export default function VehicleAdvancedMode({ id, signals, theme }) {
                 <div className="flex flex-col md:flex-row gap-4">
                     <div className="w-full md:w-1/3 aspect-square rounded-lg">
                         <MapboxMap
-                            latitude={signals.currentLocationLatitude.value.value}
-                            longitude={signals.currentLocationLongitude.value.value}
+                            latitude={signals.currentLocationLatitude.value}
+                            longitude={signals.currentLocationLongitude.value}
                             theme={theme}
                         />
                     </div>
                     <div className="w-full flex flex-col gap-2">
-                        <VehicleProperties signal={"currentLocationLatitude"} name={signals.currentLocationLatitude.name} value={signals.currentLocationLatitude.value.value} />
-                        <VehicleProperties signal={"currentLocationLongitude"} name={signals.currentLocationLongitude.name} value={signals.currentLocationLongitude.value.value} />
+                        <VehicleProperties signal={"currentLocationLatitude"} name={signals.currentLocationLatitude.name} value={signals.currentLocationLatitude.value} unit={signals.currentLocationLatitude.unit} />
+                        <VehicleProperties signal={"currentLocationLongitude"} name={signals.currentLocationLongitude.name} value={signals.currentLocationLongitude.value} unit={signals.currentLocationLatitude.unit} />
                     </div>
                 </div>
 
@@ -51,7 +54,7 @@ export default function VehicleAdvancedMode({ id, signals, theme }) {
                                 return true;
                         }
                     })
-                        .map(([name, value], key) => <VehicleProperties key={key} signal={name} name={value.name} value={value.value} />)
+                        .map(([name, value], key) => <VehicleProperties key={key} signal={name} name={value.name} value={value.value} unit={value.unit} />)
                 }
             </div>
 
