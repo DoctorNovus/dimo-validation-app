@@ -15,10 +15,12 @@ export default function UnitSelector() {
                     <span className={`${state.unit == "km" ? "text-red-500" : "text-black dark:text-white"} cursor-pointer`} onClick={() => {
                         dispatch({ type: "setToKM" });
                         queryClient.invalidateQueries({ queryKey: ["vehicle", id, "km"] });
+                        queryClient.invalidateQueries({ queryKey: ["vehicle", id, "mi"] });
                     }}>km</span>
                     <span className="text-gray-500">/</span>
                     <span className={`${state.unit == "mi" ? "text-red-500" : "text-black dark:text-white"} cursor-pointer`} onClick={() => {
                         dispatch({ type: "setToMI" });
+                        queryClient.invalidateQueries({ queryKey: ["vehicle", id, "km"] });
                         queryClient.invalidateQueries({ queryKey: ["vehicle", id, "mi"] });
                     }}>mi</span>
                 </div>

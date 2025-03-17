@@ -7,6 +7,13 @@ export default function ViewBlock({ signal, label, value: tempVal, unit }) {
     const [validity, setValidity] = useState("accurate");
     const [editing, setEditing] = useState(false);
     const [value, setValue] = useState(tempVal);
+    const [unitValidity, setUnitValidity] = useState("km");
+
+    if (unitValidity != unit) {
+        setValue(tempVal);
+        setUnitValidity(unit);
+        setValidity("accurate");
+    }
 
     const cleanUp = (value: number) => {
         if (value.toFixed(2).toString().endsWith(".00"))

@@ -11,16 +11,16 @@ export default function ViewInputBox({ label, value, setValue, unit, validity, s
 
                 <div className="flex flex-row gap-6">
                     <div className="w-1/2 flex flex-col gap-1">
-                        <span className="text-lg text-black dark:text-white">Old Value</span>
+                        <span className="text-lg text-black dark:text-white">Detected Value</span>
 
                         <span className="text-gray-500/30 border-b border-black/30 dark:border-white/30">{value}<span>{unit}</span></span>
                     </div>
 
                     <div className="w-1/2 flex flex-col gap-1">
-                        <span className="text-lg text-black dark:text-white">New Value</span>
+                        <span className="text-lg text-black dark:text-white">Accurate Value</span>
 
                         <div className="text-gray-500 w-full border-b border-black text:border-white">
-                            <input value={data} onChange={(e) => setData(e.target.value)} className="outline-none" />
+                            <input value={data} onChange={(e) => setData(parseFloat(e.target.value))} className="outline-none" />
                         </div>
                     </div>
                 </div>
