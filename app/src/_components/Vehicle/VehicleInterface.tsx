@@ -1,13 +1,11 @@
 "use client";
 
 import { useVehicles } from "@/_hooks/vehicles";
-import { ShareVehiclesWithDimo, useDimoAuthState } from "@dimo-network/login-with-dimo";
+import { ShareVehiclesWithDimo } from "@dimo-network/login-with-dimo";
 import VehiclePreview from "./VehiclePreview";
 
 export default function VehicleInterface() {
-    const { walletAddress } = useDimoAuthState();
-
-    const vehicles = useVehicles(walletAddress);
+    const vehicles = useVehicles();
 
     if (vehicles.isLoading)
         return <></>

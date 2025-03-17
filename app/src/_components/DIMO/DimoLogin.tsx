@@ -1,40 +1,32 @@
 "use client";
 
-import { LoginWithDimo, initializeDimoSDK, useDimoAuthState } from "@dimo-network/login-with-dimo";
+import { useWalletAddress } from "@/_hooks/settings";
 import Link from "next/link";
 
 export default function DimoLogin() {
-    const { isAuthenticated, walletAddress } = useDimoAuthState();
+    const walletAddress = useWalletAddress();
+
+    const params = new URLSearchParams(window.location.search);
+
+    if (params.size != 0) {
+        const token = params.get("token");
+        const email = params.get("email");
+        const walletAddress = params.get("walletAddress");
+
+        localStorage.setItem("token", token);
+        localStorage.setItem("email", email);
+        localStorage.setItem("walletAddress", walletAddress);
+    }
 
     const loginURI = `https://login.dimo.org/?clientId=${process.env.NEXT_PUBLIC_DIMO_CLIENT_ID}&redirectUri=${process.env.NEXT_PUBLIC_DIMO_REDIRECT_URI}&permissionTemplateId=1&entryState=VEHICLE_MANAGER`;
 
-    if (!isAuthenticated)
-        initializeDimoSDK({
-            clientId: process.env.NEXT_PUBLIC_DIMO_CLIENT_ID!,
-            redirectUri: process.env.NEXT_PUBLIC_DIMO_REDIRECT_URI!,
-            apiKey: process.env.NEXT_PUBLIC_DIMO_API_KEY!
-        });
-
-    if (!walletAddress)
+    if (walletAddress.isSuccess && !walletAddress.data)
         window.location.href = loginURI;
-
 
     return (
         <Link href={loginURI} className="bg-black text-white dark:bg-white dark:text-black text-base px-3 py-1 rounded-md">
             <span>Manage Your Account</span>
         </Link>
     );
-
-    return (
-        <LoginWithDimo
-            className="bg-black"
-            mode="popup"
-            onSuccess={(authData: unknown) => {
-                console.log("Success:", authData);
-            }}
-            onError={(error: unknown) => console.error("Error:", error)}
-            permissionTemplateId={"1"}
-        />
-    )
 
 }

@@ -1,4 +1,5 @@
 import DimoLogin from "../DIMO/DimoLogin";
+import UnitSelector from "./UnitSelector";
 
 export default function NavBar() {
     return (
@@ -7,7 +8,9 @@ export default function NavBar() {
 
             </div>
 
-            <div className="w-1/4 flex justify-center items-center">
+            <div className="w-1/4 flex justify-center items-center gap-4">
+                <UnitSelector />
+
                 <DimoLogin />
 
             </div>

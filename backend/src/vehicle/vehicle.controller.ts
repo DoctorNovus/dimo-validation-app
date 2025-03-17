@@ -9,9 +9,9 @@ export class VehicleController {
     @Get("/:id")
     async getVehicleById({ params, query }) {
         const { id } = params;
-        const { walletAddress } = query;
-
-        return await this.vehicleService.getVehicleById(parseInt(id), walletAddress);
+        const { walletAddress, localizedUnit } = query;
+        
+        return await this.vehicleService.getVehicleById(parseInt(id), walletAddress, localizedUnit);
     }
 
     @Get("/:id/image")

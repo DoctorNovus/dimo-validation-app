@@ -1,20 +1,40 @@
+"use client";
+
+import { UnitContext } from "@/_hooks/vehicles";
+import { useReducer } from "react";
+
 import NavBar from "./NavBar";
 import NavSidebar from "./NavSidebar";
 
+const reducer = (state, action) => {
+    switch (action.type) {
+        case "setToKM":
+            return { unit: "km" };
+
+        case "setToMI":
+            return { unit: "mi" };
+    }
+};
+
 export default function NavWrapper({ children }) {
+    const [state, dispatch] = useReducer(reducer, { unit: "km" });
+
+    const value = { state, dispatch};
 
     return (
-        <div className="w-full h-full">
-            <NavBar />
+        <UnitContext.Provider value={value}>
+            <div className="w-full h-full">
 
-            <div className="w-full h-full flex flex-col md:flex-row">
-                <NavSidebar />
-                <div className="w-full h-screen p-4 overflow-x-hidden overflow-y-scroll pb-20 [&::-webkit-scrollbar]:hidden">
-                    {children}
+                <NavBar />
+
+                <div className="w-full h-full flex flex-col md:flex-row">
+                    <NavSidebar />
+                    <div className="w-full h-screen p-4 overflow-x-hidden overflow-y-scroll pb-20 [&::-webkit-scrollbar]:hidden">
+                        {children}
+                    </div>
                 </div>
             </div>
-
-        </div>
+        </UnitContext.Provider>
     )
 
 }

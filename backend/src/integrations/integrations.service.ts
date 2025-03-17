@@ -41,8 +41,6 @@ export class IntegrationsService {
                 data[FRIENDLY_NAMES[signal]] = `${accuracy} ; ${newData}`;
         }
 
-        console.log(data);
-
         return data;
     }
 

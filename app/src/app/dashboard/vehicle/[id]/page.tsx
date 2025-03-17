@@ -1,22 +1,22 @@
 'use client';
 
-import { useVehicleById } from "@/_hooks/vehicles";
+import { UnitContext, useVehicleById } from "@/_hooks/vehicles";
 import { useParams } from "next/navigation";
 
 import VehicleBanner from "@/_components/Vehicle/VehicleBanner";
 import VehicleAdvancedMode from "@/_components/Vehicle/Views/VehicleAdvancedMode";
 
-import { useDimoAuthState } from "@dimo-network/login-with-dimo";
-import { useState } from "react";
+import { useContext, useState } from "react";
+
 import VehicleBasicMode from "@/_components/Vehicle/Views/VehicleBasicMode";
 
 export default function VehicleIdentityPage() {
     const [viewMode, setViewMode] = useState(0);
 
-    const { walletAddress } = useDimoAuthState();
+    const { state: { unit }} = useContext(UnitContext);
 
     const { id }: { id?: number } = useParams();
-    const vehicle = useVehicleById(parseInt(id?.toString() || "-1"), walletAddress);
+    const vehicle = useVehicleById(parseInt(id?.toString() || "-1"), unit);
 
     if (vehicle.isLoading)
         return <>Loading...</>

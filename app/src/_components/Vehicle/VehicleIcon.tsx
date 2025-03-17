@@ -1,15 +1,10 @@
 import { useVehicleImage } from "@/_hooks/vehicles"
-import { useDimoAuthState } from "@dimo-network/login-with-dimo";
 
 import Image from "next/image";
 
 export default function VehicleIcon({ id, fill }: { id: number, fill: string }) {
 
-    const { walletAddress } = useDimoAuthState();
-
-    const icon = useVehicleImage(id, walletAddress);
-
-    console.log("Icon", icon.data);
+    const icon = useVehicleImage(id);
 
     if (icon.isSuccess)
         return (

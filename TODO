@@ -26,7 +26,7 @@ Additional Implementations:
     ✔ Implement resharing permissions @done(25-03-03 14:23)
     ✔ Light/Dark Mode Text Fix @done(25-03-03 14:33)
     ☐ Add redirect and toast for prompt
-    ☐ Add Units
+    ✔ Add Units @done(25-03-17 16:11)
     ✔ Design Mobile UI @done(25-03-03 21:57)
     ☐ Get Available Signals, then Parse Data (Performance Fix)
 
@@ -67,19 +67,19 @@ Design & Improvements Requests (CS - Data Validation Improvements):
 
 V0 Requirements (Still Needed):
 
-    ☐ Region selector (Unit Conversion)
+    ✔ Region selector (Unit Conversion) @done(25-03-17 16:11)
     ✔ IPFS image integration for vehicles @done(25-03-14 23:03)
     ✔ Clear timestamp for last data update @done(25-03-14 23:03)
     ✔ Explicit indication of which data widgets users can validate @done(25-03-15 13:51)
 
     Basic required information for validation:
         ☐ Location
-        ☐ Battery level (voltage)
-        ☐ Fuel type
-        ☐ Fuel Level/State of Charge
-        ☐ Odometer
-        ☐ PSI (if available)
-        ☐ Powertrain type
+        ✔ Battery level (voltage) @done(25-03-17 10:50)
+        ✔ Fuel type @done(25-03-17 10:50)
+        ✔ Fuel Level/State of Charge @done(25-03-17 10:50)
+        ✔ Odometer @done(25-03-17 10:50)
+        ✔ PSI (if available) @done(25-03-17 10:50)
+        ✔ Powertrain type @done(25-03-17 10:50)
 
 Additional Considerations:
 
