@@ -8,7 +8,6 @@ import { HeroUIProvider } from "@heroui/react";
 import "@styles/globals.css";
 
 import "mapbox-gl/dist/mapbox-gl.css";
-import { QueryClient } from "@tanstack/react-query";
 
 export const metadata: Metadata = {
     title: "Create Next App",

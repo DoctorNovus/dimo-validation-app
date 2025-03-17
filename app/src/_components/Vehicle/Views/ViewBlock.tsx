@@ -1,6 +1,6 @@
 import { useState } from "react";
 import ViewInputBox from "./ViewInputBox";
-import MapboxMap from "@/_components/Mapbox/MapboxMap";
+// import MapboxMap from "@/_components/Mapbox/MapboxMap";
 
 export default function ViewBlock({ signal, label, value: tempVal, unit }) {
 
