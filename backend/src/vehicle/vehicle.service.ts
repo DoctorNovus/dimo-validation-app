@@ -299,15 +299,11 @@ export class VehicleService {
 
           const cleanUnit = this.getCleanLocalizedUnit(UNITS[key], localizedUnit);
 
-          console.log("VD", vehicleData[key]);
-
           cleanData[key] = {
               value: this.getCleanLocalizedData(vehicleData[key], cleanUnit),
               name: FRIENDLY_NAMES[key] || key,
               unit: cleanUnit
           };
-
-          console.log("CD", cleanData[key]);
       }
 
       return {

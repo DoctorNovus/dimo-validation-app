@@ -1,96 +1,61 @@
-Base General Requirements:
-    
-    ✔ Designing and developing the Data Validation App as an open-source project in React. @done(25-03-10 16:58)
-    ✔ Integrating DIMO login authentication, ensuring seamless user access. @done(25-03-10 16:58)
-    ✔ Implementing functionality to allow users to log in with DIMO, view available vehicle signals, and validate data accuracy. @done(25-03-10 16:58)
-    ✔ Creating a user dashboard to display vehicles and available signals with their most recent data. @done(25-03-10 16:58)
-    ✔ Developing interactive components for users to validate data by marking signals as Accurate, Inaccurate, Outdated, or Unsure. @done(25-03-10 16:58)
-    ☐ Implementing an inaccuracy reporting flow:
-        ✔ Allowing users to input correct values @done(25-03-10 17:01)
-        ☐ Attach supporting documentation
-        ☐ Provide additional context.
-    ✔ Incorporating an outdated reading flow where users can specify when the most recent data should be from and update outdated values. @done(25-03-10 16:58)
-    ✔ Ensuring that users can submit their feedback, which will be stored in a structured spreadsheet for further analysis. @done(25-03-10 16:58)
-    ✔ Providing users with the option to schedule a meeting with the data team via a provided scheduling link. (ALEX SAID TO SKIP) @done(25-03-10 16:58)
-    ☐ Implementing a feature that allows users to contribute additional data for signals not currently in the system.
-    ✔ Ensuring the app retrieves integration details via the Telemetry API to determine available integrations (e.g., Smartcar, R1, etc.). @done(25-03-10 16:58)
-    ✔ Maintaining a simple and intuitive UI that prioritizes clear data presentation and user-friendly navigation. @done(25-03-10 16:59)
-    ✔ Enabling submission of validated data into a structured spreadsheet for easy analysis. @done(25-03-10 16:59)
-    ✔ Considering future enhancements such as auto-detection of stale data and intelligent correction suggestions. @done(25-03-10 16:59)
+Functionality Improvements:
 
-Additional Implementations:
+    ✔ Support float inputs (currently limited to integers) @done(25-03-20 16:08)
+    ☐ Allow users to click on the map box to input location
+    ☐ Rename axle/wheel labels to clearer names (rear left, rear right, etc.)
+    ☐ Implement single widget selection for incorrect tire values in v1
 
-    ✔ Implement Permissions Based View for Vehicles @done(25-03-03 13:39)
-    ✔ Add Lat/Long Map @done(25-03-03 21:15)
-    ✔ Remove Aftermarket HDOP & NSAT @done(25-03-03 20:33)
-    ✔ Implement resharing permissions @done(25-03-03 14:23)
-    ✔ Light/Dark Mode Text Fix @done(25-03-03 14:33)
-    ☐ Add redirect and toast for prompt
-    ✔ Add Units @done(25-03-17 16:11)
-    ✔ Design Mobile UI @done(25-03-03 21:57)
-    ☐ Get Available Signals, then Parse Data (Performance Fix)
+UI & Widget Improvements:
 
+    ☐ Redesign Widgets: Reduce chunkiness and remove excessive empty space
+    ☐ Modernize Button Styles: Update outdated button designs (Harvey to provide input)
+    ☐ UI Inspiration: Apply Origin UI’s color scheme for v0 (Harvey to provide feedback)
+    ☐ Landing Page Gray Banner: Define its purpose and what content will populate it
 
-Design & Improvements Requests (CS - Data Validation Improvements):
+LIWD (Login & Vehicle Data) Fixes:
 
-    Landing Page Updates:
-        ☐ Clearly highlight the app's purpose
-        ☐ Label LWID and Sharing on landing page
-        ☐ List supported browsers (mention crypto wallet browsers are not supported)
+    ☐ Fix Login Issue: Ensure login does not fail when not all vehicles are shared
+    ☐ Resolve Client-Side Errors: Fix issue when canceling LIWD flow
+    ☐ Add Missing Logout Button for users
 
-    Data Sharing and Privacy:
-        (Adjust internally)
-        ✔ Determine optimal duration for data sharing (1 day, 7 days, or 1 year) @done(25-03-14 22:07)
-        ✔ Allow users to revoke data at any time @done(25-03-14 22:07)
-        ✔ Ensure users cannot access others' information (adjust URL access from 1000 to 10) @done(25-03-14 23:31)
+FAQ Section (v0/v1):
 
-    User Interface & Experience:
-        ✔ Implement basic and advanced system for data display @done(25-03-15 13:51)
-        ✔ Add dropdown to select between Basic View (mirroring mobile app widgets) and Advanced View (dev mode, all collected data) @done(25-03-15 13:51)
-        ✔ Ensure signal widget names are clear @done(25-03-15 13:51)
-        ☐ Allow users to click on map box to input location
-        ✔ Display IPFS image or vehicle ID for each vehicle (via Identity API) @done(25-03-15 13:51)
-        ☐ Fix submit button functionality & style
+    ☐ Add FAQ Section covering:
+    •	What is the goal of this app?
+    •	How will user data be validated?
+    •	How long does a vehicle need to be shared?
 
-    Data Accuracy & Submission:
-        ☐ Clarify how users should compare and submit validation data
-        ☐ Implement a guide on submitting valid data
-        ☐ Include units of measurement for all data points
-        ☐ Address scenario: parked cars may not provide certain types of data
-        ☐ Determine threshold for data inaccuracy that requires validation ticket submission
+Landing Page Updates:
 
-    Data Storage & Analysis:
-        ☐ Implement database for analytical purposes
-        ☐ Decide whether to use a spreadsheet for CS purposes
+    ☐ Clearly highlight the app’s purpose
+    ☐ Label LWID and Sharing on the landing page
+    ☐ List supported browsers (crypto wallet browsers are not supported)
 
-⸻
+Data Accuracy & Submission Enhancements:
 
-V0 Requirements (Still Needed):
+    ☐ Clarify how users should compare and submit validation data
+    ☐ Implement a guide on submitting valid data
+    ☐ Address parked car data limitations
+    ☐ Define a threshold for inaccuracy that requires validation ticket submission
 
-    ✔ Region selector (Unit Conversion) @done(25-03-17 16:11)
-    ✔ IPFS image integration for vehicles @done(25-03-14 23:03)
-    ✔ Clear timestamp for last data update @done(25-03-14 23:03)
-    ✔ Explicit indication of which data widgets users can validate @done(25-03-15 13:51)
+Data Storage & Analysis:
 
-    Basic required information for validation:
-        ☐ Location
-        ✔ Battery level (voltage) @done(25-03-17 10:50)
-        ✔ Fuel type @done(25-03-17 10:50)
-        ✔ Fuel Level/State of Charge @done(25-03-17 10:50)
-        ✔ Odometer @done(25-03-17 10:50)
-        ✔ PSI (if available) @done(25-03-17 10:50)
-        ✔ Powertrain type @done(25-03-17 10:50)
+    ☐ Implement a database for analytics
+    ☐ Determine whether a spreadsheet is sufficient for CS purposes
 
 Additional Considerations:
 
-    ☐ Plan for managing support ticket flood upon release
-    ☐ Consider impact on support team metrics & SLAs
-    ☐ Evaluate need for a dedicated data team or expanded permissions
+    ☐ Plan for handling support ticket flood upon release
+    ☐ Evaluate support team metrics & SLAs impact
+    ☐ Assess need for a dedicated data team or expanded permissions
     ☐ Coordinate with backend, app dev, and Ruptella for issue resolution
-    ☐ Ensure CS agents (except eng & management) do not have access to location data
+    ☐ Restrict CS agents (except eng & management) from accessing location data
     ☐ Explore support payloads to limit CS access to location data
-    ☐ Auto-detection of stale data
-    ☐ Intelligent correction suggestions
-    ☐ Enable users to push a button to collect and send device logs to DIMO
+
+Future Enhancements:
+
+    ☐ Implement auto-detection of stale data
+    ☐ Introduce intelligent correction suggestions
+    ☐ Allow users to push a button to collect and send device logs to DIMO
     ☐ Add title bar for DIMO Validation
-    ☐ Process Friendly Names based on Car Type (ICE/EV)
+    ☐ Process friendly names based on car type (ICE/EV)

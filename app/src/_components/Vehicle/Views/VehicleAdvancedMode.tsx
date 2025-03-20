@@ -2,9 +2,6 @@ import MapboxMap from "@components/Mapbox/MapboxMap";
 import VehicleProperties from "@components/Vehicle/VehicleProperties";
 
 export default function VehicleAdvancedMode({ id, signals, theme }) {
-    console.log("Signals");
-    console.log(signals);
-
     return (
         <form className="py-4" onSubmit={async (e) => {
             e.preventDefault();
