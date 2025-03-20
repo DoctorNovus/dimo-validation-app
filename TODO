@@ -2,7 +2,7 @@ Functionality Improvements:
 
     ✔ Support float inputs (currently limited to integers) @done(25-03-20 16:08)
     ☐ Allow users to click on the map box to input location
-    ☐ Rename axle/wheel labels to clearer names (rear left, rear right, etc.)
+    ✔ Rename axle/wheel labels to clearer names (rear left, rear right, etc.) @done(25-03-20 17:19)
     ☐ Implement single widget selection for incorrect tire values in v1
 
 UI & Widget Improvements:
@@ -11,6 +11,7 @@ UI & Widget Improvements:
     ☐ Modernize Button Styles: Update outdated button designs (Harvey to provide input)
     ☐ UI Inspiration: Apply Origin UI’s color scheme for v0 (Harvey to provide feedback)
     ☐ Landing Page Gray Banner: Define its purpose and what content will populate it
+    ☐ Emulate developmental data
 
 LIWD (Login & Vehicle Data) Fixes:
 

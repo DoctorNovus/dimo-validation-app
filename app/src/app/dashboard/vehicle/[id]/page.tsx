@@ -13,13 +13,32 @@ import VehicleBasicMode from "@/_components/Vehicle/Views/VehicleBasicMode";
 export default function VehicleIdentityPage() {
     const [viewMode, setViewMode] = useState(0);
 
-    const { state: { unit }} = useContext(UnitContext);
+    const { state: { unit } } = useContext(UnitContext);
 
     const { id }: { id?: number } = useParams();
     const vehicle = useVehicleById(parseInt(id?.toString() || "-1"), unit);
 
     if (vehicle.isLoading)
         return <>Loading...</>
+
+        
+    if (process.env.NODE_ENV == "development" && vehicle.isSuccess) {
+        const tempSignals = {};
+
+        for (let [key, data] of Object.entries(vehicle.data.signals)) {
+            if (!data.value)
+                data = {
+                    name: data.name, value: 0, unit: ""
+                }
+
+            tempSignals[key] = data;
+        }
+
+        vehicle.data.signals = tempSignals;
+
+        console.log(vehicle.data.signals)
+    }
+
 
     if (vehicle.data.statusCode == 401) {
         setTimeout(() => {

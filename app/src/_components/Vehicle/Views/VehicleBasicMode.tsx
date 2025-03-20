@@ -3,12 +3,9 @@ import ViewBlock from "./ViewBlock";
 export default function VehicleBasicMode({ id, signals }) {
 
     const ApplyBasicFilter = ([signal, data]) => {
-        // if (!data.value) return null;
 
-        // ☐ Fuel Level/State of Charge
-        // ☐ Odometer
-        // ☐ PSI (if available)
-        // ☐ Powertrain type
+        if (signal == "lastSeen")
+            return null;
 
         switch (signal) {
             // Location
@@ -27,7 +24,7 @@ export default function VehicleBasicMode({ id, signals }) {
             // Fuel Level / State of Charge (EV Battery Level)
             case "powertrainFuelSystemRelativeLevel":
             case "powertrainTractionBatteryStateOfChargeCurrent":
-                
+
             // Odemeter
             case "powertrainTransmissionTravelledDistance":
 
@@ -43,7 +40,7 @@ export default function VehicleBasicMode({ id, signals }) {
 
         }
 
-        return null;
+        return [signal, data];
     }
 
     const filteredSignals = Object.entries(signals).filter(ApplyBasicFilter);
@@ -86,9 +83,7 @@ export default function VehicleBasicMode({ id, signals }) {
 
                 <div className="grid grid-cols-3 gap-2">
                     {filteredSignals.map(([signal, data], key) => (
-                        data.value && (
-                            <ViewBlock key={key} signal={signal} label={data.name} value={typeof data.value?.value != "undefined" ? data.value.value : data.value} unit={data.unit} />
-                        )
+                        <ViewBlock key={key} signal={signal} label={data.name} value={typeof data.value?.value != "undefined" ? data.value.value : data.value} unit={data.unit} />
                     ))}
                 </div>
             </div>
