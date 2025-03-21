@@ -16,6 +16,9 @@ export default function ViewBlock({ signal, label, value: tempVal, unit }) {
     }
 
     const cleanUp = (value: number) => {
+        if(!value)
+            return null;
+        
         if (value.toFixed(2).toString().endsWith(".00"))
             return value.toFixed(0);
 

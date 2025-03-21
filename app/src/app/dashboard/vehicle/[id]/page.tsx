@@ -9,6 +9,7 @@ import VehicleAdvancedMode from "@/_components/Vehicle/Views/VehicleAdvancedMode
 import { useContext, useState } from "react";
 
 import VehicleBasicMode from "@/_components/Vehicle/Views/VehicleBasicMode";
+import { getTheme } from "@/_hooks/settings";
 
 export default function VehicleIdentityPage() {
     const [viewMode, setViewMode] = useState(0);
@@ -25,7 +26,7 @@ export default function VehicleIdentityPage() {
     if (process.env.NODE_ENV == "development" && vehicle.isSuccess) {
         const tempSignals = {};
 
-        for (let [key, data] of Object.entries(vehicle.data.signals)) {
+        for (const [key, data] of Object.entries(vehicle.data.signals)) {
             if (!data.value)
                 data = {
                     name: data.name, value: 0, unit: ""
@@ -50,7 +51,7 @@ export default function VehicleIdentityPage() {
         )
     }
 
-    const theme = window.matchMedia?.("(prefers-color-scheme: dark)").matches ? "dark" : "light"
+    const theme = getTheme();
 
     const signals = vehicle.data.signals;
 

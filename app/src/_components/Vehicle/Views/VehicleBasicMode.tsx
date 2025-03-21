@@ -1,8 +1,12 @@
+import VehicleTireInfo from "../VehicleTire/VehicleTireInfo";
 import ViewBlock from "./ViewBlock";
 
 export default function VehicleBasicMode({ id, signals }) {
 
     const ApplyBasicFilter = ([signal, data]) => {
+
+        if (!data.value)
+            return null;
 
         if (signal == "lastSeen")
             return null;
@@ -13,6 +17,15 @@ export default function VehicleBasicMode({ id, signals }) {
             case "currentLocationApproximateLatitude":
             case "currentLocationLatitude":
             case "currentLocationLongitude":
+                return null;
+
+            // Tire Values
+            case "chassisAxleRow1WheelLeftSpeed":
+            case "chassisAxleRow1WheelLeftTirePressure":
+            case "chassisAxleRow1WheelRightSpeed":
+            case "chassisAxleRow1WheelRightTirePressure":
+            case "chassisAxleRow2WheelLeftTirePressure":
+            case "chassisAxleRow2WheelRightTirePressure":
                 return null;
 
             // Battery Level (Voltage)
@@ -81,7 +94,10 @@ export default function VehicleBasicMode({ id, signals }) {
                     </div>
                 </div> */}
 
+
                 <div className="grid grid-cols-3 gap-2">
+                    <VehicleTireInfo signals={signals} />
+
                     {filteredSignals.map(([signal, data], key) => (
                         <ViewBlock key={key} signal={signal} label={data.name} value={typeof data.value?.value != "undefined" ? data.value.value : data.value} unit={data.unit} />
                     ))}
