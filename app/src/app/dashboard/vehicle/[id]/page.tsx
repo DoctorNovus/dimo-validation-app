@@ -26,7 +26,10 @@ export default function VehicleIdentityPage() {
     if (process.env.NODE_ENV == "development" && vehicle.isSuccess) {
         const tempSignals = {};
 
-        for (const [key, data] of Object.entries(vehicle.data.signals)) {
+        for (const entry of Object.entries(vehicle.data.signals)) {
+            const key = entry[0];
+            let data = entry[1];
+            
             if (!data.value)
                 data = {
                     name: data.name, value: 0, unit: ""

@@ -15,10 +15,13 @@ export default function ViewBlock({ signal, label, value: tempVal, unit }) {
         setValidity("accurate");
     }
 
-    const cleanUp = (value: number) => {
-        if(!value)
+    const cleanUp = (value: unknown) => {
+        if (!value)
             return null;
-        
+
+        if (typeof value != "number")
+            return value;
+
         if (value.toFixed(2).toString().endsWith(".00"))
             return value.toFixed(0);
 

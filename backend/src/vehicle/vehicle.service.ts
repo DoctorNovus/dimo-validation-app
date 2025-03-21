@@ -3,31 +3,31 @@ import { Inject, Injectable } from "@outwalk/firefly";
 import { Unauthorized } from "@outwalk/firefly/errors";
 
 interface VehicleData {
-  data: {
-    signals: {}
-  }
+    data: {
+        signals: {}
+    }
 }
 
 interface VehicleLiveData {
-  data: {
-    signalsLatest: {}
-  }
+    data: {
+        signalsLatest: {}
+    }
 }
 
 interface VehicleIdentity {
-  data: {
-    vehicle: {
-      make?: string;
-      model?: string;
-      year?: number;
-      imageURI?: string;
-      owner?: string;
+    data: {
+        vehicle: {
+            make?: string;
+            model?: string;
+            year?: number;
+            imageURI?: string;
+            owner?: string;
+        }
     }
-  }
 }
 
 interface VehicleBase {
-  definition: { make: string, model: string, year: number }
+    definition: { make: string, model: string, year: number }
 }
 
 export const FRIENDLY_NAMES = {
@@ -124,7 +124,7 @@ export const UNITS = {
     obdDistanceWithMIL: "km",
     obdEngineLoad: "percent",
     obdFuelPressure: "kPa",
-    obdIntakeTemp: "celcius",
+    obdIntakeTemp: "celsius",
     obdLongTermFuelTrim1: "percent",
     obdMAP: "kPa",
     obdO2WRSensor1Voltage: "V",
@@ -134,7 +134,7 @@ export const UNITS = {
     obdWarmupsSinceDTCClear: "",
     powertrainCombustionEngineDieselExhaustFluidCapacity: "l",
     powertrainCombustionEngineDieselExhaustFluidLevel: "percent",
-    powertrainCombustionEngineECT: "celcius",
+    powertrainCombustionEngineECT: "celsius",
     powertrainCombustionEngineEOP: "kPa",
     powertrainCombustionEngineEOT: "celsius",
     powertrainCombustionEngineEngineOilLevel: "percent",
@@ -155,9 +155,9 @@ export const UNITS = {
     powertrainTractionBatteryGrossCapacity: "kWh",
     powertrainTractionBatteryRange: "m",
     powertrainTractionBatteryStateOfChargeCurrent: "percent",
-    powertrainTractionBatteryTemperatureAverage: "celcius",
+    powertrainTractionBatteryTemperatureAverage: "celsius",
     powertrainTransmissionCurrentGear: "",
-    powertrainTransmissionTemperature: "celcius",
+    powertrainTransmissionTemperature: "celsius",
     powertrainTransmissionTravelledDistance: "km",
     powertrainType: "",
     serviceDistanceToService: "km",
@@ -167,207 +167,212 @@ export const UNITS = {
 @Injectable()
 export class VehicleService {
 
-  @Inject() dimoService: DimoService;
+    @Inject() dimoService: DimoService;
 
-  async getVehicleToken(id: number) {
-      if (!id) return null;
+    async getVehicleToken(id: number) {
+        if (!id) return null;
 
-      const authToken = await this.dimoService.getToken();
+        const authToken = await this.dimoService.getToken();
 
-      return await this.dimoService.dimo.tokenexchange.exchange({
-          ...authToken,
-          privileges: [1, 2, 3, 4, 5, 6],
-          tokenId: id
-      });
-  }
+        return await this.dimoService.dimo.tokenexchange.exchange({
+            ...authToken,
+            privileges: [1, 2, 3, 4, 5, 6],
+            tokenId: id
+        });
+    }
 
-  getCleanLocalizedData(value, unit) {
-      if(!value)
-          return null;
+    getCleanLocalizedData(value, unit) {
+        if (!value)
+            return null;
 
-      let val = typeof value == "object" ? value.value : value;
+        let val = typeof value == "object" ? value.value : value;
 
-      switch (unit) {
-          case "mi":
-          case "mph":
-              return (val / 1.609);
+        switch (unit) {
+            case "mi":
+            case "mph":
+                return (val / 1.609);
 
-          case "°F":
-              return (val * (9 / 5)) + 32;
+            case "°F":
+                return (val * (9 / 5)) + 32;
 
-          case "ft":
-              return (val * 3.281);
+            case "ft":
+                return (val * 3.281);
 
-          case "psi":
-              return (val / 6.895);
+            case "psi":
+                return (val / 6.895);
 
-          case "oz":
-          case "oz/s":
-              return (val / 28.35);
+            case "oz":
+            case "oz/s":
+                return (val / 28.35);
 
-          case "gal":
-              return (val / 3.785);
+            case "gal":
+                return (val / 3.785);
 
-          default:
-              return val;
-      }
-  }
+            default:
+                return val;
+        }
+    }
 
-  getCleanLocalizedUnit(unit, locale) {
-      if (locale == "mi") {
-          switch (unit) {
-              case "degrees":
-                  return "°";
+    getCleanLocalizedUnit(unit, locale) {
+        if (locale == "mi") {
+            switch (unit) {
+                case "degrees":
+                    return "°";
 
-              case "degrees/s":
-                  return "°/s";
+                case "degrees/s":
+                    return "°/s";
 
-              case "km/h":
-                  return "mph";
+                case "km/h":
+                    return "mph";
 
-              case "km":
-                  return "mi";
+                case "km":
+                    return "mi";
 
-              case "celsius":
-                  return "°F";
+                case "celsius":
+                    return "°F";
 
-              case "percent":
-                  return "%";
+                case "percent":
+                    return "%";
 
-              case "m":
-                  return "ft";
+                case "m":
+                    return "ft";
 
-              case "kPa":
-                  return "psi";
+                case "kPa":
+                    return "psi";
 
-              case "V":
-                  return "v";
+                case "V":
+                    return "v";
 
-              case "g":
-                  return "oz";
+                case "g":
+                    return "oz";
 
-              case "g/s":
-                  return "oz/s";
+                case "g/s":
+                    return "oz/s";
 
-              case "l":
-                  return "g";
+                case "l":
+                    return "g";
 
-              default:
-                  return unit;
-          }
-      }
+                default:
+                    return unit;
+            }
+        }
 
-      switch (unit) {
-          case "degrees":
-              return "°";
+        switch (unit) {
+            case "degrees":
+                return "°";
 
-          case "degrees/s":
-              return "°/s";
+            case "degrees/s":
+                return "°/s";
 
-          case "celsius":
-              return "°C";
+            case "celsius":
+                return "°C";
 
-          case "percent":
-              return "%";
+            case "percent":
+                return "%";
 
-          case "V":
-              return "v";
+            case "V":
+                return "v";
 
-          default:
-              return unit;
-      }
-  }
+            case "l":
+                return "liters";
 
-  async getVehicleById(id: number, walletAddress: string, localizedUnit: string) {
+            default:
+                return unit;
+        }
+    }
 
-      const owner = await this.getVehicleOwner(id);
+    async getVehicleById(id: number, walletAddress: string, localizedUnit: string) {
 
-      if (owner != walletAddress)
-          return new Unauthorized("Not Your Car.");
+        const owner = await this.getVehicleOwner(id);
 
-      const vehicleData = await this.getVehicleDataById(id);
+        if (process.env.NODE_ENV != "development")
+            if (owner != walletAddress)
+                return new Unauthorized("Not Your Car.");
 
-      const vehicleIdentity: VehicleIdentity = await this.dimoService.dimo.identity.query({
-          query: this.getVehicleQuery(id)
-      }) as unknown as VehicleIdentity;
+        const vehicleData = await this.getVehicleDataById(id);
 
-      let cleanData = {};
+        const vehicleIdentity: VehicleIdentity = await this.dimoService.dimo.identity.query({
+            query: this.getVehicleQuery(id)
+        }) as unknown as VehicleIdentity;
 
-      for (const key of Object.keys(vehicleData)) {
-          if (key == "0")
-              continue;
+        let cleanData = {};
 
-          const cleanUnit = this.getCleanLocalizedUnit(UNITS[key], localizedUnit);
+        for (const key of Object.keys(vehicleData)) {
+            if (key == "0")
+                continue;
 
-          cleanData[key] = {
-              value: this.getCleanLocalizedData(vehicleData[key], cleanUnit),
-              name: FRIENDLY_NAMES[key] || key,
-              unit: cleanUnit
-          };
-      }
+            const cleanUnit = this.getCleanLocalizedUnit(UNITS[key], localizedUnit);
 
-      return {
-          vehicle: vehicleIdentity.data.vehicle,
-          signals: cleanData
-      };
-  }
+            cleanData[key] = {
+                value: this.getCleanLocalizedData(vehicleData[key], cleanUnit),
+                name: FRIENDLY_NAMES[key] || key,
+                unit: cleanUnit
+            };
+        }
 
-  async getVehicleDataById(id: number) {
+        return {
+            vehicle: vehicleIdentity.data.vehicle,
+            signals: cleanData
+        };
+    }
 
-      const vehicleToken = await this.getVehicleToken(id);
+    async getVehicleDataById(id: number) {
 
-      const allData = await this.dimoService.dimo.telemetry.query({
-          ...vehicleToken,
-          query: this.getVehicleDataQuery(id)
-      }) as unknown as VehicleData;
+        const vehicleToken = await this.getVehicleToken(id);
 
-      const liveData = await this.dimoService.dimo.telemetry.query({
-          ...vehicleToken,
-          query: this.getVehicleLiveDataQuery(id)
-      }) as unknown as VehicleLiveData;
+        const allData = await this.dimoService.dimo.telemetry.query({
+            ...vehicleToken,
+            query: this.getVehicleDataQuery(id)
+        }) as unknown as VehicleData;
 
-      return {
-          ...(allData.data.signals),
-          ...(liveData.data.signalsLatest)
-      };
+        const liveData = await this.dimoService.dimo.telemetry.query({
+            ...vehicleToken,
+            query: this.getVehicleLiveDataQuery(id)
+        }) as unknown as VehicleLiveData;
 
-  }
+        return {
+            ...(allData.data.signals),
+            ...(liveData.data.signalsLatest)
+        };
 
-  async getVehicleDefinitions(vehicle: VehicleBase) {
-      const baseURI = "https://device-definitions-api.dimo.zone";
+    }
 
-    interface DefinitionBase { deviceDefinitions: unknown };
+    async getVehicleDefinitions(vehicle: VehicleBase) {
+        const baseURI = "https://device-definitions-api.dimo.zone";
 
-    const res = await fetch(`${baseURI}/device-definitions/search?query=${vehicle.definition.make} ${vehicle.definition.model} ${vehicle.definition.year}`);
-    const definitionBase = await res.json() as DefinitionBase;
-    return definitionBase.deviceDefinitions;
-  }
+        interface DefinitionBase { deviceDefinitions: unknown };
 
-  async getVehicleImage(id: number, walletAddress: string) {
-      const owner = await this.getVehicleOwner(id);
+        const res = await fetch(`${baseURI}/device-definitions/search?query=${vehicle.definition.make} ${vehicle.definition.model} ${vehicle.definition.year}`);
+        const definitionBase = await res.json() as DefinitionBase;
+        return definitionBase.deviceDefinitions;
+    }
 
-      if (owner != walletAddress)
-          return new Unauthorized("Not Your Car.");
+    async getVehicleImage(id: number, walletAddress: string) {
+        const owner = await this.getVehicleOwner(id);
 
-      const vehicleIdentity: VehicleIdentity = await this.dimoService.dimo.identity.query({
-          query: this.getVehicleImageQuery(id)
-      }) as unknown as VehicleIdentity;
+        if (process.env.NODE_ENV != "development")
+            if (owner != walletAddress)
+                return new Unauthorized("Not Your Car.");
 
-      const tokenURI = vehicleIdentity.data.vehicle.imageURI;
+        const vehicleIdentity: VehicleIdentity = await this.dimoService.dimo.identity.query({
+            query: this.getVehicleImageQuery(id)
+        }) as unknown as VehicleIdentity;
 
-      return tokenURI.replace("ipfs://", "https://ipfs.io/ipfs/");
-  }
+        const tokenURI = vehicleIdentity.data.vehicle.imageURI;
 
-  async getVehicleOwner(id: number) {
-      const vehicleIdentity: VehicleIdentity = await this.dimoService.dimo.identity.query({
-          query: this.getVehicleOwnerQuery(id)
-      }) as unknown as VehicleIdentity;
+        return tokenURI.replace("ipfs://", "https://ipfs.io/ipfs/");
+    }
 
-      return vehicleIdentity.data.vehicle.owner;
-  }
+    async getVehicleOwner(id: number) {
+        const vehicleIdentity: VehicleIdentity = await this.dimoService.dimo.identity.query({
+            query: this.getVehicleOwnerQuery(id)
+        }) as unknown as VehicleIdentity;
 
-  getVehicleQuery(id: number) {
-      return `
+        return vehicleIdentity.data.vehicle.owner;
+    }
+
+    getVehicleQuery(id: number) {
+        return `
       	query {
           vehicle(tokenId: ${id}){
               definition {
@@ -378,34 +383,34 @@ export class VehicleService {
           }
       	}
     	`;
-  }
+    }
 
-  getVehicleImageQuery(id: number) {
-      return `
+    getVehicleImageQuery(id: number) {
+        return `
       	query {
           vehicle(tokenId: ${id}){
             imageURI
           }
       	}
     	`;
-  }
+    }
 
-  getVehicleOwnerQuery(id: number) {
-      return `
+    getVehicleOwnerQuery(id: number) {
+        return `
       query {
         vehicle(tokenId: ${id}){
           owner
         }
       }
     `;
-  }
+    }
 
-  getVehicleDataQuery(id: number, interval: string = "12h", agg: string = "FIRST") {
-      const to = new Date();
-      const from = new Date();
-      from.setHours(from.getHours() - 12);
+    getVehicleDataQuery(id: number, interval: string = "12h", agg: string = "FIRST") {
+        const to = new Date();
+        const from = new Date();
+        from.setHours(from.getHours() - 12);
 
-      return `
+        return `
       	query {
 			signals(interval: "${interval}", from: "${from.toJSON()}", to: "${to.toJSON()}", tokenId: ${id}) {
 				timestamp
@@ -480,10 +485,10 @@ export class VehicleService {
           	}
         }
       `;
-  }
+    }
 
-  getVehicleLiveDataQuery(id: number) {
-      return `
+    getVehicleLiveDataQuery(id: number) {
+        return `
         query {
             signalsLatest(tokenId: ${id}) {
               lastSeen,
@@ -734,5 +739,5 @@ export class VehicleService {
             }
           }
         `;
-  }
+    }
 }
