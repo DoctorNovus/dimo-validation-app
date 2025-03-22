@@ -53,7 +53,7 @@ export default function VehicleBasicMode({ id, signals }) {
 
         }
 
-        return [signal, data];
+        return null;
     }
 
     const filteredSignals = Object.entries(signals).filter(ApplyBasicFilter);

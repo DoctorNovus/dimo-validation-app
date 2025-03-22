@@ -22,28 +22,6 @@ export default function VehicleIdentityPage() {
     if (vehicle.isLoading)
         return <>Loading...</>
 
-        
-    if (process.env.NODE_ENV == "development" && vehicle.isSuccess) {
-        const tempSignals = {};
-
-        for (const entry of Object.entries(vehicle.data.signals)) {
-            const key = entry[0];
-            let data = entry[1];
-            
-            if (!data.value)
-                data = {
-                    name: data.name, value: 0, unit: ""
-                }
-
-            tempSignals[key] = data;
-        }
-
-        vehicle.data.signals = tempSignals;
-
-        console.log(vehicle.data.signals)
-    }
-
-
     if (vehicle.data.statusCode == 401) {
         setTimeout(() => {
             window.location.href = "/dashboard"

@@ -205,7 +205,7 @@ export class VehicleService {
             case "oz/s":
                 return (val / 28.35);
 
-            case "gal":
+            case "gals":
                 return (val / 3.785);
 
             default:
@@ -250,7 +250,7 @@ export class VehicleService {
                     return "oz/s";
 
                 case "l":
-                    return "g";
+                    return "gals";
 
                 default:
                     return unit;
