@@ -1,7 +1,8 @@
+import MapboxMapSelector from "@/_components/Mapbox/MapboxSelector";
 import VehicleTireInfo from "../VehicleTire/VehicleTireInfo";
 import ViewBlock from "./ViewBlock";
 
-export default function VehicleBasicMode({ id, signals }) {
+export default function VehicleBasicMode({ id, signals, theme }) {
 
     const ApplyBasicFilter = ([signal, data]) => {
 
@@ -96,6 +97,7 @@ export default function VehicleBasicMode({ id, signals }) {
 
 
                 <div className="grid grid-cols-3 gap-2">
+                    <MapboxMapSelector theme={theme} latitude={signals.currentLocationLatitude.value} longitude={signals.currentLocationLongitude.value} />
                     <VehicleTireInfo signals={signals} />
 
                     {filteredSignals.map(([signal, data], key) => (

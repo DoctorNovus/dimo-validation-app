@@ -10,8 +10,6 @@ export class DataController {
     async submitSignals({ body }) {
         const id = body["id"];
 
-        console.log("BODY", body);
-
         await this.integrationsService.loadGoogleSpreadsheetInfo();
         await this.integrationsService.addSheetData(id, body);
     }

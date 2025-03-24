@@ -1,7 +1,7 @@
 Functionality Improvements:
 
     ✔ Support float inputs (currently limited to integers) @done(25-03-20 16:08)
-    ☐ Allow users to click on the map box to input location
+    ✔ Allow users to click on the map box to input location @done(25-03-23 21:53)
     ✔ Rename axle/wheel labels to clearer names (rear left, rear right, etc.) @done(25-03-20 17:19)
     ✔ Implement single widget selection for incorrect tire values in v1 @done(25-03-20 18:08)
 
