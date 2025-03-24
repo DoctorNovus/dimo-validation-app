@@ -46,7 +46,7 @@ export default function VehicleIdentityPage() {
     });
 
     return (
-        <div className="px-4 py-2 flex flex-col gap-4">
+        <div className="px-4 py-2 flex flex-col gap-4 mb-24">
             <VehicleBanner theme={theme} vehicle={vehicle} id={id || 0} lastSeen={lastSeen} />
 
             <div className="flex flex-row">

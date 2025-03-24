@@ -18,7 +18,7 @@ export default function VehicleBanner({ theme, vehicle, id, lastSeen }: { theme:
 
                 <div className="flex flex-col gap-1 justify-center">
                     <span className="flex flex-row gap-1">ID: <span className="text-gray-500">{id}</span></span>
-                    <span className="flex flex-row gap-1">Last Seen: <span className="text-gray-500">{lastSeen}</span></span>
+                    <span className="flex flex-col md:flex-row gap-1">Last Seen: <span className="text-gray-500">{lastSeen}</span></span>
                 </div>
 
             </div>

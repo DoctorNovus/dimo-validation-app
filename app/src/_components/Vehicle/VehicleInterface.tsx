@@ -19,9 +19,11 @@ export default function VehicleInterface() {
                 (
                     <div className="flex flex-col gap-2">
                         <span className="text-lg">Shared Vehicles</span>
-                        <div className="flex flex-row gap-2">
+                        <div className="flex flex-col md:flex-row gap-2">
                             {
-                                vehicleData.shared.map((vehicle, key) => <VehiclePreview key={key} vehicle={vehicle} />)
+                                vehicleData.shared.map((vehicle, key) => (
+                                    <VehiclePreview key={key} vehicle={vehicle} />
+                                ))
                             }
                         </div>
                     </div>

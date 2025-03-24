@@ -7,6 +7,7 @@ Functionality Improvements:
 
 UI & Widget Improvements:
 
+    ✔ Implement Mobile Design @done(25-03-23 22:45)
     ☐ Redesign Widgets: Reduce chunkiness and remove excessive empty space
     ☐ Modernize Button Styles: Update outdated button designs (Harvey to provide input)
     ☐ UI Inspiration: Apply Origin UI’s color scheme for v0 (Harvey to provide feedback)

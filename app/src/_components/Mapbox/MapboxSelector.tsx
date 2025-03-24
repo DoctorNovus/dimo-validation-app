@@ -1,15 +1,16 @@
 import { Map, Marker } from "mapbox-gl";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
-function MapboxMapSelector({ latitude, longitude, theme }) {
+export default function MapboxMapSelector({ latitude, longitude, theme }) {
+
+    const mapNode = useRef(null);
 
     const [lat, setLat] = useState(latitude);
     const [long, setLong] = useState(longitude);
 
-
     useEffect(() => {
         const mapboxMap = new Map({
-            container: "mapbox-selector",
+            container: mapNode.current,
             accessToken: process.env.NEXT_PUBLIC_MAPBOX_TOKEN,
             style: `mapbox://styles/mapbox/${theme}-v11`,
             center: [long, lat],
@@ -28,7 +29,8 @@ function MapboxMapSelector({ latitude, longitude, theme }) {
             setLat(lat);
             setLong(lng);
         });
-    });
+
+    }, [mapNode, latitude, longitude, lat, long, theme]);
 
     const longValidity = long == longitude ? "accurate" : "inaccurate";
     const latValidity = lat == latitude ? "accurate" : "inaccurate";
@@ -37,7 +39,7 @@ function MapboxMapSelector({ latitude, longitude, theme }) {
     const latSignal = `currentLocationLatitude_${latValidity}`;
 
     return (
-        <div className="col-span-2 row-span-2 flex w-full h-full border shadow-md dark:bg-[#1a1a1a] p-1 rounded-lg justify-center">
+        <div className="col-span-2 row-span-2 flex w-full h-full border shadow-md dark:bg-[#1a1a1a] p-1 rounded-lg justify-center aspect-square">
             <div className="hidden">
                 <div>
                     <label htmlFor={longSignal}></label>
@@ -67,10 +69,9 @@ function MapboxMapSelector({ latitude, longitude, theme }) {
                     }
                 </div>
             </div>
-            <div id="mapbox-selector" className="w-full h-full"></div>
+            <div className="w-full h-full">
+                <div ref={mapNode} className="w-full h-full"></div>
+            </div>
         </div>
     )
 }
-
-
-export default MapboxMapSelector;
