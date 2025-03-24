@@ -29,7 +29,7 @@ export default function ViewBlock({ signal, label, value: tempVal, unit }) {
     }
 
     return (
-        <div className="flex flex-col w-full col-span-2 md:col-span-1 md:row-span-1 border shadow-md dark:bg-[#1a1a1a] p-4 rounded-lg justify-between gap-2">
+        <div className="flex flex-col w-full col-span-2 md:col-span-2 md:row-span-1 border shadow-md dark:bg-[#1a1a1a] p-4 rounded-lg justify-between gap-2">
             {tempVal != value && <input className="hidden" name={`old_${signal}_${validity}`} value={tempVal} onChange={() => { }} />}
             <input className="hidden" name={`${signal}_${validity}`} value={value} onChange={() => { }} />
 
