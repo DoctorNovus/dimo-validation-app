@@ -15,7 +15,7 @@ export default function VehicleTireInfo({ signals }) {
     });
 
     if (signals.chassisAxleRow1WheelLeftTirePressure.value == null) {
-        // return null;
+        return null;
     }
 
     return (
