@@ -1,8 +1,11 @@
 import MapboxMapSelector from "@/_components/Mapbox/MapboxSelector";
 import VehicleTireInfo from "../VehicleTire/VehicleTireInfo";
 import ViewBlock from "./ViewBlock";
+import { useState } from "react";
 
 export default function VehicleBasicMode({ id, signals, theme }) {
+
+    const [submitted, setSubmitted] = useState(false);
 
     const ApplyBasicFilter = ([signal, data]) => {
 
@@ -64,6 +67,8 @@ export default function VehicleBasicMode({ id, signals, theme }) {
             e.preventDefault();
             e.stopPropagation();
 
+            setSubmitted(true);
+
             const data = {
                 id
             };
@@ -107,8 +112,8 @@ export default function VehicleBasicMode({ id, signals, theme }) {
             </div>
 
             <div className="flex flex-row justify-center md:justify-start gap-2">
-                <button type="submit" className="w-full md:w-auto px-3 py-2 text-lg bg-gray-500 text-white rounded-lg cursor-pointer my-2">Send Data</button>
-                <button type="reset" className="w-full md:w-auto px-3 py-2 text-lg text-gray-500 border-gray-500 dark:text-white border dark:border-white rounded-lg cursor-pointer my-2">Reset Data</button>
+                <button type="submit" disabled={submitted} className="w-full md:w-auto px-3 py-2 text-lg bg-gray-500 text-white disabled:bg-gray-200 disabled:text-gray-300 disabled:dark:bg-gray-700 disabled:dark:text-gray-500 rounded-lg cursor-pointer disabled:cursor-not-allowed my-2">Send Data</button>
+                <button type="reset" disabled={submitted} className="w-full md:w-auto px-3 py-2 text-lg text-gray-500 border-gray-500 dark:text-white border dark:border-white disabled:border-gray-200 disabled:text-gray-300 disabled:dark:border-gray-700 disabled:dark:text-gray-500 rounded-lg cursor-pointer disabled:cursor-not-allowed my-2">Reset Data</button>
             </div>
 
         </form>

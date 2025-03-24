@@ -1,7 +1,10 @@
 import MapboxMap from "@components/Mapbox/MapboxMap";
 import VehicleProperties from "@components/Vehicle/VehicleProperties";
+import { useState } from "react";
 
 export default function VehicleAdvancedMode({ id, signals, theme }) {
+    const [submitted, setSubmitted] = useState(false);
+
     return (
         <form className="py-4" onSubmit={async (e) => {
             e.preventDefault();
@@ -23,6 +26,8 @@ export default function VehicleAdvancedMode({ id, signals, theme }) {
                 },
                 body: JSON.stringify(data)
             });
+
+            setSubmitted(true);
         }}>
             <div className="flex flex-col gap-2.5">
                 <div className="flex flex-col md:flex-row gap-4">
@@ -56,8 +61,8 @@ export default function VehicleAdvancedMode({ id, signals, theme }) {
             </div>
 
             <div className="flex flex-row justify-center md:justify-start gap-2">
-                <button type="submit" className="w-full md:w-auto px-3 py-2 text-lg bg-gray-500 text-white rounded-lg cursor-pointer my-2">Send Data</button>
-                <button type="submit" className="w-full md:w-auto px-3 py-2 text-lg text-gray-500 border-gray-500 dark:text-white border dark:border-white rounded-lg cursor-pointer my-2">Reset Data</button>
+                <button type="submit" disabled={submitted} className="w-full md:w-auto px-3 py-2 text-lg bg-gray-500 text-white disabled:bg-gray-700 disabled:text-gray-500 rounded-lg cursor-pointer disabled:cursor-not-allowed my-2">Send Data</button>
+                <button type="submit" disabled={submitted} className="w-full md:w-auto px-3 py-2 text-lg text-gray-500 border-gray-500 dark:text-white border dark:border-white disabled:border-gray-700 disabled:text-gray-500 rounded-lg cursor-pointer disabled:cursor-not-allowed my-2">Reset Data</button>
             </div>
 
         </form>
