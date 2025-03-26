@@ -10,6 +10,7 @@ import { useContext, useState } from "react";
 
 import VehicleBasicMode from "@/_components/Vehicle/Views/VehicleBasicMode";
 import { getTheme } from "@/_hooks/settings";
+import { ToastContainer } from "react-toastify";
 
 export default function VehicleIdentityPage() {
     const [viewMode, setViewMode] = useState(0);
@@ -56,6 +57,11 @@ export default function VehicleIdentityPage() {
 
             {viewMode == 0 && <VehicleBasicMode id={id} signals={signals} theme={theme} />}
             {viewMode == 1 && <VehicleAdvancedMode id={id} signals={signals} theme={theme} />}
+
+            <ToastContainer
+                autoClose={false}
+                position="bottom-left"
+            />
         </div>
     )
 }

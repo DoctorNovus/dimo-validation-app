@@ -2,6 +2,7 @@ import MapboxMapSelector from "@/_components/Mapbox/MapboxSelector";
 import VehicleTireInfo from "../VehicleTire/VehicleTireInfo";
 import ViewBlock from "./ViewBlock";
 import { useState } from "react";
+import { toast } from "react-toastify";
 
 export default function VehicleBasicMode({ id, signals, theme }) {
 
@@ -81,13 +82,27 @@ export default function VehicleBasicMode({ id, signals, theme }) {
                 }
             }
 
-            await fetch(`${process.env.NEXT_PUBLIC_SERVER_URI}/data/submit`, {
+            const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URI}/data/submit`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"
                 },
                 body: JSON.stringify(data)
             });
+
+            if (!res.ok) {
+
+                const { message } = await res.json();
+
+                toast.error(message);
+
+                setSubmitted(false);
+
+                return null;
+            }
+
+            toast("Submission has been sent!");
+
         }}>
             <div className="flex flex-col gap-4">
                 {/* <div className="flex flex-col md:flex-row gap-4">
