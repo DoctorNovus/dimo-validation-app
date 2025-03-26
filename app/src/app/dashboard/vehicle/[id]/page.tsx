@@ -48,7 +48,7 @@ export default function VehicleIdentityPage() {
 
     return (
         <div className="px-4 py-2 flex flex-col gap-4 mb-24">
-            <VehicleBanner theme={theme} vehicle={vehicle} id={id || 0} lastSeen={lastSeen} />
+            <VehicleBanner theme={theme} vehicle={vehicle} id={id} lastSeen={lastSeen} />
 
             <div className="flex flex-row">
                 <button className={`${viewMode == 0 ? "border-red-500 bg-red-500/20" : "border-r-0"} px-2 py-1 border rounded-l-lg text-lg`} onClick={() => setViewMode(0)}>Basic</button>

@@ -25,10 +25,12 @@ export class IntegrationsService {
         const data = {
             "Car ID": id,
             "User Submission Date": new Date().toLocaleDateString("en-us"),
+            "Submission Timestamp": new Date().toLocaleString("en-us", { timeZone: "UTC" }),
+            "Vehicle VIN": body["vin"]
         };
 
         for (const key of Object.keys(body)) {
-            if (key.startsWith("old") || key == "id")
+            if (key.startsWith("old") || key == "id" || key == "vin")
                 continue;
 
             const [signal, accuracy] = key.split("_");

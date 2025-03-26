@@ -1,3 +1,4 @@
+import { useVehicleVIN } from "@/_hooks/vehicles";
 import MapboxMap from "@components/Mapbox/MapboxMap";
 import VehicleProperties from "@components/Vehicle/VehicleProperties";
 import { useState } from "react";
@@ -5,13 +6,16 @@ import { useState } from "react";
 export default function VehicleAdvancedMode({ id, signals, theme }) {
     const [submitted, setSubmitted] = useState(false);
 
+    const vin = useVehicleVIN(id);
+
     return (
         <form className="py-4" onSubmit={async (e) => {
             e.preventDefault();
             e.stopPropagation();
 
             const data = {
-                id
+                id,
+                vin: vin.data
             };
 
             for (const elem of e.target) {

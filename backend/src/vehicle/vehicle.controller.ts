@@ -22,4 +22,11 @@ export class VehicleController {
         return await this.vehicleService.getVehicleImage(parseInt(id), walletAddress);
     }
 
+    @Get("/:id/vin")
+    async getVehicleVIN({ params, query }) {
+        const { id } = params;
+        const { walletAddress } = query;
+
+        return await this.vehicleService.getVehicleVIN(parseInt(id), walletAddress);
+    }
 }

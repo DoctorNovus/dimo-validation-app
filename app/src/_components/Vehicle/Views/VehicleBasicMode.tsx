@@ -3,10 +3,13 @@ import VehicleTireInfo from "../VehicleTire/VehicleTireInfo";
 import ViewBlock from "./ViewBlock";
 import { useState } from "react";
 import { toast } from "react-toastify";
+import { useVehicleVIN } from "@/_hooks/vehicles";
 
 export default function VehicleBasicMode({ id, signals, theme }) {
 
     const [submitted, setSubmitted] = useState(false);
+
+    const vin = useVehicleVIN(id);
 
     const ApplyBasicFilter = ([signal, data]) => {
 
@@ -71,7 +74,8 @@ export default function VehicleBasicMode({ id, signals, theme }) {
             setSubmitted(true);
 
             const data = {
-                id
+                id,
+                vin: vin.data
             };
 
             for (const elem of e.target) {

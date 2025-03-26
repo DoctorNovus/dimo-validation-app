@@ -39,3 +39,15 @@ export function useVehicleImage(id: number) {
         queryFn: () => getVehicleImage(id)
     });
 }
+
+export async function getVehicleVIN(id: number) {
+    const walletAddress = await getWalletAddress();
+    return await (await fetch(`${process.env.NEXT_PUBLIC_SERVER_URI}/vehicle/${id}/vin?walletAddress=${walletAddress}`)).text();
+}
+
+export function useVehicleVIN(id: number) {
+    return useQuery({
+        queryKey: ["vehicle", id, "vin"],
+        queryFn: () => getVehicleVIN(id)
+    });
+}
