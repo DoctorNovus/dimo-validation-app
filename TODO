@@ -1,51 +1,87 @@
-Functionality Improvements:
+### Functionality Improvements:
 
     ✔ Support float inputs (currently limited to integers) @done(25-03-20 16:08)
     ✔ Allow users to click on the map box to input location @done(25-03-23 21:53)
     ✔ Rename axle/wheel labels to clearer names (rear left, rear right, etc.) @done(25-03-20 17:19)
     ✔ Implement single widget selection for incorrect tire values in v1 @done(25-03-20 18:08)
+    ☐ Round tire pressure to nearest integer for both PSI and kilopascals
+    ☐ Round air temperature to nearest whole number (e.g., 74° not 74.3°)
+    ☐ EV charging data should display to 0.01 kWh precision (e.g., 21.55 kWh)
+    ☐ Charge level percentages should display to 0.01% precision
+    ☐ Fuel System Relative Level must remain as a raw percentage and should not be converted
+    ✔ Correct typo: “Odemeter” should be “Odometer” throughout the interface @done(25-03-27 14:08)
+    ☐ Implement region-based logic for displaying odometer values
+    ☐ Prevent multiple submissions within time period
+    ☐ Display last submission date
+    ☐ Add confirmation message after submission
+    ☐ Fix page refresh/resubmission vulnerability
+    ☐ Add vehicle nickname capability
+    ☐ Show VIN in shared vehicle list for fleet management
 
-UI & Widget Improvements:
+### UI & Widget Improvements:
 
     ✔ Implement Mobile Design @done(25-03-23 22:45)
+    ✔ Emulate developmental data @done(25-03-20 18:08)
     ☐ Redesign Widgets: Reduce chunkiness and remove excessive empty space
     ☐ Modernize Button Styles: Update outdated button designs (Harvey to provide input)
     ☐ UI Inspiration: Apply Origin UI’s color scheme for v0 (Harvey to provide feedback)
     ☐ Landing Page Gray Banner: Define its purpose and what content will populate it
-    ✔ Emulate developmental data @done(25-03-20 18:08)
+    ☐ Move accurate/inaccurate/outdated/skip to bottom
+    ☐ Remove redundant speed indicators
+    ☐ Add disclaimer: “Data submitted through this app won’t reflect in mobile app”
 
-LIWD (Login & Vehicle Data) Fixes:
+### LIWD (Login & Vehicle Data) Fixes:
 
     ☐ Fix Login Issue: Ensure login does not fail when not all vehicles are shared
     ☐ Resolve Client-Side Errors: Fix issue when canceling LIWD flow
     ☐ Add Missing Logout Button for users
 
-FAQ Section (v0/v1):
+### FAQ Section (v0/v1):
 
     ☐ Add FAQ Section covering:
-    •	What is the goal of this app?
-    •	How will user data be validated?
-    •	How long does a vehicle need to be shared?
+    • What is the goal of this app?
+    • How will user data be validated?
+    • How long does a vehicle need to be shared?
 
-Landing Page Updates:
+### Landing Page Updates:
 
     ☐ Clearly highlight the app’s purpose
     ☐ Label LWID and Sharing on the landing page
     ☐ List supported browsers (crypto wallet browsers are not supported)
 
-Data Accuracy & Submission Enhancements:
+### Data Accuracy & Submission Enhancements:
 
     ☐ Clarify how users should compare and submit validation data
     ☐ Implement a guide on submitting valid data
     ☐ Address parked car data limitations
     ☐ Define a threshold for inaccuracy that requires validation ticket submission
 
-Data Storage & Analysis:
+### Data Storage & Analysis:
 
     ☐ Implement a database for analytics
     ☐ Determine whether a spreadsheet is sufficient for CS purposes
 
-Additional Considerations:
+### Regional Settings & Units:
+
+    ☐ Fix issue where system defaults to kilometers after switching to miles
+    ☐ Create region-based selectors: US/North America, UK, EU, Canada
+    ☐ Alternative: Individual unit selection for each measurement type
+    ☐ Consider future expansion to LATAM and other regions
+
+### Vehicle Type Classifications:
+
+    ☐ Add dropdown for powertrain types:
+    • PHEV (Plug-in Hybrid)
+    • HEV (Hybrid)
+    • BEV (Battery Electric)
+    • Combustion (ICE)
+    ☐ Create checklist for supported fuel types:
+    • Gasoline
+    • Diesel
+    • Electricity
+    • Consider adding hydrogen
+
+### Additional Considerations:
 
     ☐ Plan for handling support ticket flood upon release
     ☐ Evaluate support team metrics & SLAs impact
@@ -54,7 +90,7 @@ Additional Considerations:
     ☐ Restrict CS agents (except eng & management) from accessing location data
     ☐ Explore support payloads to limit CS access to location data
 
-Future Enhancements:
+### Future Enhancements:
 
     ☐ Implement auto-detection of stale data
     ☐ Introduce intelligent correction suggestions

@@ -46,7 +46,7 @@ export default function VehicleBasicMode({ id, signals, theme }) {
             case "powertrainFuelSystemRelativeLevel":
             case "powertrainTractionBatteryStateOfChargeCurrent":
 
-            // Odemeter
+            // Odometer
             case "powertrainTransmissionTravelledDistance":
 
             // PSI

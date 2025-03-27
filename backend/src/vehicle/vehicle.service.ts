@@ -91,7 +91,7 @@ export const FRIENDLY_NAMES = {
     powertrainTractionBatteryTemperatureAverage: "EV Temperature Average",
     powertrainTransmissionCurrentGear: "Transmission Current Gear",
     powertrainTransmissionTemperature: "Transmission Temperature",
-    powertrainTransmissionTravelledDistance: "Odemeter",
+    powertrainTransmissionTravelledDistance: "Odometer",
     powertrainType: "Powertrain Type",
     serviceDistanceToService: "Service Distance To Service",
     speed: "Speed",
