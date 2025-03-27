@@ -1,48 +1,32 @@
 import Link from "next/link";
 
-export default function LandingPage() {
-
+const LandingPage = () => {
     return (
-        <div className="flex flex-col">
-            <div className="flex flex-row justify-between w-full px-4 py-6 md:py-2 shadow dark:border-b dark:border-b-white/50 items-center h-12">
-                <h1 className="text-lg md:text-xl">
-                    <b className="text-gray-700 dark:text-white uppercase">DIMO Validation App</b>
-                </h1>
+        <main className="bg-[url('/images/login-background.png')] bg-cover flex flex-col justify-center h-screen">
+            <div className="flex flex-col sm:w-1/2 items-center justify-center h-screen shadow-lg">
+                <article className="flex flex-col w-full max-w-sm gap-4 px-4 py-4">
+                    <section className="flex flex-col w-full items-center gap-4 pt-4">
+                        <p className="text-3xl text-center leading-9 py-1">DIMO Data Validator</p>
+                        <p className={'justify-center text-center'}>
+                            The DIMO Data Accuracy tool is a self-service platform for users to validate and report incorrect signal data from their vehicles.
+                        </p>
+                    </section>
 
-                <Link href="/dashboard">
-                    <button className="cursor-pointer bg-red-500 text-white px-2 py-1 rounded-md text-base md:text-lg">Dashboard</button>
-                </Link>
-            </div>
-
-            <div className="flex flex-col p-4 gap-6">
-                <section className="flex flex-row justify-between items-center">
-                    <div className="flex flex-col w-full md:w-1/2 gap-3 items-center text-center md:items-start md:text-start">
-                        <h2 className="text-3xl">Validating your DIMO data to ensure a seamless experience.</h2>
-                        <p className="text-lg">The DIMO Validation App was built as a companion tool to help self-identity potential signal issues between your vehicle and the DIMO network.</p>
-
+                    <div className={'flex justify-center mt-2 pb-2'}>
                         <Link href="/dashboard">
-                            <button className="cursor-pointer w-fit px-2 py-1 bg-red-500 text-white rounded-md text-lg">Connect Your Car</button>
+                            <button className="cursor-pointer text-white px-2 py-1 text-base md:text-md w-full align-middle border-zinc-800 bg-zinc-800 border h-10 rounded-3xl mx-4">Get Started</button>
                         </Link>
                     </div>
 
-                    <div className="hidden md:flex w-1/2 h-64 bg-gray-500">
+                    <div className={''}>
+                        <Link href="/">
+                            <button className="cursor-pointer text-gray-400 px-2 py-1 text-sm w-full align-middle mx-4">Having trouble?</button>
+                        </Link>
                     </div>
-                </section>
-
-                {/* <section>
-                    <h2 className="text-2xl my-2">Our Process</h2>
-
-                    <p></p>
-                </section> */}
-
-                {/* <section>
-                    <h2 className="text-2xl my-2">Our Data Flow</h2>
-
-                    <p></p>
-                </section> */}
-
+                </article>
             </div>
-        </div>
+        </main>
     );
-
 }
+
+export default LandingPage
