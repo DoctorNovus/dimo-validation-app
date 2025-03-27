@@ -1,5 +1,5 @@
 {
-  "name": "my-app",
+  "name": "dimo-data-validator",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -11,10 +11,11 @@
   "dependencies": {
     "@dimo-network/login-with-dimo": "^0.0.19",
     "@heroui/react": "^2.7.4",
-    "@tanstack/react-query": "^5.66.9",
+    "@tanstack/react-query": "^5.69.0",
     "@typescript-eslint/eslint-plugin": "^8.26.0",
+    "framer-motion": "^12.6.2",
     "mapbox-gl": "^3.10.0",
-    "next": "15.2.0",
+    "next": "15.2.4",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
     "react-toastify": "^11.0.5"

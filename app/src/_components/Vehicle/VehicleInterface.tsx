@@ -7,10 +7,23 @@ import VehiclePreview from "./VehiclePreview";
 export default function VehicleInterface() {
     const vehicles = useVehicles();
 
-    if (vehicles.isLoading)
-        return <></>
+    if (vehicles.isLoading) {
+        return (
+            <div className={'justify-center flex content-center text-center'}>
+                <p>Loading...</p>
+            </div>
+        )
+    }
 
-    const vehicleData = vehicles.data;
+    const vehicleData = vehicles?.data;
+
+    if(!vehicleData) {
+        return (
+            <div className={'justify-center flex content-center text-center'}>
+                <p>No vehicle data.<br/> Make sure you are signed into the correct account and have shared your vehicle with this app.</p>
+            </div>
+        )
+    }
 
     return (
         <div className="flex flex-col gap-4">
