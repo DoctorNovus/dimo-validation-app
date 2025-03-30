@@ -2,36 +2,7 @@ import { useState } from "react";
 import VehicleTireFeedback from "./VehicleTireFeedback";
 import VehicleTirePanel from "./VehicleTirePanel";
 
-const RoundSignals = (signals) => {
-    const newSignals = {}
-
-    Object.entries(signals).forEach(([key, value]) => {
-
-        if (!value){
-            newSignals[key] = null;
-            return;
-        }
-
-        if (key.startsWith("chassisAxle")) {
-
-            if (!value.value) {
-                newSignals[key] = value;
-                return;
-            }
-
-            newSignals[key] = { ...value, value: Math.round(value.value) };
-            
-        } else {
-            newSignals[key] = value;
-        }
-    });
-
-    return newSignals;
-}
-
 export default function VehicleTireInfo({ signals }) {
-
-    signals = RoundSignals(signals);
 
     const [validity, setValidity] = useState("accurate");
     const [values, setValues] = useState({

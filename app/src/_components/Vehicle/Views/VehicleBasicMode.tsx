@@ -109,17 +109,6 @@ export default function VehicleBasicMode({ id, signals, theme }) {
 
         }}>
             <div className="flex flex-col gap-4">
-                {/* <div className="flex flex-col md:flex-row gap-4">
-                    <div className="w-full md:w-1/3 aspect-square rounded-lg">
-                        <MapboxMap
-                            latitude={signals.currentLocationLatitude.value.value}
-                            longitude={signals.currentLocationLongitude.value.value}
-                            theme={theme}
-                        />
-                    </div>
-                </div> */}
-
-
                 <div className="w-full h-full grid grid-cols-2 md:grid-cols-4 gap-2">
                     <MapboxMapSelector theme={theme} latitude={signals.currentLocationLatitude.value} longitude={signals.currentLocationLongitude.value} />
                     <VehicleTireInfo signals={signals} />

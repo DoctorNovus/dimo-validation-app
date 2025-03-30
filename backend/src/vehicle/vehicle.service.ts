@@ -3,376 +3,394 @@ import { Inject, Injectable } from "@outwalk/firefly";
 import { Unauthorized } from "@outwalk/firefly/errors";
 
 interface VehicleData {
-    data: {
-        signals: {}
-    }
+  data: {
+    signals: {}
+  }
 }
 
 interface VehicleLiveData {
-    data: {
-        signalsLatest: {}
-    }
+  data: {
+    signalsLatest: {}
+  }
 }
 
 interface VehicleIdentity {
-    data: {
-        vehicle: {
-            make?: string;
-            model?: string;
-            year?: number;
-            imageURI?: string;
-            owner?: string;
-        }
+  data: {
+    vehicle: {
+      make?: string;
+      model?: string;
+      year?: number;
+      imageURI?: string;
+      owner?: string;
     }
+  }
 }
 
 interface VehicleBase {
-    definition: { make: string, model: string, year: number }
+  definition: { make: string, model: string, year: number }
 }
 
 export const FRIENDLY_NAMES = {
-    lastSeen: "Last Seen",
-    currentLocationApproximateLongitude: "Current Apox. Longitude",
-    currentLocationApproximateLatitude: "Current Aprox. Latitude",
-    angularVelocityYaw: "Angular Velocity Yaw",
-    chassisAxleRow1WheelLeftSpeed: "Left Tire Speed",
-    chassisAxleRow1WheelLeftTirePressure: "Left Tire Pressure",
-    chassisAxleRow1WheelRightSpeed: "Right Tire Speed",
-    chassisAxleRow1WheelRightTirePressure: "Right Tire Pressure",
-    chassisAxleRow2WheelLeftTirePressure: "Left Rear Tire Pressure",
-    chassisAxleRow2WheelRightTirePressure: "Right Rear Tire Pressure",
-    currentLocationAltitude: "Car Altitude",
-    currentLocationHeading: "Direction Facing",
-    currentLocationIsRedacted: "Location Hidden",
-    currentLocationLatitude: "Car Latitude",
-    currentLocationLongitude: "Car Longitude",
-    exteriorAirTemperature: "Exterior Air Temperature",
-    isIgnitionOn: "Ignition On",
-    lowVoltageBatteryCurrentVoltage: "Battery Voltage",
-    obdBarometricPressure: "OBD Barometric Pressure",
-    obdCommandedEGR: "OBD Commanded EGR",
-    obdCommandedEVAP: "OBD Commanded EVAP",
-    obdDTCList: "OBD DTC List",
-    obdDistanceSinceDTCClear: "OBD Distance Since DTC Clear",
-    obdDistanceWithMIL: "OBD Distance With MIL",
-    obdEngineLoad: "OBD Engine Load",
-    obdFuelPressure: "OBD Fuel Pressure",
-    obdIntakeTemp: "OBD Intake Temperature",
-    obdLongTermFuelTrim1: "OBD Long Term Fuel Trim 1",
-    obdMAP: "OBD MAP",
-    obdO2WRSensor1Voltage: "OBD O2 Sensor 1 Voltage",
-    obdO2WRSensor2Voltage: "OBD O2 Sensor 2 Voltage",
-    obdRunTime: "OBD Run Time",
-    obdShortTermFuelTrim1: "OBD Short Term Fuel Trim 1",
-    obdWarmupsSinceDTCClear: "OBD Warmups Since DTC Clear",
-    powertrainCombustionEngineDieselExhaustFluidCapacity: "Diesel Exhaust Fluid Capacity",
-    powertrainCombustionEngineDieselExhaustFluidLevel: "Diesel Exhaust Fluid Level",
-    powertrainCombustionEngineECT: "Engine Coolant Temperature",
-    powertrainCombustionEngineEOP: "Engine Oil Pressure",
-    powertrainCombustionEngineEOT: "Engine Oil Temperature",
-    powertrainCombustionEngineEngineOilLevel: "Engine Oil Level",
-    powertrainCombustionEngineEngineOilRelativeLevel: "Engine Oil Relative Level",
-    powertrainCombustionEngineMAF: "MAF Sensor",
-    powertrainCombustionEngineSpeed: "Engine Speed",
-    powertrainCombustionEngineTPS: "Throttle Position Sensor",
-    powertrainCombustionEngineTorque: "Engine Torque",
-    powertrainFuelSystemAbsoluteLevel: "Fuel System Absolute Level",
-    powertrainFuelSystemRelativeLevel: "Fuel System Relative Level",
-    powertrainFuelSystemSupportedFuelTypes: "Fuel System Supported Fuel Types",
-    powertrainRange: "Powertrain Range",
-    powertrainTractionBatteryChargingAddedEnergy: "EV Charging Added Energy",
-    powertrainTractionBatteryChargingChargeLimit: "EV Charging Charge Limit",
-    powertrainTractionBatteryChargingIsCharging: "EV Charging Is Charging",
-    powertrainTractionBatteryCurrentPower: "EV Current Power",
-    powertrainTractionBatteryCurrentVoltage: "EV Current Voltage",
-    powertrainTractionBatteryGrossCapacity: "EV Gross Capacity",
-    powertrainTractionBatteryRange: "EV Range",
-    powertrainTractionBatteryStateOfChargeCurrent: "EV Charge Level",
-    powertrainTractionBatteryTemperatureAverage: "EV Temperature Average",
-    powertrainTransmissionCurrentGear: "Transmission Current Gear",
-    powertrainTransmissionTemperature: "Transmission Temperature",
-    powertrainTransmissionTravelledDistance: "Odometer",
-    powertrainType: "Powertrain Type",
-    serviceDistanceToService: "Service Distance To Service",
-    speed: "Speed",
+  lastSeen: "Last Seen",
+  currentLocationApproximateLongitude: "Current Apox. Longitude",
+  currentLocationApproximateLatitude: "Current Aprox. Latitude",
+  angularVelocityYaw: "Angular Velocity Yaw",
+  chassisAxleRow1WheelLeftSpeed: "Left Tire Speed",
+  chassisAxleRow1WheelLeftTirePressure: "Left Tire Pressure",
+  chassisAxleRow1WheelRightSpeed: "Right Tire Speed",
+  chassisAxleRow1WheelRightTirePressure: "Right Tire Pressure",
+  chassisAxleRow2WheelLeftTirePressure: "Left Rear Tire Pressure",
+  chassisAxleRow2WheelRightTirePressure: "Right Rear Tire Pressure",
+  currentLocationAltitude: "Car Altitude",
+  currentLocationHeading: "Direction Facing",
+  currentLocationIsRedacted: "Location Hidden",
+  currentLocationLatitude: "Car Latitude",
+  currentLocationLongitude: "Car Longitude",
+  exteriorAirTemperature: "Exterior Air Temperature",
+  isIgnitionOn: "Ignition On",
+  lowVoltageBatteryCurrentVoltage: "Battery Voltage",
+  obdBarometricPressure: "OBD Barometric Pressure",
+  obdCommandedEGR: "OBD Commanded EGR",
+  obdCommandedEVAP: "OBD Commanded EVAP",
+  obdDTCList: "OBD DTC List",
+  obdDistanceSinceDTCClear: "OBD Distance Since DTC Clear",
+  obdDistanceWithMIL: "OBD Distance With MIL",
+  obdEngineLoad: "OBD Engine Load",
+  obdFuelPressure: "OBD Fuel Pressure",
+  obdIntakeTemp: "OBD Intake Temperature",
+  obdLongTermFuelTrim1: "OBD Long Term Fuel Trim 1",
+  obdMAP: "OBD MAP",
+  obdO2WRSensor1Voltage: "OBD O2 Sensor 1 Voltage",
+  obdO2WRSensor2Voltage: "OBD O2 Sensor 2 Voltage",
+  obdRunTime: "OBD Run Time",
+  obdShortTermFuelTrim1: "OBD Short Term Fuel Trim 1",
+  obdWarmupsSinceDTCClear: "OBD Warmups Since DTC Clear",
+  powertrainCombustionEngineDieselExhaustFluidCapacity: "Diesel Exhaust Fluid Capacity",
+  powertrainCombustionEngineDieselExhaustFluidLevel: "Diesel Exhaust Fluid Level",
+  powertrainCombustionEngineECT: "Engine Coolant Temperature",
+  powertrainCombustionEngineEOP: "Engine Oil Pressure",
+  powertrainCombustionEngineEOT: "Engine Oil Temperature",
+  powertrainCombustionEngineEngineOilLevel: "Engine Oil Level",
+  powertrainCombustionEngineEngineOilRelativeLevel: "Engine Oil Relative Level",
+  powertrainCombustionEngineMAF: "MAF Sensor",
+  powertrainCombustionEngineSpeed: "Engine Speed",
+  powertrainCombustionEngineTPS: "Throttle Position Sensor",
+  powertrainCombustionEngineTorque: "Engine Torque",
+  powertrainFuelSystemAbsoluteLevel: "Fuel System Absolute Level",
+  powertrainFuelSystemRelativeLevel: "Fuel System Relative Level",
+  powertrainFuelSystemSupportedFuelTypes: "Fuel System Supported Fuel Types",
+  powertrainRange: "Powertrain Range",
+  powertrainTractionBatteryChargingAddedEnergy: "EV Charging Added Energy",
+  powertrainTractionBatteryChargingChargeLimit: "EV Charging Charge Limit",
+  powertrainTractionBatteryChargingIsCharging: "EV Charging Is Charging",
+  powertrainTractionBatteryCurrentPower: "EV Current Power",
+  powertrainTractionBatteryCurrentVoltage: "EV Current Voltage",
+  powertrainTractionBatteryGrossCapacity: "EV Gross Capacity",
+  powertrainTractionBatteryRange: "EV Range",
+  powertrainTractionBatteryStateOfChargeCurrent: "EV Charge Level",
+  powertrainTractionBatteryTemperatureAverage: "EV Temperature Average",
+  powertrainTransmissionCurrentGear: "Transmission Current Gear",
+  powertrainTransmissionTemperature: "Transmission Temperature",
+  powertrainTransmissionTravelledDistance: "Odometer",
+  powertrainType: "Powertrain Type",
+  serviceDistanceToService: "Service Distance To Service",
+  speed: "Speed",
 };
 
 export const UNITS = {
-    lastSeen: "",
-    currentLocationApproximateLongitude: "degrees",
-    currentLocationApproximateLatitude: "degrees",
-    angularVelocityYaw: "degrees/s",
-    chassisAxleRow1WheelLeftSpeed: "km/h",
-    chassisAxleRow1WheelLeftTirePressure: "kPa",
-    chassisAxleRow1WheelRightSpeed: "km/h",
-    chassisAxleRow1WheelRightTirePressure: "kPa",
-    chassisAxleRow2WheelLeftTirePressure: "kPa",
-    chassisAxleRow2WheelRightTirePressure: "kPa",
-    currentLocationAltitude: "m",
-    currentLocationHeading: "degrees",
-    currentLocationIsRedacted: "",
-    currentLocationLatitude: "degrees",
-    currentLocationLongitude: "degrees",
-    exteriorAirTemperature: "celsius",
-    isIgnitionOn: "",
-    lowVoltageBatteryCurrentVoltage: "V",
-    obdBarometricPressure: "kPa",
-    obdCommandedEGR: "percent",
-    obdCommandedEVAP: "percent",
-    obdDTCList: "",
-    obdDistanceSinceDTCClear: "km",
-    obdDistanceWithMIL: "km",
-    obdEngineLoad: "percent",
-    obdFuelPressure: "kPa",
-    obdIntakeTemp: "celsius",
-    obdLongTermFuelTrim1: "percent",
-    obdMAP: "kPa",
-    obdO2WRSensor1Voltage: "V",
-    obdO2WRSensor2Voltage: "V",
-    obdRunTime: "s",
-    obdShortTermFuelTrim1: "percent",
-    obdWarmupsSinceDTCClear: "",
-    powertrainCombustionEngineDieselExhaustFluidCapacity: "l",
-    powertrainCombustionEngineDieselExhaustFluidLevel: "percent",
-    powertrainCombustionEngineECT: "celsius",
-    powertrainCombustionEngineEOP: "kPa",
-    powertrainCombustionEngineEOT: "celsius",
-    powertrainCombustionEngineEngineOilLevel: "percent",
-    powertrainCombustionEngineEngineOilRelativeLevel: "percent",
-    powertrainCombustionEngineMAF: "g/s",
-    powertrainCombustionEngineSpeed: "rpm",
-    powertrainCombustionEngineTPS: "percent",
-    powertrainCombustionEngineTorque: "Nm",
-    powertrainFuelSystemAbsoluteLevel: "l",
-    powertrainFuelSystemRelativeLevel: "l",
-    powertrainFuelSystemSupportedFuelTypes: "percent",
-    powertrainRange: "km",
-    powertrainTractionBatteryChargingAddedEnergy: "kWh",
-    powertrainTractionBatteryChargingChargeLimit: "percent",
-    powertrainTractionBatteryChargingIsCharging: "",
-    powertrainTractionBatteryCurrentPower: "W",
-    powertrainTractionBatteryCurrentVoltage: "V",
-    powertrainTractionBatteryGrossCapacity: "kWh",
-    powertrainTractionBatteryRange: "m",
-    powertrainTractionBatteryStateOfChargeCurrent: "percent",
-    powertrainTractionBatteryTemperatureAverage: "celsius",
-    powertrainTransmissionCurrentGear: "",
-    powertrainTransmissionTemperature: "celsius",
-    powertrainTransmissionTravelledDistance: "km",
-    powertrainType: "",
-    serviceDistanceToService: "km",
-    speed: "km/h",
+  lastSeen: "",
+  currentLocationApproximateLongitude: "degrees",
+  currentLocationApproximateLatitude: "degrees",
+  angularVelocityYaw: "degrees/s",
+  chassisAxleRow1WheelLeftSpeed: "km/h",
+  chassisAxleRow1WheelLeftTirePressure: "kPa",
+  chassisAxleRow1WheelRightSpeed: "km/h",
+  chassisAxleRow1WheelRightTirePressure: "kPa",
+  chassisAxleRow2WheelLeftTirePressure: "kPa",
+  chassisAxleRow2WheelRightTirePressure: "kPa",
+  currentLocationAltitude: "m",
+  currentLocationHeading: "degrees",
+  currentLocationIsRedacted: "",
+  currentLocationLatitude: "degrees",
+  currentLocationLongitude: "degrees",
+  exteriorAirTemperature: "celsius",
+  isIgnitionOn: "",
+  lowVoltageBatteryCurrentVoltage: "V",
+  obdBarometricPressure: "kPa",
+  obdCommandedEGR: "percent",
+  obdCommandedEVAP: "percent",
+  obdDTCList: "",
+  obdDistanceSinceDTCClear: "km",
+  obdDistanceWithMIL: "km",
+  obdEngineLoad: "percent",
+  obdFuelPressure: "kPa",
+  obdIntakeTemp: "celsius",
+  obdLongTermFuelTrim1: "percent",
+  obdMAP: "kPa",
+  obdO2WRSensor1Voltage: "V",
+  obdO2WRSensor2Voltage: "V",
+  obdRunTime: "s",
+  obdShortTermFuelTrim1: "percent",
+  obdWarmupsSinceDTCClear: "",
+  powertrainCombustionEngineDieselExhaustFluidCapacity: "l",
+  powertrainCombustionEngineDieselExhaustFluidLevel: "percent",
+  powertrainCombustionEngineECT: "celsius",
+  powertrainCombustionEngineEOP: "kPa",
+  powertrainCombustionEngineEOT: "celsius",
+  powertrainCombustionEngineEngineOilLevel: "percent",
+  powertrainCombustionEngineEngineOilRelativeLevel: "percent",
+  powertrainCombustionEngineMAF: "g/s",
+  powertrainCombustionEngineSpeed: "rpm",
+  powertrainCombustionEngineTPS: "percent",
+  powertrainCombustionEngineTorque: "Nm",
+  powertrainFuelSystemAbsoluteLevel: "l",
+  powertrainFuelSystemRelativeLevel: "l",
+  powertrainFuelSystemSupportedFuelTypes: "percent",
+  powertrainRange: "km",
+  powertrainTractionBatteryChargingAddedEnergy: "kWh",
+  powertrainTractionBatteryChargingChargeLimit: "percent",
+  powertrainTractionBatteryChargingIsCharging: "",
+  powertrainTractionBatteryCurrentPower: "W",
+  powertrainTractionBatteryCurrentVoltage: "V",
+  powertrainTractionBatteryGrossCapacity: "kWh",
+  powertrainTractionBatteryRange: "m",
+  powertrainTractionBatteryStateOfChargeCurrent: "percent",
+  powertrainTractionBatteryTemperatureAverage: "celsius",
+  powertrainTransmissionCurrentGear: "",
+  powertrainTransmissionTemperature: "celsius",
+  powertrainTransmissionTravelledDistance: "km",
+  powertrainType: "",
+  serviceDistanceToService: "km",
+  speed: "km/h",
 };
 
 @Injectable()
 export class VehicleService {
 
-    @Inject() dimoService: DimoService;
+  @Inject() dimoService: DimoService;
 
-    async getVehicleToken(id: number) {
-        if (!id) return null;
+  async getVehicleToken(id: number) {
+    if (!id) return null;
 
-        const authToken = await this.dimoService.getToken();
+    const authToken = await this.dimoService.getToken();
 
-        return await this.dimoService.dimo.tokenexchange.exchange({
-            ...authToken,
-            privileges: [1, 2, 3, 4, 5, 6],
-            tokenId: id
-        });
+    return await this.dimoService.dimo.tokenexchange.exchange({
+      ...authToken,
+      privileges: [1, 2, 3, 4, 5, 6],
+      tokenId: id
+    });
+  }
+
+  getCleanLocalizedData(value, unit) {
+    if (!value)
+      return null;
+
+    let val = typeof value == "object" ? value.value : value;
+
+    switch (unit) {
+      case "mi":
+      case "mph":
+        return (val / 1.609);
+
+      case "°F":
+        return (val * (9 / 5)) + 32;
+
+      case "ft":
+        return (val * 3.281);
+
+      case "psi":
+        return (val / 6.895);
+
+      case "oz":
+      case "oz/s":
+        return (val / 28.35);
+
+      case "gals":
+        return (val / 3.785);
+
+      default:
+        return val;
+    }
+  }
+
+  getCleanLocalizedUnit(unit, locale) {
+    if (locale == "mi") {
+      switch (unit) {
+        case "degrees":
+          return "°";
+
+        case "degrees/s":
+          return "°/s";
+
+        case "km/h":
+          return "mph";
+
+        case "km":
+          return "mi";
+
+        case "celsius":
+          return "°F";
+
+        case "percent":
+          return "%";
+
+        case "m":
+          return "ft";
+
+        case "kPa":
+          return "psi";
+
+        case "V":
+          return "v";
+
+        case "g":
+          return "oz";
+
+        case "g/s":
+          return "oz/s";
+
+        case "l":
+          return "gals";
+
+        default:
+          return unit;
+      }
     }
 
-    getCleanLocalizedData(value, unit) {
-        if (!value)
-            return null;
+    switch (unit) {
+      case "degrees":
+        return "°";
 
-        let val = typeof value == "object" ? value.value : value;
+      case "degrees/s":
+        return "°/s";
 
-        switch (unit) {
-            case "mi":
-            case "mph":
-                return (val / 1.609);
+      case "celsius":
+        return "°C";
 
-            case "°F":
-                return (val * (9 / 5)) + 32;
+      case "percent":
+        return "%";
 
-            case "ft":
-                return (val * 3.281);
+      case "V":
+        return "v";
 
-            case "psi":
-                return (val / 6.895);
+      case "l":
+        return "liters";
 
-            case "oz":
-            case "oz/s":
-                return (val / 28.35);
+      default:
+        return unit;
+    }
+  }
 
-            case "gals":
-                return (val / 3.785);
+  async getVehicleById(id: number, walletAddress: string, localizedUnit: string) {
 
-            default:
-                return val;
+    const owner = await this.getVehicleOwner(id);
+
+    if (process.env.NODE_ENV != "development")
+      if (owner != walletAddress)
+        return new Unauthorized("Not Your Car.");
+
+    const vehicleData = await this.getVehicleDataById(id);
+
+    const vehicleIdentity: VehicleIdentity = await this.dimoService.dimo.identity.query({
+      query: this.getVehicleQuery(id)
+    }) as unknown as VehicleIdentity;
+
+    let cleanData = {};
+
+    for (const key of Object.keys(vehicleData)) {
+      const cleanUnit = this.getCleanLocalizedUnit(UNITS[key], localizedUnit);
+      let tempData = this.getCleanLocalizedData(vehicleData[key], cleanUnit);
+
+      if (key == "0")
+        continue;
+
+      if (tempData) {
+        switch (key) {
+          case "chassisAxleRow1WheelLeftSpeed":
+          case "chassisAxleRow1WheelRightSpeed":
+          case "chassisAxleRow1WheelLeftTirePressure":
+          case "chassisAxleRow1WheelRightTirePressure":
+          case "chassisAxleRow2WheelLeftTirePressure":
+          case "chassisAxleRow2WheelRightTirePressure":
+            tempData = Math.round(tempData);
+            break;
+
+          case "exteriorAirTemperature":
+            tempData = Math.round(tempData);
+            break;
         }
+      }
+
+      cleanData[key] = {
+        value: tempData,
+        name: FRIENDLY_NAMES[key] || key,
+        unit: cleanUnit
+      };
     }
 
-    getCleanLocalizedUnit(unit, locale) {
-        if (locale == "mi") {
-            switch (unit) {
-                case "degrees":
-                    return "°";
+    return {
+      vehicle: vehicleIdentity.data.vehicle,
+      signals: cleanData
+    };
+  }
 
-                case "degrees/s":
-                    return "°/s";
+  async getVehicleDataById(id: number) {
 
-                case "km/h":
-                    return "mph";
+    const vehicleToken = await this.getVehicleToken(id);
 
-                case "km":
-                    return "mi";
+    const allData = await this.dimoService.dimo.telemetry.query({
+      ...vehicleToken,
+      query: this.getVehicleDataQuery(id)
+    }) as unknown as VehicleData;
 
-                case "celsius":
-                    return "°F";
+    const liveData = await this.dimoService.dimo.telemetry.query({
+      ...vehicleToken,
+      query: this.getVehicleLiveDataQuery(id)
+    }) as unknown as VehicleLiveData;
 
-                case "percent":
-                    return "%";
+    return {
+      ...(allData.data.signals),
+      ...(liveData.data.signalsLatest)
+    };
 
-                case "m":
-                    return "ft";
+  }
 
-                case "kPa":
-                    return "psi";
+  async getVehicleDefinitions(vehicle: VehicleBase) {
+    const baseURI = "https://device-definitions-api.dimo.zone";
 
-                case "V":
-                    return "v";
+    interface DefinitionBase { deviceDefinitions: unknown };
 
-                case "g":
-                    return "oz";
+    const res = await fetch(`${baseURI}/device-definitions/search?query=${vehicle.definition.make} ${vehicle.definition.model} ${vehicle.definition.year}`);
+    const definitionBase = await res.json() as DefinitionBase;
+    return definitionBase.deviceDefinitions;
+  }
 
-                case "g/s":
-                    return "oz/s";
+  async getVehicleImage(id: number, walletAddress: string) {
+    const owner = await this.getVehicleOwner(id);
 
-                case "l":
-                    return "gals";
+    if (process.env.NODE_ENV != "development")
+      if (owner != walletAddress)
+        return new Unauthorized("Not Your Car.");
 
-                default:
-                    return unit;
-            }
-        }
+    const vehicleIdentity: VehicleIdentity = await this.dimoService.dimo.identity.query({
+      query: this.getVehicleImageQuery(id)
+    }) as unknown as VehicleIdentity;
 
-        switch (unit) {
-            case "degrees":
-                return "°";
+    const tokenURI = vehicleIdentity.data.vehicle.imageURI;
 
-            case "degrees/s":
-                return "°/s";
+    return tokenURI.replace("ipfs://", "https://ipfs.io/ipfs/");
+  }
 
-            case "celsius":
-                return "°C";
+  async getVehicleOwner(id: number) {
+    const vehicleIdentity: VehicleIdentity = await this.dimoService.dimo.identity.query({
+      query: this.getVehicleOwnerQuery(id)
+    }) as unknown as VehicleIdentity;
 
-            case "percent":
-                return "%";
+    return vehicleIdentity.data.vehicle.owner;
+  }
 
-            case "V":
-                return "v";
-
-            case "l":
-                return "liters";
-
-            default:
-                return unit;
-        }
-    }
-
-    async getVehicleById(id: number, walletAddress: string, localizedUnit: string) {
-
-        const owner = await this.getVehicleOwner(id);
-
-        if (process.env.NODE_ENV != "development")
-            if (owner != walletAddress)
-                return new Unauthorized("Not Your Car.");
-
-        const vehicleData = await this.getVehicleDataById(id);
-
-        const vehicleIdentity: VehicleIdentity = await this.dimoService.dimo.identity.query({
-            query: this.getVehicleQuery(id)
-        }) as unknown as VehicleIdentity;
-
-        let cleanData = {};
-
-        for (const key of Object.keys(vehicleData)) {
-            if (key == "0")
-                continue;
-
-            const cleanUnit = this.getCleanLocalizedUnit(UNITS[key], localizedUnit);
-
-            cleanData[key] = {
-                value: this.getCleanLocalizedData(vehicleData[key], cleanUnit),
-                name: FRIENDLY_NAMES[key] || key,
-                unit: cleanUnit
-            };
-        }
-
-        return {
-            vehicle: vehicleIdentity.data.vehicle,
-            signals: cleanData
-        };
-    }
-
-    async getVehicleDataById(id: number) {
-
-        const vehicleToken = await this.getVehicleToken(id);
-
-        const allData = await this.dimoService.dimo.telemetry.query({
-            ...vehicleToken,
-            query: this.getVehicleDataQuery(id)
-        }) as unknown as VehicleData;
-
-        const liveData = await this.dimoService.dimo.telemetry.query({
-            ...vehicleToken,
-            query: this.getVehicleLiveDataQuery(id)
-        }) as unknown as VehicleLiveData;
-
-        return {
-            ...(allData.data.signals),
-            ...(liveData.data.signalsLatest)
-        };
-
-    }
-
-    async getVehicleDefinitions(vehicle: VehicleBase) {
-        const baseURI = "https://device-definitions-api.dimo.zone";
-
-        interface DefinitionBase { deviceDefinitions: unknown };
-
-        const res = await fetch(`${baseURI}/device-definitions/search?query=${vehicle.definition.make} ${vehicle.definition.model} ${vehicle.definition.year}`);
-        const definitionBase = await res.json() as DefinitionBase;
-        return definitionBase.deviceDefinitions;
-    }
-
-    async getVehicleImage(id: number, walletAddress: string) {
-        const owner = await this.getVehicleOwner(id);
-
-        if (process.env.NODE_ENV != "development")
-            if (owner != walletAddress)
-                return new Unauthorized("Not Your Car.");
-
-        const vehicleIdentity: VehicleIdentity = await this.dimoService.dimo.identity.query({
-            query: this.getVehicleImageQuery(id)
-        }) as unknown as VehicleIdentity;
-
-        const tokenURI = vehicleIdentity.data.vehicle.imageURI;
-
-        return tokenURI.replace("ipfs://", "https://ipfs.io/ipfs/");
-    }
-
-    async getVehicleOwner(id: number) {
-        const vehicleIdentity: VehicleIdentity = await this.dimoService.dimo.identity.query({
-            query: this.getVehicleOwnerQuery(id)
-        }) as unknown as VehicleIdentity;
-
-        return vehicleIdentity.data.vehicle.owner;
-    }
-
-    getVehicleQuery(id: number) {
-        return `
+  getVehicleQuery(id: number) {
+    return `
       	query {
           vehicle(tokenId: ${id}){
               definition {
@@ -383,34 +401,34 @@ export class VehicleService {
           }
       	}
     	`;
-    }
+  }
 
-    getVehicleImageQuery(id: number) {
-        return `
+  getVehicleImageQuery(id: number) {
+    return `
       	query {
           vehicle(tokenId: ${id}){
             imageURI
           }
       	}
     	`;
-    }
+  }
 
-    getVehicleOwnerQuery(id: number) {
-        return `
+  getVehicleOwnerQuery(id: number) {
+    return `
       query {
         vehicle(tokenId: ${id}){
           owner
         }
       }
     `;
-    }
+  }
 
-    getVehicleDataQuery(id: number, interval: string = "12h", agg: string = "FIRST") {
-        const to = new Date();
-        const from = new Date();
-        from.setHours(from.getHours() - 12);
+  getVehicleDataQuery(id: number, interval: string = "12h", agg: string = "FIRST") {
+    const to = new Date();
+    const from = new Date();
+    from.setHours(from.getHours() - 12);
 
-        return `
+    return `
       	query {
 			signals(interval: "${interval}", from: "${from.toJSON()}", to: "${to.toJSON()}", tokenId: ${id}) {
 				timestamp
@@ -485,10 +503,10 @@ export class VehicleService {
           	}
         }
       `;
-    }
+  }
 
-    getVehicleLiveDataQuery(id: number) {
-        return `
+  getVehicleLiveDataQuery(id: number) {
+    return `
         query {
             signalsLatest(tokenId: ${id}) {
               lastSeen,
@@ -739,20 +757,20 @@ export class VehicleService {
             }
           }
         `;
-    }
+  }
 
-    async getVehicleVIN(tokenId: number, walletAddress: string) {
-        const owner = await this.getVehicleOwner(tokenId);
+  async getVehicleVIN(tokenId: number, walletAddress: string) {
+    const owner = await this.getVehicleOwner(tokenId);
 
-        if (process.env.NODE_ENV != "development")
-            if (owner != walletAddress)
-                throw new Unauthorized("Not Your Car.");
+    if (process.env.NODE_ENV != "development")
+      if (owner != walletAddress)
+        throw new Unauthorized("Not Your Car.");
 
-        const vehicleToken = await this.getVehicleToken(tokenId);
+    const vehicleToken = await this.getVehicleToken(tokenId);
 
-        return await this.dimoService.dimo.telemetry.getVin({
-            ...vehicleToken,
-            tokenId: tokenId
-        });
-    }
+    return await this.dimoService.dimo.telemetry.getVin({
+      ...vehicleToken,
+      tokenId: tokenId
+    });
+  }
 }
