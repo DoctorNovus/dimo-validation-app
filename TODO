@@ -9,28 +9,37 @@
     ✔ Fuel System Relative Level must remain as a raw percentage and should not be converted @done(25-03-30 16:51)
     ✔ Correct typo: “Odemeter” should be “Odometer” throughout the interface @done(25-03-27 14:08)
     ☐ Implement region-based logic for displaying odometer values
-    ☐ Prevent multiple submissions within time period
-    ☐ Display last submission date
-    ☐ Add confirmation message after submission
-    ☐ Fix page refresh/resubmission vulnerability
-    ☐ Add vehicle nickname capability
-    ☐ Show VIN in shared vehicle list for fleet management
+    ✔ Add confirmation message after submission @done(25-03-30 16:52)
+    ✔ Show VIN in shared vehicle list for fleet management @done(25-03-30 17:09)
+    ☐ Fix Side Bar for Vehicles
 
     NEEDS TO BE FIXED IN DIMO API
     ☐ EV charging data should display to 0.01 kWh precision (e.g., 21.55 kWh)
     ☐ Charge level percentages should display to 0.01% precision
 
+    FIXED CLIENT SIDE - NEED TO IMPLEMENT SERVER SIDE
+    ☐ Prevent multiple submissions within time period
+
+    REQUIRES DATABASE
+    ☐ Display last submission date
+    ☐ Add vehicle nickname capability
+
+    V1 Item
+    ☐ Fix page refresh/resubmission vulnerability
+
 ### UI & Widget Improvements:
 
     ✔ Implement Mobile Design @done(25-03-23 22:45)
     ✔ Emulate developmental data @done(25-03-20 18:08)
-    ☐ Redesign Widgets: Reduce chunkiness and remove excessive empty space
-    ☐ Modernize Button Styles: Update outdated button designs (Harvey to provide input)
-    ☐ UI Inspiration: Apply Origin UI’s color scheme for v0 (Harvey to provide feedback)
     ✔ Landing Page Gray Banner: Define its purpose and what content will populate it (NEW DESIGN TO REPLACE) @done(25-03-30 15:53)
     ☐ Move accurate/inaccurate/outdated/skip to bottom
     ☐ Remove redundant speed indicators
     ☐ Add disclaimer: “Data submitted through this app won’t reflect in mobile app”
+
+    ASSIGNED TO HARVEY
+    ☐ Redesign Widgets: Reduce chunkiness and remove excessive empty space
+    ☐ Modernize Button Styles: Update outdated button designs (Harvey to provide input)
+    ☐ UI Inspiration: Apply Origin UI’s color scheme for v0 (Harvey to provide feedback)
 
 ### LIWD (Login & Vehicle Data) Fixes:
 
@@ -47,11 +56,15 @@
 
 ### Landing Page Updates:
 
+    ASSIGNED TO HARVEY
+
     ☐ Clearly highlight the app’s purpose
     ☐ Label LWID and Sharing on the landing page
     ☐ List supported browsers (crypto wallet browsers are not supported)
 
 ### Data Accuracy & Submission Enhancements:
+
+    V1 Items
 
     ☐ Clarify how users should compare and submit validation data
     ☐ Implement a guide on submitting valid data
