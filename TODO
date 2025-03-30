@@ -8,10 +8,10 @@
     ✔ Round air temperature to nearest whole number (e.g., 74° not 74.3°) @done(25-03-30 16:47)
     ✔ Fuel System Relative Level must remain as a raw percentage and should not be converted @done(25-03-30 16:51)
     ✔ Correct typo: “Odemeter” should be “Odometer” throughout the interface @done(25-03-27 14:08)
-    ☐ Implement region-based logic for displaying odometer values
     ✔ Add confirmation message after submission @done(25-03-30 16:52)
     ✔ Show VIN in shared vehicle list for fleet management @done(25-03-30 17:09)
     ☐ Fix Side Bar for Vehicles
+    ☐ Implement region-based logic for displaying odometer values
 
     NEEDS TO BE FIXED IN DIMO API
     ☐ EV charging data should display to 0.01 kWh precision (e.g., 21.55 kWh)
