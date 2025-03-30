@@ -143,8 +143,8 @@ export const UNITS = {
   powertrainCombustionEngineSpeed: "rpm",
   powertrainCombustionEngineTPS: "percent",
   powertrainCombustionEngineTorque: "Nm",
-  powertrainFuelSystemAbsoluteLevel: "l",
-  powertrainFuelSystemRelativeLevel: "l",
+  powertrainFuelSystemAbsoluteLevel: "percent",
+  powertrainFuelSystemRelativeLevel: "percent",
   powertrainFuelSystemSupportedFuelTypes: "percent",
   powertrainRange: "km",
   powertrainTractionBatteryChargingAddedEnergy: "kWh",
@@ -299,6 +299,9 @@ export class VehicleService {
 
     for (const key of Object.keys(vehicleData)) {
       const cleanUnit = this.getCleanLocalizedUnit(UNITS[key], localizedUnit);
+      if (key == "powertrainTractionBatteryStateOfChargeCurrent")
+        console.log(vehicleData["powertrainTractionBatteryStateOfChargeCurrent"]);
+
       let tempData = this.getCleanLocalizedData(vehicleData[key], cleanUnit);
 
       if (key == "0")

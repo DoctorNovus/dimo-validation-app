@@ -6,9 +6,7 @@
     ✔ Implement single widget selection for incorrect tire values in v1 @done(25-03-20 18:08)
     ✔ Round tire pressure to nearest integer for both PSI and kilopascals @done(25-03-30 16:26)
     ✔ Round air temperature to nearest whole number (e.g., 74° not 74.3°) @done(25-03-30 16:47)
-    ☐ EV charging data should display to 0.01 kWh precision (e.g., 21.55 kWh)
-    ☐ Charge level percentages should display to 0.01% precision
-    ☐ Fuel System Relative Level must remain as a raw percentage and should not be converted
+    ✔ Fuel System Relative Level must remain as a raw percentage and should not be converted @done(25-03-30 16:51)
     ✔ Correct typo: “Odemeter” should be “Odometer” throughout the interface @done(25-03-27 14:08)
     ☐ Implement region-based logic for displaying odometer values
     ☐ Prevent multiple submissions within time period
@@ -17,6 +15,10 @@
     ☐ Fix page refresh/resubmission vulnerability
     ☐ Add vehicle nickname capability
     ☐ Show VIN in shared vehicle list for fleet management
+
+    NEEDS TO BE FIXED IN DIMO API
+    ☐ EV charging data should display to 0.01 kWh precision (e.g., 21.55 kWh)
+    ☐ Charge level percentages should display to 0.01% precision
 
 ### UI & Widget Improvements:
 
