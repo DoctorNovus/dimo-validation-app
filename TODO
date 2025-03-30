@@ -4,7 +4,7 @@
     ✔ Allow users to click on the map box to input location @done(25-03-23 21:53)
     ✔ Rename axle/wheel labels to clearer names (rear left, rear right, etc.) @done(25-03-20 17:19)
     ✔ Implement single widget selection for incorrect tire values in v1 @done(25-03-20 18:08)
-    ☐ Round tire pressure to nearest integer for both PSI and kilopascals
+    ✔ Round tire pressure to nearest integer for both PSI and kilopascals @done(25-03-30 16:26)
     ☐ Round air temperature to nearest whole number (e.g., 74° not 74.3°)
     ☐ EV charging data should display to 0.01 kWh precision (e.g., 21.55 kWh)
     ☐ Charge level percentages should display to 0.01% precision
@@ -25,7 +25,7 @@
     ☐ Redesign Widgets: Reduce chunkiness and remove excessive empty space
     ☐ Modernize Button Styles: Update outdated button designs (Harvey to provide input)
     ☐ UI Inspiration: Apply Origin UI’s color scheme for v0 (Harvey to provide feedback)
-    ☐ Landing Page Gray Banner: Define its purpose and what content will populate it
+    ✔ Landing Page Gray Banner: Define its purpose and what content will populate it (NEW DESIGN TO REPLACE) @done(25-03-30 15:53)
     ☐ Move accurate/inaccurate/outdated/skip to bottom
     ☐ Remove redundant speed indicators
     ☐ Add disclaimer: “Data submitted through this app won’t reflect in mobile app”
@@ -39,9 +39,9 @@
 ### FAQ Section (v0/v1):
 
     ☐ Add FAQ Section covering:
-    • What is the goal of this app?
-    • How will user data be validated?
-    • How long does a vehicle need to be shared?
+        • What is the goal of this app?
+        • How will user data be validated?
+        • How long does a vehicle need to be shared?
 
 ### Landing Page Updates:
 
@@ -71,15 +71,15 @@
 ### Vehicle Type Classifications:
 
     ☐ Add dropdown for powertrain types:
-    • PHEV (Plug-in Hybrid)
-    • HEV (Hybrid)
-    • BEV (Battery Electric)
-    • Combustion (ICE)
+        • PHEV (Plug-in Hybrid)
+        • HEV (Hybrid)
+        • BEV (Battery Electric)
+        • Combustion (ICE)
     ☐ Create checklist for supported fuel types:
-    • Gasoline
-    • Diesel
-    • Electricity
-    • Consider adding hydrogen
+        • Gasoline
+        • Diesel
+        • Electricity
+        • Consider adding hydrogen
 
 ### Additional Considerations:
 
