@@ -18,7 +18,6 @@ export class UserController {
     @Get("/:address/vehicles")
     async getUserVehicles({ params, query }) {
         const { address } = params;
-        const { walletAddress } = query;
 
         const vehicles = await this.usersService.getVehicles(address);
 
@@ -31,7 +30,7 @@ export class UserController {
             const granted = await this.dimoService.isVehicleGranted(vehicle.tokenId);
 
             if (granted) {
-                const vin = await this.vehicleService.getVehicleVIN(vehicle.tokenId, walletAddress);
+                const vin = await this.vehicleService.getVehicleVIN(vehicle.tokenId, address);
                 data.shared.push({ ...vehicle, vin });
             }
             else
