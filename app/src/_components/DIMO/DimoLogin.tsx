@@ -28,9 +28,9 @@ export default function DimoLogin() {
             <Link href={loginURI} className="bg-black text-white dark:bg-white dark:text-black text-base px-3 py-1 rounded-md">
                 <span>Manage Your Account</span>
             </Link>
-            <Link href={loginURI} className="bg-black text-white dark:bg-white dark:text-black text-base px-3 py-1 rounded-md">
+            {/* <Link href={loginURI} className="bg-black text-white dark:bg-white dark:text-black text-base px-3 py-1 rounded-md">
                 <span>Logout</span>
-            </Link>
+            </Link> */}
         </div>
 
     );
