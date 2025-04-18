@@ -299,8 +299,8 @@ export class VehicleService {
 
         for (const key of Object.keys(vehicleData)) {
             const cleanUnit = this.getCleanLocalizedUnit(UNITS[key], localizedUnit);
-            if (key == "powertrainTractionBatteryStateOfChargeCurrent")
-                console.log(vehicleData["powertrainTractionBatteryStateOfChargeCurrent"]);
+            // if (key == "powertrainTractionBatteryStateOfChargeCurrent")
+            // console.log(vehicleData["powertrainTractionBatteryStateOfChargeCurrent"]);
 
             let tempData = this.getCleanLocalizedData(vehicleData[key], cleanUnit);
 
@@ -771,9 +771,17 @@ export class VehicleService {
 
         const vehicleToken = await this.getVehicleToken(tokenId);
 
-        return await this.dimoService.dimo.telemetry.getVin({
-            ...vehicleToken,
-            tokenId: tokenId
-        });
+        try {
+            const response = await this.dimoService.dimo.telemetry.getVin({
+                ...vehicleToken,
+                tokenId: tokenId
+            });
+
+            return response;
+
+        } catch (error) {
+            console.log("Error: ", error.message);
+        }
+
     }
 }
