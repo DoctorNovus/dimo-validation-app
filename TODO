@@ -117,3 +117,4 @@
     ☐ Vehicles unpaired from devices cannot fetch VIN, considering keeping the car so they can view past data, but let them know the info will be outdated.
     ☐ Switching from KM to MI in Basic View mode catches the data change, and shows it as a data indifference rather than raw data
     ☐ Exterior Temperature was found to be -14 Celsius (7 Fahrenheit) when car reports 2 Celsius (47 Fahrenheit)
+    ☐ When user reshares vehicle, vehicle list does not update

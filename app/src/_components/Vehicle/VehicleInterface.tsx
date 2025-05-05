@@ -1,10 +1,15 @@
 "use client";
 
 import { useVehicles } from "@/_hooks/vehicles";
-import { ShareVehiclesWithDimo } from "@dimo-network/login-with-dimo";
+import { ShareVehiclesWithDimo, initializeDimoSDK } from "@dimo-network/login-with-dimo";
 import VehiclePreview from "./VehiclePreview";
 
 export default function VehicleInterface() {
+    initializeDimoSDK({
+        clientId: process.env.NEXT_PUBLIC_DIMO_CLIENT_ID as string,
+        redirectUri: process.env.NEXT_PUBLIC_DIMO_REDIRECT_URI as string
+    });
+
     const vehicles = useVehicles();
 
     if (vehicles.isLoading) {
