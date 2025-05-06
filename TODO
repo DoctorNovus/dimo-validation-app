@@ -1,16 +1,6 @@
 ### Functionality Improvements:
 
-    ✔ Support float inputs (currently limited to integers) @done(25-03-20 16:08)
-    ✔ Allow users to click on the map box to input location @done(25-03-23 21:53)
-    ✔ Rename axle/wheel labels to clearer names (rear left, rear right, etc.) @done(25-03-20 17:19)
-    ✔ Implement single widget selection for incorrect tire values in v1 @done(25-03-20 18:08)
-    ✔ Round tire pressure to nearest integer for both PSI and kilopascals @done(25-03-30 16:26)
-    ✔ Round air temperature to nearest whole number (e.g., 74° not 74.3°) @done(25-03-30 16:47)
-    ✔ Fuel System Relative Level must remain as a raw percentage and should not be converted @done(25-03-30 16:51)
-    ✔ Correct typo: “Odemeter” should be “Odometer” throughout the interface @done(25-03-27 14:08)
-    ✔ Add confirmation message after submission @done(25-03-30 16:52)
-    ✔ Show VIN in shared vehicle list for fleet management @done(25-03-30 17:09)
-    ☐ Fix Side Bar for Vehicles
+    ✔ Fix Side Bar for Vehicles @done(25-05-06 09:19)
     ☐ Implement region-based logic for displaying odometer values
 
     NEEDS TO BE FIXED IN DIMO API
@@ -29,9 +19,6 @@
 
 ### UI & Widget Improvements:
 
-    ✔ Implement Mobile Design @done(25-03-23 22:45)
-    ✔ Emulate developmental data @done(25-03-20 18:08)
-    ✔ Landing Page Gray Banner: Define its purpose and what content will populate it (NEW DESIGN TO REPLACE) @done(25-03-30 15:53)
     ☐ Move accurate/inaccurate/outdated/skip to bottom
     ☐ Remove redundant speed indicators
     ☐ Add disclaimer: “Data submitted through this app won’t reflect in mobile app”
@@ -45,7 +32,8 @@
 
     ☐ Fix Login Issue: Ensure login does not fail when not all vehicles are shared
     ☐ Resolve Client-Side Errors: Fix issue when canceling LIWD flow
-    ☐ Add Missing Logout Button for users
+    
+    Add Missing Logout Button for users (Consult with SDK team to get this integrated)
 
 ### FAQ Section (v0/v1):
 
