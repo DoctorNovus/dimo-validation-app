@@ -765,9 +765,11 @@ export class VehicleService {
     async getVehicleVIN(tokenId: number, walletAddress: string) {
         const owner = await this.getVehicleOwner(tokenId);
 
+        console.log("ID", tokenId, "Owner", owner, "Address", walletAddress);
+
         if (process.env.NODE_ENV != "development")
             if (owner != walletAddress)
-                throw new Unauthorized("Not Your Car.");
+                return new Unauthorized("Not Your Car.");
 
         const vehicleToken = await this.getVehicleToken(tokenId);
 

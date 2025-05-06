@@ -1,108 +1,14 @@
-### Functionality Improvements:
-
-    ✔ Fix Side Bar for Vehicles @done(25-05-06 09:19)
-    ☐ Implement region-based logic for displaying odometer values
-
-    NEEDS TO BE FIXED IN DIMO API
-    ☐ EV charging data should display to 0.01 kWh precision (e.g., 21.55 kWh)
-    ☐ Charge level percentages should display to 0.01% precision
-
-    FIXED CLIENT SIDE - NEED TO IMPLEMENT SERVER SIDE
-    ☐ Prevent multiple submissions within time period
-
-    REQUIRES DATABASE
-    ☐ Display last submission date
-    ☐ Add vehicle nickname capability
-
-    V1 Item
-    ☐ Fix page refresh/resubmission vulnerability
-
-### UI & Widget Improvements:
-
-    ☐ Move accurate/inaccurate/outdated/skip to bottom
-    ☐ Remove redundant speed indicators
-    ☐ Add disclaimer: “Data submitted through this app won’t reflect in mobile app”
-
-    ASSIGNED TO HARVEY
-    ☐ Redesign Widgets: Reduce chunkiness and remove excessive empty space
-    ☐ Modernize Button Styles: Update outdated button designs (Harvey to provide input)
-    ☐ UI Inspiration: Apply Origin UI’s color scheme for v0 (Harvey to provide feedback)
-
-### LIWD (Login & Vehicle Data) Fixes:
-
-    ☐ Fix Login Issue: Ensure login does not fail when not all vehicles are shared
-    ☐ Resolve Client-Side Errors: Fix issue when canceling LIWD flow
-    
-    Add Missing Logout Button for users (Consult with SDK team to get this integrated)
-
-### FAQ Section (v0/v1):
-
-    ☐ Add FAQ Section covering:
-        • What is the goal of this app?
-        • How will user data be validated?
-        • How long does a vehicle need to be shared?
-
-### Landing Page Updates:
-
-    ASSIGNED TO HARVEY
-
-    ☐ Clearly highlight the app’s purpose
-    ☐ Label LWID and Sharing on the landing page
-    ☐ List supported browsers (crypto wallet browsers are not supported)
-
-### Data Accuracy & Submission Enhancements:
-
-    V1 Items
-
-    ☐ Clarify how users should compare and submit validation data
-    ☐ Implement a guide on submitting valid data
-    ☐ Address parked car data limitations
-    ☐ Define a threshold for inaccuracy that requires validation ticket submission
-
-### Data Storage & Analysis:
-
-    ☐ Implement a database for analytics
-    ☐ Determine whether a spreadsheet is sufficient for CS purposes
-
-### Regional Settings & Units:
-
-    ☐ Fix issue where system defaults to kilometers after switching to miles
-    ☐ Create region-based selectors: US/North America, UK, EU, Canada
-    ☐ Alternative: Individual unit selection for each measurement type
-    ☐ Consider future expansion to LATAM and other regions
-
-### Vehicle Type Classifications:
-
-    ☐ Add dropdown for powertrain types:
-        • PHEV (Plug-in Hybrid)
-        • HEV (Hybrid)
-        • BEV (Battery Electric)
-        • Combustion (ICE)
-    ☐ Create checklist for supported fuel types:
-        • Gasoline
-        • Diesel
-        • Electricity
-        • Consider adding hydrogen
-
 ### Additional Considerations:
-
-    ☐ Plan for handling support ticket flood upon release
-    ☐ Evaluate support team metrics & SLAs impact
+    ☐ Plan for handling a support-ticket flood upon release
+    ☐ Evaluate support-team metrics & SLAs
     ☐ Assess need for a dedicated data team or expanded permissions
-    ☐ Coordinate with backend, app dev, and Ruptella for issue resolution
+    ☐ Coordinate with backend, app dev, and Ruptella
     ☐ Restrict CS agents (except eng & management) from accessing location data
     ☐ Explore support payloads to limit CS access to location data
 
 ### Future Enhancements:
-
     ☐ Implement auto-detection of stale data
     ☐ Introduce intelligent correction suggestions
-    ☐ Allow users to push a button to collect and send device logs to DIMO
-    ☐ Add title bar for DIMO Validation
-    ☐ Process friendly names based on car type (ICE/EV)
-
-### Bugs found through user testing:
-    ☐ Vehicles unpaired from devices cannot fetch VIN, considering keeping the car so they can view past data, but let them know the info will be outdated.
-    ☐ Switching from KM to MI in Basic View mode catches the data change, and shows it as a data indifference rather than raw data
-    ☐ Exterior Temperature was found to be -14 Celsius (7 Fahrenheit) when car reports 2 Celsius (47 Fahrenheit)
-    ☐ When user reshares vehicle, vehicle list does not update
+    ☐ Allow users to push a button to collect & send device logs to DIMO
+    ☐ Add a title bar for DIMO Validation
+    ☐ Generate friendly names based on car type (ICE/EV)

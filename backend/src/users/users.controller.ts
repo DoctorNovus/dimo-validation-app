@@ -18,7 +18,7 @@ export class UserController {
     @Get("/:address/vehicles")
     async getUserVehicles({ params }) {
         const { address } = params;
-
+        
         const vehicles = await this.usersService.getVehicles(address);
 
         const data = {
