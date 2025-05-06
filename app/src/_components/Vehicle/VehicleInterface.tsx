@@ -53,7 +53,7 @@ export default function VehicleInterface() {
                     <div className="flex flex-col gap-2">
                         <span className="text-lg">Vehicles Not Shared</span>
 
-                        <div className="flex flex-row gap-2">
+                        <div className="flex flex-col md:flex-row gap-2">
                             {
                                 vehicleData.notShared.map((vehicle, key) => <VehiclePreview disabled key={key} vehicle={vehicle} />)
                             }
