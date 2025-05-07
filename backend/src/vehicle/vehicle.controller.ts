@@ -1,5 +1,6 @@
 import { Controller, Get, Inject } from "@outwalk/firefly";
 import { VehicleService } from "./vehicle.service";
+import { Unauthorized } from "@outwalk/firefly/errors";
 
 @Controller()
 export class VehicleController {
@@ -10,8 +11,10 @@ export class VehicleController {
     async getVehicleById({ params, query }) {
         const { id } = params;
         const { walletAddress, localizedUnit } = query;
-        
-        return await this.vehicleService.getVehicleById(parseInt(id), walletAddress, localizedUnit);
+
+        if (!this.vehicleService.isAuthenticated(id, walletAddress)) throw new Unauthorized();
+
+        return await this.vehicleService.getVehicleById(parseInt(id), localizedUnit);
     }
 
     @Get("/:id/image")
@@ -19,7 +22,9 @@ export class VehicleController {
         const { id } = params;
         const { walletAddress } = query;
 
-        return await this.vehicleService.getVehicleImage(parseInt(id), walletAddress);
+        if (!this.vehicleService.isAuthenticated(id, walletAddress)) throw new Unauthorized();
+
+        return await this.vehicleService.getVehicleImage(parseInt(id));
     }
 
     @Get("/:id/vin")
@@ -27,6 +32,8 @@ export class VehicleController {
         const { id } = params;
         const { walletAddress } = query;
 
-        return await this.vehicleService.getVehicleVIN(parseInt(id), walletAddress);
+        if (!this.vehicleService.isAuthenticated(id, walletAddress)) throw new Unauthorized();
+
+        return await this.vehicleService.getVehicleVIN(parseInt(id));
     }
 }

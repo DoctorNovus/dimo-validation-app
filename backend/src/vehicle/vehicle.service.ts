@@ -1,6 +1,5 @@
 import { DimoService } from "@/dimo/dimo.service";
 import { Inject, Injectable } from "@outwalk/firefly";
-import { Unauthorized } from "@outwalk/firefly/errors";
 
 interface VehicleData {
     data: {
@@ -281,14 +280,7 @@ export class VehicleService {
         }
     }
 
-    async getVehicleById(id: number, walletAddress: string, localizedUnit: string) {
-
-        const owner = await this.getVehicleOwner(id);
-
-        if (process.env.NODE_ENV != "development")
-            if (owner != walletAddress)
-                return new Unauthorized("Not Your Car.");
-
+    async getVehicleById(id: number, localizedUnit: string) {
         const vehicleData = await this.getVehicleDataById(id);
 
         const vehicleIdentity: VehicleIdentity = await this.dimoService.dimo.identity.query({
@@ -368,13 +360,7 @@ export class VehicleService {
         return definitionBase.deviceDefinitions;
     }
 
-    async getVehicleImage(id: number, walletAddress: string) {
-        const owner = await this.getVehicleOwner(id);
-
-        if (process.env.NODE_ENV != "development")
-            if (owner != walletAddress)
-                return new Unauthorized("Not Your Car.");
-
+    async getVehicleImage(id: number) {
         const vehicleIdentity: VehicleIdentity = await this.dimoService.dimo.identity.query({
             query: this.getVehicleImageQuery(id)
         }) as unknown as VehicleIdentity;
@@ -762,15 +748,7 @@ export class VehicleService {
         `;
     }
 
-    async getVehicleVIN(tokenId: number, walletAddress: string) {
-        const owner = await this.getVehicleOwner(tokenId);
-
-        console.log("ID", tokenId, "Owner", owner, "Address", walletAddress);
-
-        if (process.env.NODE_ENV != "development")
-            if (owner != walletAddress)
-                return new Unauthorized("Not Your Car.");
-
+    async getVehicleVIN(tokenId: number) {
         const vehicleToken = await this.getVehicleToken(tokenId);
 
         try {
@@ -785,5 +763,9 @@ export class VehicleService {
             console.log("Error: ", error.message);
         }
 
+    }
+
+    async isAuthenticated(id: number, walletAddress: string) {
+        return await this.getVehicleOwner(id) == walletAddress;
     }
 }

@@ -30,7 +30,7 @@ export class UserController {
             const granted = await this.dimoService.isVehicleGranted(vehicle.tokenId);
 
             if (granted) {
-                const vin = await this.vehicleService.getVehicleVIN(vehicle.tokenId, address);
+                const vin = await this.vehicleService.getVehicleVIN(vehicle.tokenId);
                 data.shared.push({ ...vehicle, vin });
             }
             else
