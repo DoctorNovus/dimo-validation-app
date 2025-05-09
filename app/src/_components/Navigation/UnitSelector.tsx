@@ -8,20 +8,23 @@ export default function UnitSelector() {
 
     const queryClient = useQueryClient();
 
+    const invalidate = (unit: string) => {
+        queryClient.invalidateQueries({ queryKey: ["vehicle", id, "km"] });
+        queryClient.invalidateQueries({ queryKey: ["vehicle", id, "mi"] });
+    }
+
     return (
         <UnitContext.Consumer>
             {({ state, dispatch }) => (
                 <div className="flex flex-row gap-1">
                     <span className={`${state.unit == "km" ? "text-red-500" : "text-black dark:text-white"} cursor-pointer`} onClick={() => {
                         dispatch({ type: "setToKM" });
-                        queryClient.invalidateQueries({ queryKey: ["vehicle", id, "km"] });
-                        queryClient.invalidateQueries({ queryKey: ["vehicle", id, "mi"] });
+                        invalidate("km");
                     }}>km</span>
                     <span className="text-gray-500">/</span>
                     <span className={`${state.unit == "mi" ? "text-red-500" : "text-black dark:text-white"} cursor-pointer`} onClick={() => {
                         dispatch({ type: "setToMI" });
-                        queryClient.invalidateQueries({ queryKey: ["vehicle", id, "km"] });
-                        queryClient.invalidateQueries({ queryKey: ["vehicle", id, "mi"] });
+                        invalidate("mi");
                     }}>mi</span>
                 </div>
             )}

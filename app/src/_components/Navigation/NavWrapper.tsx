@@ -9,17 +9,19 @@ import NavSidebar from "./NavSidebar";
 const reducer = (state, action) => {
     switch (action.type) {
         case "setToKM":
+            localStorage.setItem("unit", "km");
             return { unit: "km" };
 
         case "setToMI":
+            localStorage.setItem("unit", "mi");
             return { unit: "mi" };
     }
 };
 
 export default function NavWrapper({ children }) {
-    const [state, dispatch] = useReducer(reducer, { unit: "km" });
+    const [state, dispatch] = useReducer(reducer, { unit: localStorage.getItem("unit") || "km" });
 
-    const value = { state, dispatch};
+    const value = { state, dispatch };
 
     return (
         <UnitContext.Provider value={value}>

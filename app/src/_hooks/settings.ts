@@ -14,3 +14,7 @@ export function useWalletAddress() {
 export function getTheme() {
     return window.matchMedia?.("(prefers-color-scheme: dark)").matches ? "dark" : "light";
 }
+
+export function getUnit() {
+    return localStorage.getItem("localRegion") || "km";
+}
