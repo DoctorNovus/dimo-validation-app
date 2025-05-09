@@ -1,4 +1,5 @@
 import VehicleIcon from "./VehicleIcon";
+import VehicleConnection from "./VehicleStatus/VehicleConnection/VehicleConnection";
 
 export default function VehiclePreview({ vehicle, disabled }) {
     const redirect = () => {
@@ -36,14 +37,15 @@ export default function VehiclePreview({ vehicle, disabled }) {
             </div>
             <div className="flex flex-col gap-2">
                 <div className="flex flex-col">
-                    <div className="flex flex-row gap-1 text-lg">
-                        <span>{vehicle.definition.make}</span>
-                        <span>{vehicle.definition.model}</span>
-                        <span>{vehicle.definition.year}</span>
+                    <div className="flex flex-row gap-2 items-center">
+                        <div className="flex flex-row gap-1 text-lg">
+                            <span>{vehicle.definition.make}</span>
+                            <span>{vehicle.definition.model}</span>
+                            <span>{vehicle.definition.year}</span>
+                        </div>
+                        <VehicleConnection mode={vehicle.vin ? "online" : "offline"} />
                     </div>
-                    {vehicle.vin && (
-                        <span className="text-gray-500 text-sm">{vehicle.vin}</span>
-                    )}
+                    <span className={`text-gray-500 text-sm`}>{vehicle.vin || "No VIN detected"}</span>
                 </div>
 
                 <div>
