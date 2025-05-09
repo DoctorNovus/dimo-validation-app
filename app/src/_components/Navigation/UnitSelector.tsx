@@ -8,7 +8,7 @@ export default function UnitSelector() {
 
     const queryClient = useQueryClient();
 
-    const invalidate = (unit: string) => {
+    const invalidate = () => {
         queryClient.invalidateQueries({ queryKey: ["vehicle", id, "km"] });
         queryClient.invalidateQueries({ queryKey: ["vehicle", id, "mi"] });
     }
