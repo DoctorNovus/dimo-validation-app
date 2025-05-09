@@ -2,6 +2,7 @@
 
 import { useVehicles } from "@/_hooks/vehicles";
 import { ShareVehiclesWithDimo, initializeDimoSDK } from "@dimo-network/login-with-dimo";
+
 import VehiclePreview from "./VehiclePreview";
 
 export default function VehicleInterface() {
@@ -22,10 +23,10 @@ export default function VehicleInterface() {
 
     const vehicleData = vehicles?.data;
 
-    if(!vehicleData) {
+    if (!vehicleData) {
         return (
             <div className={'justify-center flex content-center text-center'}>
-                <p>No vehicle data.<br/> Make sure you are signed into the correct account and have shared your vehicle with this app.</p>
+                <p>No vehicle data.<br /> Make sure you are signed into the correct account and have shared your vehicle with this app.</p>
             </div>
         )
     }
@@ -61,8 +62,8 @@ export default function VehicleInterface() {
 
                         <div className="py-2">
                             <ShareVehiclesWithDimo
-                                mode="popup"
-                                onSuccess={(authData: unknown) => {
+                                mode="redirect"
+                                onSuccess={async (authData: unknown) => {
                                     console.log("Success:", authData);
                                 }}
                                 onError={(error: unknown) => console.error("Error:", error)}

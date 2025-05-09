@@ -2,6 +2,7 @@ import { useVehicleVIN } from "@/_hooks/vehicles";
 import MapboxMap from "@components/Mapbox/MapboxMap";
 import VehicleProperties from "@components/Vehicle/VehicleProperties";
 import { useState } from "react";
+import VehicleDisclaimer from "./VehicleDisclaimer";
 
 export default function VehicleAdvancedMode({ id, signals, theme }) {
     const [submitted, setSubmitted] = useState(false);
@@ -63,6 +64,8 @@ export default function VehicleAdvancedMode({ id, signals, theme }) {
                         .map(([name, value], key) => <VehicleProperties key={key} signal={name} name={value.name} value={value.value} unit={value.unit} />)
                 }
             </div>
+
+            <VehicleDisclaimer />
 
             <div className="flex flex-row justify-center md:justify-start gap-2">
                 <button type="submit" disabled={submitted} className="w-full md:w-auto px-3 py-2 text-lg bg-gray-500 text-white disabled:bg-gray-700 disabled:text-gray-500 rounded-lg cursor-pointer disabled:cursor-not-allowed my-2">Send Data</button>

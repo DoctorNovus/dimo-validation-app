@@ -4,6 +4,7 @@ import ViewBlock from "./ViewBlock";
 import { useState } from "react";
 import { toast } from "react-toastify";
 import { useVehicleVIN } from "@/_hooks/vehicles";
+import VehicleDisclaimer from "./VehicleDisclaimer";
 
 export default function VehicleBasicMode({ id, signals, theme }) {
 
@@ -108,7 +109,7 @@ export default function VehicleBasicMode({ id, signals, theme }) {
             toast("Submission has been sent!");
 
         }}>
-            <div className="flex flex-col gap-4">
+            <div className="flex flex-col gap-4 pb-2">
                 <div className="w-full h-full grid grid-cols-2 md:grid-cols-4 gap-2">
                     <MapboxMapSelector theme={theme} latitude={signals.currentLocationLatitude.value} longitude={signals.currentLocationLongitude.value} />
                     <VehicleTireInfo signals={signals} />
@@ -118,6 +119,8 @@ export default function VehicleBasicMode({ id, signals, theme }) {
                     ))}
                 </div>
             </div>
+
+            <VehicleDisclaimer />
 
             <div className="flex flex-row justify-center md:justify-start gap-2">
                 <button type="submit" disabled={submitted} className="w-full md:w-auto px-3 py-2 text-lg bg-gray-500 text-white disabled:bg-gray-200 disabled:text-gray-300 disabled:dark:bg-gray-700 disabled:dark:text-gray-500 rounded-lg cursor-pointer disabled:cursor-not-allowed my-2">Send Data</button>
