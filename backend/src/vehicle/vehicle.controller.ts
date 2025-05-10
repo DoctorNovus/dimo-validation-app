@@ -10,11 +10,11 @@ export class VehicleController {
     @Get("/:id")
     async getVehicleById({ params, query }) {
         const { id } = params;
-        const { walletAddress, localizedUnit } = query;
+        const { walletAddress, region } = query;
 
         if (!this.vehicleService.isAuthenticated(id, walletAddress)) throw new Unauthorized();
 
-        return await this.vehicleService.getVehicleById(parseInt(id), localizedUnit);
+        return await this.vehicleService.getVehicleById(parseInt(id), region);
     }
 
     @Get("/:id/image")

@@ -2,25 +2,25 @@ import { DimoService } from "@/dimo/dimo.service";
 import { Inject, Injectable } from "@outwalk/firefly";
 
 interface VehicleData {
-  data: {
-    signals: {}
-  }
+    data: {
+        signals: {}
+    }
 }
 
 interface VehicleLiveData {
-  data: {
-    signalsLatest: {}
-  }
+    data: {
+        signalsLatest: {}
+    }
 }
 
 type VehicleIdentityData = { data: { vehicle: { definition: VehicleIdentity } } };
 
 interface VehicleIdentity {
-  make?: string;
-  model?: string;
-  year?: number;
-  imageURI?: string;
-  owner?: string;
+    make?: string;
+    model?: string;
+    year?: number;
+    imageURI?: string;
+    owner?: string;
 }
 
 export const FRIENDLY_NAMES = {
@@ -160,227 +160,306 @@ export const UNITS = {
 @Injectable()
 export class VehicleService {
 
-  @Inject() dimoService: DimoService;
+    @Inject() dimoService: DimoService;
 
-  async getVehicleToken(id: number) {
-      if (!id) return null;
+    async getVehicleToken(id: number) {
+        if (!id) return null;
 
-      const authToken = await this.dimoService.getToken();
+        const authToken = await this.dimoService.getToken();
 
-      return await this.dimoService.dimo.tokenexchange.exchange({
-          ...authToken,
-          privileges: [1, 2, 3, 4, 5, 6],
-          tokenId: id
-      });
-  }
+        return await this.dimoService.dimo.tokenexchange.exchange({
+            ...authToken,
+            privileges: [1, 2, 3, 4, 5, 6],
+            tokenId: id
+        });
+    }
 
-  getCleanLocalizedData(value, unit) {
-      if (!value)
-          return null;
+    getCleanLocalizedData(value, unit) {
+        if (!value)
+            return null;
 
-      let val = typeof value == "object" ? value.value : value;
+        let val = typeof value == "object" ? value.value : value;
 
-      switch (unit) {
-          case "mi":
-          case "mph":
-              return (val / 1.609);
+        switch (unit) {
+            case "mi":
+            case "mph":
+                return (val / 1.609);
 
-          case "°F":
-              return (val * (9 / 5)) + 32;
+            case "°F":
+                return (val * (9 / 5)) + 32;
 
-          case "ft":
-              return (val * 3.281);
+            case "ft":
+                return (val * 3.281);
 
-          case "psi":
-              return (val / 6.895);
+            case "psi":
+                return (val / 6.895);
 
-          case "oz":
-          case "oz/s":
-              return (val / 28.35);
+            case "oz":
+            case "oz/s":
+                return (val / 28.35);
 
-          case "gals":
-              return (val / 3.785);
+            case "gals":
+                return (val / 3.785);
 
-          default:
-              return val;
-      }
-  }
+            default:
+                return val;
+        }
+    }
 
-  getCleanLocalizedUnit(unit, locale) {
-      if (locale == "mi") {
-          switch (unit) {
-              case "degrees":
-                  return "°";
+    getCleanLocalizedUnit(unit, region) {
+        const handleUS = () => {
+            switch (unit) {
+                case "degrees": return "°";
+                case "degrees/s": return "°/s";
+                case "km/h": return "mph";
+                case "km": return "mi";
+                case "celsius": return "°F";
+                case "percent": return "%";
+                case "m": return "ft";
+                case "kPa": return "psi";
+                case "V": return "v";
+                case "g": return "oz";
+                case "g/s": return "oz/s";
+                case "l": return "gals";
+                default: return unit;
+            }
+        };
 
-              case "degrees/s":
-                  return "°/s";
+        const handleCA = () => {
+            switch (unit) {
+                case "degrees": return "°";
+                case "degrees/s": return "°/s";
+                case "km/h": return "km/h";
+                case "km": return "km";
+                case "celsius": return "°C";
+                case "percent": return "%";
+                case "m": return "m";
+                case "kPa": return "kPa";
+                case "V": return "V";
+                case "g": return "g";
+                case "g/s": return "g/s";
+                case "l": return "L";
+                default: return unit;
+            }
+        };
 
-              case "km/h":
-                  return "mph";
+        const handleUK = () => {
+            switch (unit) {
+                case "degrees": return "°";
+                case "degrees/s": return "°/s";
+                case "km/h": return "mph";
+                case "km": return "mi";
+                case "celsius": return "°C";
+                case "percent": return "%";
+                case "m": return "m";
+                case "kPa": return "kPa";
+                case "V": return "V";
+                case "g": return "g";
+                case "g/s": return "g/s";
+                case "l": return "L";
+                default: return unit;
+            }
+        };
 
-              case "km":
-                  return "mi";
+        const handleEU = () => {
+            switch (unit) {
+                case "degrees": return "°";
+                case "degrees/s": return "°/s";
+                case "km/h": return "km/h";
+                case "km": return "km";
+                case "celsius": return "°C";
+                case "percent": return "%";
+                case "m": return "m";
+                case "kPa": return "kPa";
+                case "V": return "V";
+                case "g": return "g";
+                case "g/s": return "g/s";
+                case "l": return "L";
+                default: return unit;
+            }
+        };
 
-              case "celsius":
-                  return "°F";
+        switch (region) {
+            case "us": return handleUS();
+            case "uk": return handleUK();
+            case "can": return handleCA();
+            case "eu": return handleEU();
+        }
 
-              case "percent":
-                  return "%";
+        // if (locale == "mi") {
+        //     switch (unit) {
+        //         case "degrees":
+        //             return "°";
 
-              case "m":
-                  return "ft";
+        //         case "degrees/s":
+        //             return "°/s";
 
-              case "kPa":
-                  return "psi";
+        //         case "km/h":
+        //             return "mph";
 
-              case "V":
-                  return "v";
+        //         case "km":
+        //             return "mi";
 
-              case "g":
-                  return "oz";
+        //         case "celsius":
+        //             return "°F";
 
-              case "g/s":
-                  return "oz/s";
+        //         case "percent":
+        //             return "%";
 
-              case "l":
-                  return "gals";
+        //         case "m":
+        //             return "ft";
 
-              default:
-                  return unit;
-          }
-      }
+        //         case "kPa":
+        //             return "psi";
 
-      switch (unit) {
-          case "degrees":
-              return "°";
+        //         case "V":
+        //             return "v";
 
-          case "degrees/s":
-              return "°/s";
+        //         case "g":
+        //             return "oz";
 
-          case "celsius":
-              return "°C";
+        //         case "g/s":
+        //             return "oz/s";
 
-          case "percent":
-              return "%";
+        //         case "l":
+        //             return "gals";
 
-          case "V":
-              return "v";
+        //         default:
+        //             return unit;
+        //     }
+        // }
 
-          case "l":
-              return "liters";
+        // switch (unit) {
+        //     case "degrees":
+        //         return "°";
 
-          default:
-              return unit;
-      }
-  }
+        //     case "degrees/s":
+        //         return "°/s";
 
-  async getVehicleById(id: number, localizedUnit: string) {
-      const vehicleData = await this.getVehicleDataById(id);
+        //     case "celsius":
+        //         return "°C";
 
-      const vehicleIdentity = await this.getVehicleIdentityById(id);
+        //     case "percent":
+        //         return "%";
 
-      let cleanData = {};
+        //     case "V":
+        //         return "v";
 
-      for (const key of Object.keys(vehicleData)) {
-          const cleanUnit = this.getCleanLocalizedUnit(UNITS[key], localizedUnit);
-          // if (key == "powertrainTractionBatteryStateOfChargeCurrent")
-          // console.log(vehicleData["powertrainTractionBatteryStateOfChargeCurrent"]);
+        //     case "l":
+        //         return "liters";
 
-          let tempData = this.getCleanLocalizedData(vehicleData[key], cleanUnit);
+        //     default:
+        //         return unit;
+        // }
+    }
 
-          if (key == "0")
-              continue;
+    async getVehicleById(id: number, region: string) {
+        const vehicleData = await this.getVehicleDataById(id);
 
-          if (tempData) {
-              switch (key) {
-                  case "chassisAxleRow1WheelLeftSpeed":
-                  case "chassisAxleRow1WheelRightSpeed":
-                  case "chassisAxleRow1WheelLeftTirePressure":
-                  case "chassisAxleRow1WheelRightTirePressure":
-                  case "chassisAxleRow2WheelLeftTirePressure":
-                  case "chassisAxleRow2WheelRightTirePressure":
-                      tempData = Math.round(tempData);
-                      break;
+        const vehicleIdentity = await this.getVehicleIdentityById(id);
 
-                  case "exteriorAirTemperature":
-                      tempData = Math.round(tempData);
-                      break;
-              }
-          }
+        let cleanData = {};
 
-          cleanData[key] = {
-              value: tempData,
-              name: FRIENDLY_NAMES[key] || key,
-              unit: cleanUnit
-          };
-      }
+        for (const key of Object.keys(vehicleData)) {
+            const cleanUnit = this.getCleanLocalizedUnit(UNITS[key], region);
+            // if (key == "powertrainTractionBatteryStateOfChargeCurrent")
+            // console.log(vehicleData["powertrainTractionBatteryStateOfChargeCurrent"]);
 
-      return {
-          vehicle: vehicleIdentity,
-          signals: cleanData
-      };
-  }
+            let tempData = this.getCleanLocalizedData(vehicleData[key], cleanUnit);
 
-  async getVehicleIdentityById(id: number): Promise<VehicleIdentity> {
-      const identity: VehicleIdentityData = await this.dimoService.dimo.identity.query({
-          query: this.getVehicleQuery(id)
-      }) as unknown as VehicleIdentityData;
+            if (key == "0")
+                continue;
 
-      return identity.data.vehicle.definition;
-  }
+            if (tempData) {
+                switch (key) {
+                    case "chassisAxleRow1WheelLeftSpeed":
+                    case "chassisAxleRow1WheelRightSpeed":
+                    case "chassisAxleRow1WheelLeftTirePressure":
+                    case "chassisAxleRow1WheelRightTirePressure":
+                    case "chassisAxleRow2WheelLeftTirePressure":
+                    case "chassisAxleRow2WheelRightTirePressure":
+                        tempData = Math.round(tempData);
+                        break;
 
-  async getVehicleDataById(id: number) {
+                    case "exteriorAirTemperature":
+                        tempData = Math.round(tempData);
+                        break;
+                }
+            }
 
-      const vehicleToken = await this.getVehicleToken(id);
+            cleanData[key] = {
+                value: tempData,
+                name: FRIENDLY_NAMES[key] || key,
+                unit: cleanUnit
+            };
+        }
 
-      const allData = await this.dimoService.dimo.telemetry.query({
-          ...vehicleToken,
-          query: this.getVehicleDataQuery(id)
-      }) as unknown as VehicleData;
+        return {
+            vehicle: vehicleIdentity,
+            signals: cleanData
+        };
+    }
 
-      const liveData = await this.dimoService.dimo.telemetry.query({
-          ...vehicleToken,
-          query: this.getVehicleLiveDataQuery(id)
-      }) as unknown as VehicleLiveData;
+    async getVehicleIdentityById(id: number): Promise<VehicleIdentity> {
+        const identity: VehicleIdentityData = await this.dimoService.dimo.identity.query({
+            query: this.getVehicleQuery(id)
+        }) as unknown as VehicleIdentityData;
 
-      return {
-          ...(allData.data.signals),
-          ...(liveData.data.signalsLatest)
-      };
+        return identity.data.vehicle.definition;
+    }
 
-  }
+    async getVehicleDataById(id: number) {
 
-  async getVehicleDefinitions(vehicle: VehicleIdentity) {
-      const baseURI = "https://device-definitions-api.dimo.zone";
+        const vehicleToken = await this.getVehicleToken(id);
 
-    interface DefinitionBase { deviceDefinitions: unknown };
+        const allData = await this.dimoService.dimo.telemetry.query({
+            ...vehicleToken,
+            query: this.getVehicleDataQuery(id)
+        }) as unknown as VehicleData;
 
-    const res = await fetch(`${baseURI}/device-definitions/search?query=${vehicle.make} ${vehicle.model} ${vehicle.year}`);
-    const definitionBase = await res.json() as DefinitionBase;
-    return definitionBase.deviceDefinitions;
-  }
+        const liveData = await this.dimoService.dimo.telemetry.query({
+            ...vehicleToken,
+            query: this.getVehicleLiveDataQuery(id)
+        }) as unknown as VehicleLiveData;
 
-  async getVehicleImage(id: number) {
-      const vehicleIdentity = await this.getVehicleIdentityById(id);
+        return {
+            ...(allData.data.signals),
+            ...(liveData.data.signalsLatest)
+        };
 
-      const tokenURI = vehicleIdentity.imageURI;
+    }
 
-      if(!tokenURI)
-          return null;
+    async getVehicleDefinitions(vehicle: VehicleIdentity) {
+        const baseURI = "https://device-definitions-api.dimo.zone";
 
-      return tokenURI.replace("ipfs://", "https://ipfs.io/ipfs/");
-  }
+        interface DefinitionBase { deviceDefinitions: unknown };
 
-  async getVehicleOwner(id: number) {
-      const vehicleIdentity: VehicleIdentity = await this.dimoService.dimo.identity.query({
-          query: this.getVehicleOwnerQuery(id)
-      }) as unknown as VehicleIdentity;
+        const res = await fetch(`${baseURI}/device-definitions/search?query=${vehicle.make} ${vehicle.model} ${vehicle.year}`);
+        const definitionBase = await res.json() as DefinitionBase;
+        return definitionBase.deviceDefinitions;
+    }
 
-      return vehicleIdentity.owner;
-  }
+    async getVehicleImage(id: number) {
+        const vehicleIdentity = await this.getVehicleIdentityById(id);
 
-  getVehicleQuery(id: number) {
-      return `
+        const tokenURI = vehicleIdentity.imageURI;
+
+        if (!tokenURI)
+            return null;
+
+        return tokenURI.replace("ipfs://", "https://ipfs.io/ipfs/");
+    }
+
+    async getVehicleOwner(id: number) {
+        const vehicleIdentity: VehicleIdentity = await this.dimoService.dimo.identity.query({
+            query: this.getVehicleOwnerQuery(id)
+        }) as unknown as VehicleIdentity;
+
+        return vehicleIdentity.owner;
+    }
+
+    getVehicleQuery(id: number) {
+        return `
       	query {
           vehicle(tokenId: ${id}){
               definition {
@@ -391,34 +470,34 @@ export class VehicleService {
           }
       	}
     	`;
-  }
+    }
 
-  getVehicleImageQuery(id: number) {
-      return `
+    getVehicleImageQuery(id: number) {
+        return `
       	query {
           vehicle(tokenId: ${id}){
             imageURI
           }
       	}
     	`;
-  }
+    }
 
-  getVehicleOwnerQuery(id: number) {
-      return `
+    getVehicleOwnerQuery(id: number) {
+        return `
       query {
         vehicle(tokenId: ${id}){
           owner
         }
       }
     `;
-  }
+    }
 
-  getVehicleDataQuery(id: number, interval: string = "12h", agg: string = "FIRST") {
-      const to = new Date();
-      const from = new Date();
-      from.setHours(from.getHours() - 12);
+    getVehicleDataQuery(id: number, interval: string = "12h", agg: string = "FIRST") {
+        const to = new Date();
+        const from = new Date();
+        from.setHours(from.getHours() - 12);
 
-      return `
+        return `
       	query {
 			signals(interval: "${interval}", from: "${from.toJSON()}", to: "${to.toJSON()}", tokenId: ${id}) {
 				timestamp
@@ -493,10 +572,10 @@ export class VehicleService {
           	}
         }
       `;
-  }
+    }
 
-  getVehicleLiveDataQuery(id: number) {
-      return `
+    getVehicleLiveDataQuery(id: number) {
+        return `
         query {
             signalsLatest(tokenId: ${id}) {
               lastSeen,
@@ -747,26 +826,26 @@ export class VehicleService {
             }
           }
         `;
-  }
+    }
 
-  async getVehicleVIN(tokenId: number) {
-      const vehicleToken = await this.getVehicleToken(tokenId);
+    async getVehicleVIN(tokenId: number) {
+        const vehicleToken = await this.getVehicleToken(tokenId);
 
-      try {
-          const response = await this.dimoService.dimo.telemetry.getVin({
-              ...vehicleToken,
-              tokenId: tokenId
-          });
+        try {
+            const response = await this.dimoService.dimo.telemetry.getVin({
+                ...vehicleToken,
+                tokenId: tokenId
+            });
 
-          return response;
+            return response;
 
-      } catch (error) {
-          console.log("Error: ", error.message);
-      }
+        } catch (error) {
+            console.log("Error: ", error.message);
+        }
 
-  }
+    }
 
-  async isAuthenticated(id: number, walletAddress: string) {
-      return await this.getVehicleOwner(id) == walletAddress;
-  }
+    async isAuthenticated(id: number, walletAddress: string) {
+        return await this.getVehicleOwner(id) == walletAddress;
+    }
 }

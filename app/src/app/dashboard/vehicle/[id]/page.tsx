@@ -15,10 +15,10 @@ import { ToastContainer } from "react-toastify";
 export default function VehicleIdentityPage() {
     const [viewMode, setViewMode] = useState(0);
 
-    const { state: { unit } } = useContext(UnitContext);
+    const { state: { region } } = useContext(UnitContext);
 
     const { id }: { id?: number } = useParams();
-    const vehicle = useVehicleById(parseInt(id?.toString() || "-1"), unit);
+    const vehicle = useVehicleById(parseInt(id?.toString() || "-1"), region);
 
     if (vehicle.isLoading)
         return <>Loading...</>

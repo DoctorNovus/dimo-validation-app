@@ -70,8 +70,8 @@ export default function VehicleAdvancedMode({ id, signals, theme }) {
             <VehicleDisclaimer />
 
             <div className="flex flex-row justify-center md:justify-start gap-2">
-                <button type="submit" disabled={submitted} className="w-full md:w-auto px-3 py-2 text-lg bg-gray-500 text-white disabled:bg-gray-700 disabled:text-gray-500 rounded-lg cursor-pointer disabled:cursor-not-allowed my-2">Send Data</button>
-                <button type="submit" disabled={submitted} className="w-full md:w-auto px-3 py-2 text-lg text-gray-500 border-gray-500 dark:text-white border dark:border-white disabled:border-gray-700 disabled:text-gray-500 rounded-lg cursor-pointer disabled:cursor-not-allowed my-2">Reset Data</button>
+                <button type="submit" disabled={Boolean(submitted)} className="w-full md:w-auto px-3 py-2 text-lg bg-gray-500 text-white disabled:bg-gray-700 disabled:text-gray-500 rounded-lg cursor-pointer disabled:cursor-not-allowed my-2">Send Data</button>
+                <button type="submit" disabled={Boolean(submitted)} className="w-full md:w-auto px-3 py-2 text-lg text-gray-500 border-gray-500 dark:text-white border dark:border-white disabled:border-gray-700 disabled:text-gray-500 rounded-lg cursor-pointer disabled:cursor-not-allowed my-2">Reset Data</button>
             </div>
 
         </form>

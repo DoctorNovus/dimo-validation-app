@@ -10,8 +10,6 @@ export default function VehicleBasicMode({ id, signals, theme }) {
 
     const [submitted, setSubmitted] = useState(localStorage.getItem(`submitted-${id}`) ?? false);
 
-    console.log(localStorage.getItem(`submitted-${id}`));
-
     const vin = useVehicleVIN(id);
 
     const ApplyBasicFilter = ([signal, data]) => {

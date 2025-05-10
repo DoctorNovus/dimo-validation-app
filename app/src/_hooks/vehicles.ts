@@ -2,7 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import { createContext } from "react";
 import getWalletAddress from "./settings";
 
-export const UnitContext = createContext({ unit: "km" });
+export const UnitContext = createContext({ region: "us" });
 
 async function getVehicles() {
     const walletAddress = await getWalletAddress();
@@ -16,15 +16,15 @@ export function useVehicles() {
     });
 }
 
-async function getVehicleById(id: number, unit: string) {
+async function getVehicleById(id: number, region: string) {
     const walletAddress = await getWalletAddress();
-    return await (await fetch(`${process.env.NEXT_PUBLIC_SERVER_URI}/vehicle/${id}?walletAddress=${walletAddress}&localizedUnit=${unit}`)).json();
+    return await (await fetch(`${process.env.NEXT_PUBLIC_SERVER_URI}/vehicle/${id}?walletAddress=${walletAddress}&region=${region}`)).json();
 }
 
-export function useVehicleById(id: number, unit: string) {
+export function useVehicleById(id: number, region: string) {
     return useQuery({
-        queryKey: ["vehicle", id, unit],
-        queryFn: () => getVehicleById(id, unit)
+        queryKey: ["vehicle", id, region],
+        queryFn: () => getVehicleById(id, region)
     });
 }
 
