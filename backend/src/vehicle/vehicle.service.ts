@@ -365,7 +365,7 @@ export class VehicleService {
           query: this.getVehicleImageQuery(id)
       }) as unknown as VehicleIdentity;
 
-      const tokenURI = vehicleIdentity.data.vehicle.imageURI;
+      const tokenURI = vehicleIdentity.imageURI;
 
       return tokenURI.replace("ipfs://", "https://ipfs.io/ipfs/");
   }
@@ -375,7 +375,7 @@ export class VehicleService {
           query: this.getVehicleOwnerQuery(id)
       }) as unknown as VehicleIdentity;
 
-      return vehicleIdentity.data.vehicle.owner;
+      return vehicleIdentity.owner;
   }
 
   getVehicleQuery(id: number) {
