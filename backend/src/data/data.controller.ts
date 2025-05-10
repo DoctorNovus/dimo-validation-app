@@ -9,9 +9,10 @@ export class DataController {
     @Post("/submit")
     async submitSignals({ body }) {
         const id = body["id"];
+        const email = body["email"];
 
         await this.integrationsService.loadGoogleSpreadsheetInfo();
-        await this.integrationsService.addSheetData(id, body);
+        await this.integrationsService.addSheetData(id, email, body);
 
         return { statusCode: 200 };
     }

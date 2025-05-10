@@ -16,6 +16,7 @@ export default function VehicleAdvancedMode({ id, signals, theme }) {
 
             const data = {
                 id,
+                email: localStorage.getItem("email"),
                 vin: vin.data
             };
 

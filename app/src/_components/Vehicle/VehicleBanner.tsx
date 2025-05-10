@@ -8,9 +8,9 @@ export default function VehicleBanner({ theme, vehicle, id, lastSeen }: { theme:
     return (
         <div className="flex flex-col gap-2">
             <div className="flex flex-row gap-1 text-xl">
-                <span>{vehicle.data.vehicle.definition.make}</span>
-                <span>{vehicle.data.vehicle.definition.model}</span>
-                <span>{vehicle.data.vehicle.definition.year}</span>
+                <span>{vehicle.data.vehicle.make}</span>
+                <span>{vehicle.data.vehicle.model}</span>
+                <span>{vehicle.data.vehicle.year}</span>
             </div>
 
             <div className="flex flex-row gap-3 items-center">

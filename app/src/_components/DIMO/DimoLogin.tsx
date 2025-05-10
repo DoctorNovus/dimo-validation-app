@@ -18,7 +18,7 @@ export default function DimoLogin() {
         localStorage.setItem("walletAddress", walletAddress);
     }
 
-    const loginURI = `https://login.dimo.org/?clientId=${process.env.NEXT_PUBLIC_DIMO_CLIENT_ID}&redirectUri=${process.env.NEXT_PUBLIC_DIMO_REDIRECT_URI}&permissionTemplateId=1&entryState=VEHICLE_MANAGER`;
+    const loginURI = `https://login.dimo.org/?clientId=${process.env.NEXT_PUBLIC_DIMO_CLIENT_ID}&redirectUri=${process.env.NEXT_PUBLIC_DIMO_REDIRECT_URI}&permissionTemplateId=1&entryState=VEHICLE_MANAGER&forceEmail=true`;
 
     if (walletAddress.isSuccess && !walletAddress.data)
         window.location.href = loginURI;
