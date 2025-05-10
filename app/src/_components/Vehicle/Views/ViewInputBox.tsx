@@ -20,7 +20,7 @@ export default function ViewInputBox({ label, value, setValue, unit, validity, s
                         <span className="text-lg text-black dark:text-white">Accurate Value</span>
 
                         <div className="text-gray-500 w-full border-b border-black text:border-white">
-                            <input type="number" value={data} onChange={(e) => setData(parseFloat(e.target.value))} className="w-full outline-none" />
+                            <input type={typeof data == "number" ? "number" : "text"} value={data} onChange={(e) => setData(typeof e.target.value == "number" ? parseFloat(e.target.value) : e.target.value)} className="w-full outline-none" />
                         </div>
                     </div>
                 </div>

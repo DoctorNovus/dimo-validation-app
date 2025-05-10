@@ -38,9 +38,6 @@ export class UserController {
         }
 
         return data;
-
-        // const permissions = await this.dimoService.getVehiclePermissions();
-
     }
 
 }

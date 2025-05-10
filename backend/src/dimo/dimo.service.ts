@@ -63,6 +63,7 @@ export class DimoService {
 
     async isVehicleGranted(id: number) {
         const perms = await this.getVehiclePermissions(id);
+        
         for (const perm of perms) {
             if (perm.grantee == process.env.DIMO_CLIENT_ID) {
                 if (perm.permissions.includes(1) && perm.permissions.includes(6)) {
