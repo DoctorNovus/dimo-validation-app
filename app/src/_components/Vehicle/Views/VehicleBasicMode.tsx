@@ -8,7 +8,9 @@ import VehicleDisclaimer from "./VehicleDisclaimer";
 
 export default function VehicleBasicMode({ id, signals, theme }) {
 
-    const [submitted, setSubmitted] = useState(false);
+    const [submitted, setSubmitted] = useState(localStorage.getItem(`submitted-${id}`) ?? false);
+
+    console.log(localStorage.getItem(`submitted-${id}`));
 
     const vin = useVehicleVIN(id);
 
@@ -73,6 +75,7 @@ export default function VehicleBasicMode({ id, signals, theme }) {
             e.stopPropagation();
 
             setSubmitted(true);
+            localStorage.setItem(`submitted-${id}`, "true");
 
             const data = {
                 id,
@@ -124,9 +127,13 @@ export default function VehicleBasicMode({ id, signals, theme }) {
             <VehicleDisclaimer />
 
             <div className="flex flex-row justify-center md:justify-start gap-2">
-                <button type="submit" disabled={submitted} className="w-full md:w-auto px-3 py-2 text-lg bg-gray-500 text-white disabled:bg-gray-200 disabled:text-gray-300 disabled:dark:bg-gray-700 disabled:dark:text-gray-500 rounded-lg cursor-pointer disabled:cursor-not-allowed my-2">Send Data</button>
-                <button type="reset" disabled={submitted} className="w-full md:w-auto px-3 py-2 text-lg text-gray-500 border-gray-500 dark:text-white border dark:border-white disabled:border-gray-200 disabled:text-gray-300 disabled:dark:border-gray-700 disabled:dark:text-gray-500 rounded-lg cursor-pointer disabled:cursor-not-allowed my-2">Reset Data</button>
+                <button type="submit" disabled={Boolean(submitted)} className="w-full md:w-auto px-3 py-2 text-lg bg-gray-500 text-white disabled:bg-gray-200 disabled:text-gray-300 disabled:dark:bg-gray-700 disabled:dark:text-gray-500 rounded-lg cursor-pointer disabled:cursor-not-allowed my-2">Send Data</button>
+                <button type="reset" disabled={Boolean(submitted)} className="w-full md:w-auto px-3 py-2 text-lg text-gray-500 border-gray-500 dark:text-white border dark:border-white disabled:border-gray-200 disabled:text-gray-300 disabled:dark:border-gray-700 disabled:dark:text-gray-500 rounded-lg cursor-pointer disabled:cursor-not-allowed my-2">Reset Data</button>
             </div>
+
+            {submitted && (
+                <span className="text-sm"><em>You have already submitted data for this car.</em></span>
+            )}
 
         </form>
     )

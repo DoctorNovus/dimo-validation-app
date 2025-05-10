@@ -13,6 +13,8 @@ interface VehicleLiveData {
   }
 }
 
+type VehicleIdentityData = { data: { vehicle: { definition: VehicleIdentity } } };
+
 interface VehicleIdentity {
   make?: string;
   model?: string;
@@ -320,13 +322,11 @@ export class VehicleService {
   }
 
   async getVehicleIdentityById(id: number): Promise<VehicleIdentity> {
-    type VehicleIdentityData = { data: { vehicle: { definition: VehicleIdentity } } };
+      const identity: VehicleIdentityData = await this.dimoService.dimo.identity.query({
+          query: this.getVehicleQuery(id)
+      }) as unknown as VehicleIdentityData;
 
-    const identity: VehicleIdentityData = await this.dimoService.dimo.identity.query({
-        query: this.getVehicleQuery(id)
-    }) as unknown as VehicleIdentityData;
-
-    return identity.data.vehicle.definition;
+      return identity.data.vehicle.definition;
   }
 
   async getVehicleDataById(id: number) {
@@ -361,11 +361,12 @@ export class VehicleService {
   }
 
   async getVehicleImage(id: number) {
-      const vehicleIdentity: VehicleIdentity = await this.dimoService.dimo.identity.query({
-          query: this.getVehicleImageQuery(id)
-      }) as unknown as VehicleIdentity;
+      const vehicleIdentity = await this.getVehicleIdentityById(id);
 
       const tokenURI = vehicleIdentity.imageURI;
+
+      if(!tokenURI)
+          return null;
 
       return tokenURI.replace("ipfs://", "https://ipfs.io/ipfs/");
   }

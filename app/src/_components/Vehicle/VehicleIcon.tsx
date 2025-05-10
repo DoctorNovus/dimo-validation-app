@@ -6,7 +6,7 @@ export default function VehicleIcon({ id, fill }: { id: number, fill: string }) 
 
     const icon = useVehicleImage(id);
 
-    if (icon.isSuccess)
+    if (icon.isSuccess && icon.data)
         return (
             <div className="w-full h-full flex justify-center items-center rounded-md">
                 <Image className="w-full aspect-square rounded-md" src={icon.data} alt="car image" width="128" height="128" />

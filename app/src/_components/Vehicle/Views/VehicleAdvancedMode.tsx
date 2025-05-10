@@ -5,7 +5,7 @@ import { useState } from "react";
 import VehicleDisclaimer from "./VehicleDisclaimer";
 
 export default function VehicleAdvancedMode({ id, signals, theme }) {
-    const [submitted, setSubmitted] = useState(false);
+    const [submitted, setSubmitted] = useState(localStorage.getItem(`submitted-${id}`) ?? false);
 
     const vin = useVehicleVIN(id);
 
@@ -13,6 +13,9 @@ export default function VehicleAdvancedMode({ id, signals, theme }) {
         <form className="py-4" onSubmit={async (e) => {
             e.preventDefault();
             e.stopPropagation();
+
+            setSubmitted(true);
+            localStorage.setItem(`submitted-${id}`, "true");
 
             const data = {
                 id,
@@ -32,8 +35,6 @@ export default function VehicleAdvancedMode({ id, signals, theme }) {
                 },
                 body: JSON.stringify(data)
             });
-
-            setSubmitted(true);
         }}>
             <div className="flex flex-col gap-2.5">
                 <div className="flex flex-col md:flex-row gap-4">
