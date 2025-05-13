@@ -15,7 +15,7 @@ const reducer = (state, action) => {
 };
 
 export default function NavWrapper({ children }) {
-    const [state, dispatch] = useReducer(reducer, { region: localStorage.getItem("region") || "km" });
+    const [state, dispatch] = useReducer(reducer, { region: localStorage.getItem("region") || "eu" });
 
     const value = { state, dispatch };
 

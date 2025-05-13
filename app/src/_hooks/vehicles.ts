@@ -2,7 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import { createContext } from "react";
 import getWalletAddress from "./settings";
 
-export const UnitContext = createContext({ region: "us" });
+export const UnitContext = createContext({ region: "eu" });
 
 async function getVehicles() {
     const walletAddress = await getWalletAddress();

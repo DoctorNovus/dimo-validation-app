@@ -284,6 +284,8 @@ export class VehicleService {
             case "uk": return handleUK();
             case "can": return handleCA();
             case "eu": return handleEU();
+
+            default: return handleEU();
         }
 
         // if (locale == "mi") {
