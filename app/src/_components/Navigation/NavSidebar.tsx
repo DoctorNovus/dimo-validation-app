@@ -12,10 +12,8 @@ export default function NavSidebar() {
                 </div>
                 <span className="text-base">Home</span>
             </Link>
-            <div className="flex flex-row gap-3">
-                <div className="flex md:hidden">
-                    <UnitSelector />
-                </div>
+            <div className="flex flex-row gap-3 md:hidden">
+                <UnitSelector />
                 <DimoLogin />
             </div>
         </div>

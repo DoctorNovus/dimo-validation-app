@@ -30,7 +30,7 @@ export default function DimoLogin() {
         window.location.href = loginURI;
 
     return (
-        <div onClick={() => setActive(!active)} className="flex relative">
+        <div onClick={() => setActive(!active)} className="flex items-center relative">
             <UserCircleIcon color={active ? "red" : "white"} className="w-8 h-8" onClick={() => setActive(false)} />
 
             {active && (
