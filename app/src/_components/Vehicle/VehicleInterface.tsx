@@ -4,6 +4,7 @@ import { useVehicles } from "@/_hooks/vehicles";
 import { ShareVehiclesWithDimo, initializeDimoSDK } from "@dimo-network/login-with-dimo";
 
 import VehiclePreview from "./VehiclePreview";
+import { useSearchParams } from "next/navigation";
 
 export default function VehicleInterface() {
     initializeDimoSDK({
@@ -12,6 +13,14 @@ export default function VehicleInterface() {
     });
 
     const vehicles = useVehicles();
+    const logoutStatus = useSearchParams().get("logout");
+    if (logoutStatus) {
+        localStorage.removeItem("email");
+        localStorage.removeItem("token");
+        localStorage.removeItem("walletAddress");
+        return <></>;
+    }
+
 
     if (vehicles.isLoading) {
         return (
