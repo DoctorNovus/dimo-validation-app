@@ -3,6 +3,7 @@ import MapboxMap from "@components/Mapbox/MapboxMap";
 import VehicleProperties from "@components/Vehicle/VehicleProperties";
 import { useState } from "react";
 import VehicleDisclaimer from "./VehicleDisclaimer";
+import { toast } from "react-toastify";
 
 export default function VehicleAdvancedMode({ id, signals, theme }) {
     const [submitted, setSubmitted] = useState(localStorage.getItem(`submitted-${id}`) ?? false);
@@ -28,13 +29,26 @@ export default function VehicleAdvancedMode({ id, signals, theme }) {
                     data[elem.name] = elem.value;
             }
 
-            await fetch(`${process.env.NEXT_PUBLIC_SERVER_URI}/data/submit`, {
+            const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URI}/data/submit`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"
                 },
                 body: JSON.stringify(data)
             });
+
+            if (!res.ok) {
+
+                const { message } = await res.json();
+
+                toast.error(message);
+
+                setSubmitted(false);
+
+                return null;
+            }
+
+            toast("Submission has been sent!");
         }}>
             <div className="flex flex-col gap-2.5">
                 <div className="flex flex-col md:flex-row gap-4">
