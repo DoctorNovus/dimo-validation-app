@@ -1,6 +1,7 @@
 import Link from "next/link";
 import HomeIcon from "./icons/HomeIcon";
 import UnitSelector from "./UnitSelector";
+import DimoLogin from "../DIMO/DimoLogin";
 
 export default function NavSidebar() {
     return (
@@ -11,8 +12,11 @@ export default function NavSidebar() {
                 </div>
                 <span className="text-base">Home</span>
             </Link>
-            <div className="flex md:hidden">
-                <UnitSelector />
+            <div className="flex flex-row gap-3">
+                <div className="flex md:hidden">
+                    <UnitSelector />
+                </div>
+                <DimoLogin />
             </div>
         </div>
     )
