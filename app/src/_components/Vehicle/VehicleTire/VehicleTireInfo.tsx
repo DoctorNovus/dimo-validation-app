@@ -28,15 +28,20 @@ export default function VehicleTireInfo({ signals }) {
                 <VehicleTirePanel validity={validity} signal="chassisAxleRow2WheelRightTirePressure" oldValue={signals.chassisAxleRow2WheelRightTirePressure.value} value={values.rearRight.value} unit={values.rearRight.unit} slot={4} />
             </div>
             <div className="flex flex-row justify-evenly">
-                <div className="flex flex-col items-start">
-                    <span className="text-lg">Left Speed</span>
-                    <span>{values.leftSpeed.value} {values.leftSpeed.unit}</span>
-                </div>
+                {values.leftSpeed && (
+                    <div className="flex flex-col items-start">
+                        <span className="text-lg">Left Speed</span>
+                        <span>{values.leftSpeed.value} {values.leftSpeed.unit}</span>
+                    </div>
+                )}
 
-                <div className="flex flex-col items-end">
-                    <span className="text-lg">Right Speed</span>
-                    <span>{values.rightSpeed.value} {values.rightSpeed.unit}</span>
-                </div>
+                {values.rightSpeed && (
+                    <div className="flex flex-col items-end">
+                        <span className="text-lg">Right Speed</span>
+                        <span>{values.rightSpeed.value} {values.rightSpeed.unit}</span>
+                    </div>
+                )}
+
             </div>
             <VehicleTireFeedback signals={signals} values={values} setValues={setValues} validity={validity} setValidity={setValidity} />
         </div>

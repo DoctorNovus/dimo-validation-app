@@ -516,8 +516,6 @@ export class VehicleService {
 
         if (liveData.data.signalsLatest) data = Object.assign(data, liveData.data.signalsLatest);
 
-        console.log(data);
-
         return data;
 
     }
@@ -594,12 +592,18 @@ export class VehicleService {
         }
         `;
 
+        interface SignalData {
+            data: {
+                availableSignals: []
+            }
+        }
+
         const signals = await this.dimoService.dimo.telemetry.query({
             ...vehicleToken,
             query: query
-        }) as unknown;
+        }) as unknown as SignalData;
 
-        if (signals) return signals.data.availableSignals;
+        if (signals) return signals?.data?.availableSignals;
     }
 
     getVehicleDataQuery(id: number, interval: string = "12h", agg: string = "FIRST") {
