@@ -414,6 +414,8 @@ export class VehicleService {
 
         const vehicleToken = await this.getVehicleToken(id);
 
+        let data = {};
+
         const allData = await this.dimoService.dimo.telemetry.query({
             ...vehicleToken,
             query: this.getVehicleDataQuery(id)
@@ -424,10 +426,19 @@ export class VehicleService {
             query: this.getVehicleLiveDataQuery(id)
         }) as unknown as VehicleLiveData;
 
-        return {
-            ...(allData.data.signals),
-            ...(liveData.data.signalsLatest)
-        };
+        if (allData?.data && allData.data.signals) {
+            for (const signals of allData.data.signals) {
+                data = Object.assign(data, signals);
+            }
+        }
+
+        if (liveData?.data && liveData.data.signalsLatest) {
+            for (const signals of liveData.data.signalsLatest) {
+                data = Object.assign(data, signals);
+            }
+        }
+
+        return data;
 
     }
 
