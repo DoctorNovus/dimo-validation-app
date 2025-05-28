@@ -90,6 +90,84 @@ export const FRIENDLY_NAMES = {
     speed: "Speed",
 };
 
+export const QUERY_DATA = {
+    "lastSeen": "lastSeen",
+    "angularVelocityYaw": `angularVelocityYaw { timestamp, value }`,
+
+    "chassisAxleRow1WheelLeftSpeed": `chassisAxleRow1WheelLeftSpeed { timestamp, value }`,
+    "chassisAxleRow1WheelLeftTirePressure": `chassisAxleRow1WheelLeftTirePressure { timestamp, value }`,
+    "chassisAxleRow1WheelRightSpeed": `chassisAxleRow1WheelRightSpeed { timestamp, value }`,
+    "chassisAxleRow1WheelRightTirePressure": `chassisAxleRow1WheelRightTirePressure { timestamp, value }`,
+
+    "chassisAxleRow2WheelLeftTirePressure": `chassisAxleRow2WheelLeftTirePressure { timestamp, value }`,
+    "chassisAxleRow2WheelRightTirePressure": `chassisAxleRow2WheelRightTirePressure { timestamp, value }`,
+
+    "currentLocationAltitude": `currentLocationAltitude { timestamp, value }`,
+    "currentLocationHeading": `currentLocationHeading { timestamp, value }`,
+    "currentLocationIsRedacted": `currentLocationIsRedacted { timestamp, value }`,
+    "currentLocationLatitude": `currentLocationLatitude { timestamp, value }`,
+    "currentLocationLongitude": `currentLocationLongitude { timestamp, value }`,
+
+    "exteriorAirTemperature": `exteriorAirTemperature { timestamp, value }`,
+    "isIgnitionOn": `isIgnitionOn { timestamp, value }`,
+    "lowVoltageBatteryCurrentVoltage": `lowVoltageBatteryCurrentVoltage { timestamp, value }`,
+
+    "obdBarometricPressure": `obdBarometricPressure { timestamp, value }`,
+    "obdCommandedEGR": `obdCommandedEGR { timestamp, value }`,
+    "obdCommandedEVAP": `obdCommandedEVAP { timestamp, value }`,
+    "obdDTCList": `obdDTCList { timestamp, value }`,
+    "obdDistanceSinceDTCClear": `obdDistanceSinceDTCClear { timestamp, value }`,
+    "obdDistanceWithMIL": `obdDistanceWithMIL { timestamp, value }`,
+    "obdEngineLoad": `obdEngineLoad { timestamp, value }`,
+    "obdFuelPressure": `obdFuelPressure { timestamp, value }`,
+    "obdIntakeTemp": `obdIntakeTemp { timestamp, value }`,
+    "obdLongTermFuelTrim1": `obdLongTermFuelTrim1 { timestamp, value }`,
+    "obdMAP": `obdMAP { timestamp, value }`,
+    "obdO2WRSensor1Voltage": `obdO2WRSensor1Voltage { timestamp, value }`,
+    "obdO2WRSensor2Voltage": `obdO2WRSensor2Voltage { timestamp, value }`,
+    "obdRunTime": `obdRunTime { timestamp, value }`,
+    "obdShortTermFuelTrim1": `obdShortTermFuelTrim1 { timestamp, value }`,
+    "obdWarmupsSinceDTCClear": `obdWarmupsSinceDTCClear { timestamp, value }`,
+
+    "powertrainCombustionEngineDieselExhaustFluidCapacity": `powertrainCombustionEngineDieselExhaustFluidCapacity { timestamp, value }`,
+    "powertrainCombustionEngineDieselExhaustFluidLevel": `powertrainCombustionEngineDieselExhaustFluidLevel { timestamp, value }`,
+    "powertrainCombustionEngineECT": `powertrainCombustionEngineECT { timestamp, value }`,
+    "powertrainCombustionEngineEOP": `powertrainCombustionEngineEOP { timestamp, value }`,
+    "powertrainCombustionEngineEOT": `powertrainCombustionEngineEOT { timestamp, value }`,
+    "powertrainCombustionEngineEngineOilLevel": `powertrainCombustionEngineEngineOilLevel { timestamp, value }`,
+    "powertrainCombustionEngineEngineOilRelativeLevel": `powertrainCombustionEngineEngineOilRelativeLevel { timestamp, value }`,
+    "powertrainCombustionEngineMAF": `powertrainCombustionEngineMAF { timestamp, value }`,
+    "powertrainCombustionEngineSpeed": `powertrainCombustionEngineSpeed { timestamp, value }`,
+    "powertrainCombustionEngineTPS": `powertrainCombustionEngineTPS { timestamp, value }`,
+    "powertrainCombustionEngineTorque": `powertrainCombustionEngineTorque { timestamp, value }`,
+
+    "powertrainFuelSystemAbsoluteLevel": `powertrainFuelSystemAbsoluteLevel { timestamp, value }`,
+    "powertrainFuelSystemRelativeLevel": `powertrainFuelSystemRelativeLevel { timestamp, value }`,
+    "powertrainFuelSystemSupportedFuelTypes": `powertrainFuelSystemSupportedFuelTypes { timestamp, value }`,
+
+    "powertrainRange": `powertrainRange { timestamp, value }`,
+
+    "powertrainTractionBatteryChargingAddedEnergy": `powertrainTractionBatteryChargingAddedEnergy { timestamp, value }`,
+    "powertrainTractionBatteryChargingChargeLimit": `powertrainTractionBatteryChargingChargeLimit { timestamp, value }`,
+    "powertrainTractionBatteryChargingIsCharging": `powertrainTractionBatteryChargingIsCharging { timestamp, value }`,
+    "powertrainTractionBatteryCurrentPower": `powertrainTractionBatteryCurrentPower { timestamp, value }`,
+    "powertrainTractionBatteryCurrentVoltage": `powertrainTractionBatteryCurrentVoltage { timestamp, value }`,
+    "powertrainTractionBatteryGrossCapacity": `powertrainTractionBatteryGrossCapacity { timestamp, value }`,
+    "powertrainTractionBatteryRange": `powertrainTractionBatteryRange { timestamp, value }`,
+    "powertrainTractionBatteryStateOfChargeCurrent": `powertrainTractionBatteryStateOfChargeCurrent { timestamp, value }`,
+    "powertrainTractionBatteryTemperatureAverage": `powertrainTractionBatteryTemperatureAverage { timestamp, value }`,
+
+    "powertrainTransmissionCurrentGear": `powertrainTransmissionCurrentGear { timestamp, value }`,
+    "powertrainTransmissionTemperature": `powertrainTransmissionTemperature { timestamp, value }`,
+    "powertrainTransmissionTravelledDistance": `powertrainTransmissionTravelledDistance { timestamp, value }`,
+
+    "powertrainType": `powertrainType { timestamp, value }`,
+
+    "serviceDistanceToService": `serviceDistanceToService { timestamp, value }`,
+
+    "speed": `speed { timestamp, value }`,
+};
+
 export const UNITS = {
     lastSeen: "",
     currentLocationApproximateLongitude: "degrees",
@@ -416,6 +494,8 @@ export class VehicleService {
 
         let data = {};
 
+        const signals = await this.getAvailableSignals(id);
+
         const allData = await this.dimoService.dimo.telemetry.query({
             ...vehicleToken,
             query: this.getVehicleDataQuery(id)
@@ -423,8 +503,9 @@ export class VehicleService {
 
         const liveData = await this.dimoService.dimo.telemetry.query({
             ...vehicleToken,
-            query: this.getVehicleLiveDataQuery(id)
+            query: this.getVehicleLiveDataQuery(id, signals)
         }) as unknown as VehicleLiveData;
+
 
         if (allData?.data && allData.data.signals) {
             for (let i = 0; i < allData.data.signals.length; i++) {
@@ -432,11 +513,10 @@ export class VehicleService {
             }
         }
 
-        if (liveData?.data && liveData.data.signalsLatest) {
-            for (let i = 0; i < liveData.data.signalsLatest.length; i++) {
-                data = Object.assign(data, liveData.data.signalsLatest[i]);
-            }
-        }
+
+        if (liveData.data.signalsLatest) data = Object.assign(data, liveData.data.signalsLatest);
+
+        console.log(data);
 
         return data;
 
@@ -447,7 +527,7 @@ export class VehicleService {
 
         interface DefinitionBase { deviceDefinitions: unknown };
 
-        const res = await fetch(`${baseURI}/device-definitions/search?query=${vehicle.make} ${vehicle.model} ${vehicle.year}`);
+        const res = await fetch(`${baseURI}/device-definitions/search ? query = ${vehicle.make} ${vehicle.model} ${vehicle.year} `);
         const definitionBase = await res.json() as DefinitionBase;
         return definitionBase.deviceDefinitions;
     }
@@ -474,35 +554,52 @@ export class VehicleService {
     getVehicleQuery(id: number) {
         return `
       	query {
-          vehicle(tokenId: ${id}){
+    vehicle(tokenId: ${id}){
               definition {
-                  make
-                  model
-                  year
-              }
-          }
-      	}
-    	`;
+            make
+            model
+            year
+        }
+    }
+}
+`;
     }
 
     getVehicleImageQuery(id: number) {
         return `
       	query {
-          vehicle(tokenId: ${id}){
-            imageURI
-          }
-      	}
-    	`;
+    vehicle(tokenId: ${id}){
+        imageURI
+    }
+}
+`;
     }
 
     getVehicleOwnerQuery(id: number) {
         return `
       query {
-        vehicle(tokenId: ${id}){
-          owner
+    vehicle(tokenId: ${id}){
+        owner
+    }
+}
+`;
+    }
+
+    async getAvailableSignals(id: number) {
+        const vehicleToken = await this.getVehicleToken(id);
+
+        const query = `
+        query {
+            availableSignals(tokenId: ${id})
         }
-      }
-    `;
+        `;
+
+        const signals = await this.dimoService.dimo.telemetry.query({
+            ...vehicleToken,
+            query: query
+        }) as unknown;
+
+        if (signals) return signals.data.availableSignals;
     }
 
     getVehicleDataQuery(id: number, interval: string = "12h", agg: string = "FIRST") {
@@ -512,333 +609,97 @@ export class VehicleService {
 
         return `
       	query {
-			signals(interval: "${interval}", from: "${from.toJSON()}", to: "${to.toJSON()}", tokenId: ${id}) {
-				timestamp
-				currentLocationApproximateLatitude(agg: ${agg})
-				currentLocationApproximateLongitude(agg: ${agg})
-				angularVelocityYaw(agg: ${agg})
-				chassisAxleRow1WheelLeftSpeed(agg: ${agg})
-				chassisAxleRow1WheelLeftTirePressure(agg: ${agg})
-				chassisAxleRow1WheelRightSpeed(agg: ${agg})
-				chassisAxleRow1WheelRightTirePressure(agg: ${agg})
-				chassisAxleRow2WheelLeftTirePressure(agg: ${agg})
-				chassisAxleRow2WheelRightTirePressure(agg: ${agg})
-				currentLocationAltitude(agg: ${agg})
-				currentLocationHeading(agg: ${agg})
-				currentLocationIsRedacted(agg: ${agg})
-				currentLocationLatitude(agg: ${agg})
-				currentLocationLongitude(agg: ${agg})
-				dimoAftermarketHDOP(agg: ${agg})
-				dimoAftermarketNSAT(agg: ${agg})
-				dimoAftermarketSSID(agg: ${agg})
-				dimoAftermarketWPAState(agg: ${agg})
-				exteriorAirTemperature(agg: ${agg})
-				isIgnitionOn(agg: ${agg})
-				lowVoltageBatteryCurrentVoltage(agg: ${agg})
-				obdBarometricPressure(agg: ${agg})
-				obdCommandedEGR(agg: ${agg})
-				obdCommandedEVAP(agg: ${agg})
-				obdDTCList(agg: ${agg})
-				obdDistanceSinceDTCClear(agg: ${agg})
-				obdDistanceWithMIL(agg: ${agg})
-				obdEngineLoad(agg: ${agg})
-				obdFuelPressure(agg: ${agg})
-				obdIntakeTemp(agg: ${agg})
-				obdLongTermFuelTrim1(agg: ${agg})
-				obdMAP(agg: ${agg})
-				obdO2WRSensor1Voltage(agg: ${agg})
-				obdO2WRSensor2Voltage(agg: ${agg})
-				obdRunTime(agg: ${agg})
-				obdShortTermFuelTrim1(agg: ${agg})
-				obdWarmupsSinceDTCClear(agg: ${agg})
-				powertrainCombustionEngineDieselExhaustFluidCapacity(agg: ${agg})
-				powertrainCombustionEngineDieselExhaustFluidLevel(agg: ${agg})
-				powertrainCombustionEngineECT(agg: ${agg})
-				powertrainCombustionEngineEOP(agg: ${agg})
-				powertrainCombustionEngineEOT(agg: ${agg})
-				powertrainCombustionEngineEngineOilLevel(agg: ${agg})
-				powertrainCombustionEngineEngineOilRelativeLevel(agg: ${agg})
-				powertrainCombustionEngineMAF(agg: ${agg})
-				powertrainCombustionEngineSpeed(agg: ${agg})
-				powertrainCombustionEngineTPS(agg: ${agg})
-				powertrainCombustionEngineTorque(agg: ${agg})
-				powertrainFuelSystemAbsoluteLevel(agg: ${agg})
-				powertrainFuelSystemRelativeLevel(agg: ${agg})
-				powertrainFuelSystemSupportedFuelTypes(agg: ${agg})
-				powertrainRange(agg: ${agg})
-				powertrainTractionBatteryChargingAddedEnergy(agg: ${agg})
-				powertrainTractionBatteryChargingChargeLimit(agg: ${agg})
-				powertrainTractionBatteryChargingIsCharging(agg: ${agg})
-				powertrainTractionBatteryCurrentPower(agg: ${agg})
-				powertrainTractionBatteryCurrentVoltage(agg: ${agg})
-				powertrainTractionBatteryGrossCapacity(agg: ${agg})
-				powertrainTractionBatteryRange(agg: ${agg})
-				powertrainTractionBatteryStateOfChargeCurrent(agg: ${agg})
-				powertrainTractionBatteryStateOfChargeCurrentEnergy(agg: ${agg})
-				powertrainTractionBatteryTemperatureAverage(agg: ${agg})
-				powertrainTransmissionCurrentGear(agg: ${agg})
-				powertrainTransmissionTemperature(agg: ${agg})
-				powertrainTransmissionTravelledDistance(agg: ${agg})
-				powertrainType(agg: ${agg})
-				serviceDistanceToService(agg: ${agg})
-				speed(agg: ${agg})
-          	}
-        }
-      `;
+    signals(interval: "${interval}", from: "${from.toJSON()}", to: "${to.toJSON()}", tokenId: ${id}) {
+        timestamp
+        currentLocationApproximateLatitude(agg: ${agg})
+        currentLocationApproximateLongitude(agg: ${agg})
+        angularVelocityYaw(agg: ${agg})
+        chassisAxleRow1WheelLeftSpeed(agg: ${agg})
+        chassisAxleRow1WheelLeftTirePressure(agg: ${agg})
+        chassisAxleRow1WheelRightSpeed(agg: ${agg})
+        chassisAxleRow1WheelRightTirePressure(agg: ${agg})
+        chassisAxleRow2WheelLeftTirePressure(agg: ${agg})
+        chassisAxleRow2WheelRightTirePressure(agg: ${agg})
+        currentLocationAltitude(agg: ${agg})
+        currentLocationHeading(agg: ${agg})
+        currentLocationIsRedacted(agg: ${agg})
+        currentLocationLatitude(agg: ${agg})
+        currentLocationLongitude(agg: ${agg})
+        dimoAftermarketHDOP(agg: ${agg})
+        dimoAftermarketNSAT(agg: ${agg})
+        dimoAftermarketSSID(agg: ${agg})
+        dimoAftermarketWPAState(agg: ${agg})
+        exteriorAirTemperature(agg: ${agg})
+        isIgnitionOn(agg: ${agg})
+        lowVoltageBatteryCurrentVoltage(agg: ${agg})
+        obdBarometricPressure(agg: ${agg})
+        obdCommandedEGR(agg: ${agg})
+        obdCommandedEVAP(agg: ${agg})
+        obdDTCList(agg: ${agg})
+        obdDistanceSinceDTCClear(agg: ${agg})
+        obdDistanceWithMIL(agg: ${agg})
+        obdEngineLoad(agg: ${agg})
+        obdFuelPressure(agg: ${agg})
+        obdIntakeTemp(agg: ${agg})
+        obdLongTermFuelTrim1(agg: ${agg})
+        obdMAP(agg: ${agg})
+        obdO2WRSensor1Voltage(agg: ${agg})
+        obdO2WRSensor2Voltage(agg: ${agg})
+        obdRunTime(agg: ${agg})
+        obdShortTermFuelTrim1(agg: ${agg})
+        obdWarmupsSinceDTCClear(agg: ${agg})
+        powertrainCombustionEngineDieselExhaustFluidCapacity(agg: ${agg})
+        powertrainCombustionEngineDieselExhaustFluidLevel(agg: ${agg})
+        powertrainCombustionEngineECT(agg: ${agg})
+        powertrainCombustionEngineEOP(agg: ${agg})
+        powertrainCombustionEngineEOT(agg: ${agg})
+        powertrainCombustionEngineEngineOilLevel(agg: ${agg})
+        powertrainCombustionEngineEngineOilRelativeLevel(agg: ${agg})
+        powertrainCombustionEngineMAF(agg: ${agg})
+        powertrainCombustionEngineSpeed(agg: ${agg})
+        powertrainCombustionEngineTPS(agg: ${agg})
+        powertrainCombustionEngineTorque(agg: ${agg})
+        powertrainFuelSystemAbsoluteLevel(agg: ${agg})
+        powertrainFuelSystemRelativeLevel(agg: ${agg})
+        powertrainFuelSystemSupportedFuelTypes(agg: ${agg})
+        powertrainRange(agg: ${agg})
+        powertrainTractionBatteryChargingAddedEnergy(agg: ${agg})
+        powertrainTractionBatteryChargingChargeLimit(agg: ${agg})
+        powertrainTractionBatteryChargingIsCharging(agg: ${agg})
+        powertrainTractionBatteryCurrentPower(agg: ${agg})
+        powertrainTractionBatteryCurrentVoltage(agg: ${agg})
+        powertrainTractionBatteryGrossCapacity(agg: ${agg})
+        powertrainTractionBatteryRange(agg: ${agg})
+        powertrainTractionBatteryStateOfChargeCurrent(agg: ${agg})
+        powertrainTractionBatteryStateOfChargeCurrentEnergy(agg: ${agg})
+        powertrainTractionBatteryTemperatureAverage(agg: ${agg})
+        powertrainTransmissionCurrentGear(agg: ${agg})
+        powertrainTransmissionTemperature(agg: ${agg})
+        powertrainTransmissionTravelledDistance(agg: ${agg})
+        powertrainType(agg: ${agg})
+        serviceDistanceToService(agg: ${agg})
+        speed(agg: ${agg})
+    }
+}
+`;
     }
 
-    getVehicleLiveDataQuery(id: number) {
-        return `
-        query {
-            signalsLatest(tokenId: ${id}) {
-              lastSeen,
-              angularVelocityYaw {
-                timestamp,
-                value,
-              },
-              chassisAxleRow1WheelLeftSpeed {
-                timestamp,
-                value,
-              },
-              chassisAxleRow1WheelLeftTirePressure {
-                timestamp,
-                value,
-              },
-              chassisAxleRow1WheelRightSpeed {
-                timestamp,
-                value,
-              },
-              chassisAxleRow1WheelRightTirePressure {
-                timestamp,
-                value,
-              },
-              chassisAxleRow2WheelLeftTirePressure {
-                timestamp,
-                value,
-              },
-              chassisAxleRow2WheelRightTirePressure {
-                timestamp,
-                value,
-              },
-              currentLocationAltitude {
-                timestamp,
-                value,
-              },
-              currentLocationHeading {
-                timestamp,
-                value,
-              },
-              currentLocationIsRedacted {
-                timestamp,
-                value,
-              },
-              currentLocationLatitude {
-                timestamp,
-                value,
-              },
-              currentLocationLongitude {
-                timestamp,
-                value,
-              },
-              exteriorAirTemperature {
-                timestamp,
-                value,
-              },
-              isIgnitionOn {
-                timestamp,
-                value,
-              },
-              lowVoltageBatteryCurrentVoltage {
-                timestamp,
-                value,
-              },
-              obdBarometricPressure {
-                timestamp,
-                value,
-              },
-              obdCommandedEGR {
-                timestamp,
-                value,
-              },
-              obdCommandedEVAP {
-                timestamp,
-                value,
-              },
-              obdDTCList {
-                timestamp,
-                value,
-              },
-              obdDistanceSinceDTCClear {
-                timestamp,
-                value,
-              },
-              obdDistanceWithMIL {
-                timestamp,
-                value,
-              },
-              obdEngineLoad {
-                timestamp,
-                value,
-              },
-              obdFuelPressure {
-                timestamp,
-                value,
-              },
-              obdIntakeTemp {
-                timestamp,
-                value,
-              },
-              obdLongTermFuelTrim1 {
-                timestamp,
-                value,
-              },
-              obdMAP {
-                timestamp,
-                value,
-              },
-              obdO2WRSensor1Voltage {
-                timestamp,
-                value,
-              },
-              obdO2WRSensor2Voltage {
-                timestamp,
-                value,
-              },
-              obdRunTime {
-                timestamp,
-                value,
-              },
-              obdShortTermFuelTrim1 {
-                timestamp,
-                value,
-              },
-              obdWarmupsSinceDTCClear {
-                timestamp,
-                value,
-              },
-              powertrainCombustionEngineDieselExhaustFluidCapacity {
-                timestamp,
-                value,
-              },
-              powertrainCombustionEngineDieselExhaustFluidLevel {
-                timestamp,
-                value,
-              },
-              powertrainCombustionEngineECT {
-                timestamp,
-                value,
-              },
-              powertrainCombustionEngineEOP {
-                timestamp,
-                value,
-              },
-              powertrainCombustionEngineEOT {
-                timestamp,
-                value,
-              },
-              powertrainCombustionEngineEngineOilLevel {
-                timestamp,
-                value,
-              },
-              powertrainCombustionEngineEngineOilRelativeLevel {
-                timestamp,
-                value,
-              },
-              powertrainCombustionEngineMAF {
-                timestamp,
-                value,
-              },
-              powertrainCombustionEngineSpeed {
-                timestamp,
-                value,
-              },
-              powertrainCombustionEngineTPS {
-                timestamp,
-                value,
-              },
-              powertrainCombustionEngineTorque {
-                timestamp,
-                value,
-              },
-              powertrainFuelSystemAbsoluteLevel {
-                timestamp,
-                value,
-              },
-              powertrainFuelSystemRelativeLevel {
-                timestamp,
-                value,
-              },
-              powertrainFuelSystemSupportedFuelTypes {
-                timestamp,
-                value,
-              },
-              powertrainRange {
-                timestamp,
-                value,
-              },
-              powertrainTractionBatteryChargingAddedEnergy {
-                timestamp,
-                value,
-              },
-              powertrainTractionBatteryChargingChargeLimit {
-                timestamp,
-                value,
-              },
-              powertrainTractionBatteryChargingIsCharging {
-                timestamp,
-                value,
-              },
-              powertrainTractionBatteryCurrentPower {
-                timestamp,
-                value,
-              },
-              powertrainTractionBatteryCurrentVoltage {
-                timestamp,
-                value,
-              },
-              powertrainTractionBatteryGrossCapacity {
-                timestamp,
-                value,
-              },
-              powertrainTractionBatteryRange {
-                timestamp,
-                value,
-              },
-              powertrainTractionBatteryStateOfChargeCurrent {
-                timestamp,
-                value,
-              },
-              powertrainTractionBatteryTemperatureAverage {
-                timestamp,
-                value,
-              },
-              powertrainTransmissionCurrentGear {
-                timestamp,
-                value,
-              },
-              powertrainTransmissionTemperature {
-                timestamp,
-                value,
-              },
-              powertrainTransmissionTravelledDistance {
-                timestamp,
-                value,
-              },
-              powertrainType {
-                timestamp,
-                value,
-              },
-              serviceDistanceToService {
-                timestamp,
-                value,
-              },
-              speed {
-                timestamp,
-                value,
-              },
-            }
-          }
-        `;
+    getVehicleLiveDataQuery(id: number, signals) {
+        let query = `query {\n  signalsLatest(tokenId: ${id}){\n`;
+
+        for (let signal of signals) {
+            if (signal.includes("Aftermarket")) continue;
+
+            const data = QUERY_DATA[signal];
+            if (data)
+                query += `${data}\n`;
+            else
+                console.log("No Data", signal);
+        }
+
+        query += `  }\n}`;
+
+        return query;
     }
 
     async getVehicleVIN(tokenId: number) {

@@ -53,16 +53,20 @@ export default function VehicleAdvancedMode({ id, signals, theme }) {
             <div className="flex flex-col gap-2.5">
                 <div className="flex flex-col md:flex-row gap-4">
                     <div className="w-full md:w-1/3 aspect-square rounded-lg">
-                        <MapboxMap
-                            latitude={signals.currentLocationLatitude.value}
-                            longitude={signals.currentLocationLongitude.value}
-                            theme={theme}
-                        />
+                        {signals?.currentLocationLatitude && signals?.currentLocationLongitude && (
+                            <MapboxMap
+                                latitude={signals.currentLocationLatitude.value}
+                                longitude={signals.currentLocationLongitude.value}
+                                theme={theme}
+                            />
+                        )}
                     </div>
-                    <div className="w-full flex flex-col gap-2">
-                        <VehicleProperties signal={"currentLocationLatitude"} name={signals.currentLocationLatitude.name} value={signals.currentLocationLatitude.value} unit={signals.currentLocationLatitude.unit} />
-                        <VehicleProperties signal={"currentLocationLongitude"} name={signals.currentLocationLongitude.name} value={signals.currentLocationLongitude.value} unit={signals.currentLocationLatitude.unit} />
-                    </div>
+                    {signals?.currentLocationLatitude && signals?.currentLocationLongitude && (
+                        <div className="w-full flex flex-col gap-2">
+                            <VehicleProperties signal={"currentLocationLatitude"} name={signals.currentLocationLatitude.name} value={signals.currentLocationLatitude.value} unit={signals.currentLocationLatitude.unit} />
+                            <VehicleProperties signal={"currentLocationLongitude"} name={signals.currentLocationLongitude.name} value={signals.currentLocationLongitude.value} unit={signals.currentLocationLatitude.unit} />
+                        </div>
+                    )}
                 </div>
 
                 {

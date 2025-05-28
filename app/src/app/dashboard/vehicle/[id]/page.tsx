@@ -34,9 +34,6 @@ export default function VehicleIdentityPage() {
     }
 
     const theme = getTheme();
-
-    console.log(vehicle.data);
-
     const signals = vehicle.data.signals;
 
     const lastSeen = new Date(signals?.lastSeen?.value).toLocaleDateString('en-US', {

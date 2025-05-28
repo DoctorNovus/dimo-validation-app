@@ -114,7 +114,9 @@ export default function VehicleBasicMode({ id, signals, theme }) {
         }}>
             <div className="flex flex-col gap-4 pb-2">
                 <div className="w-full h-full grid grid-cols-2 md:grid-cols-4 gap-2">
-                    <MapboxMapSelector theme={theme} latitude={signals.currentLocationLatitude.value} longitude={signals.currentLocationLongitude.value} />
+                    {signals?.currentLocationLatitude && signals?.currentLocationLongitude && (
+                        <MapboxMapSelector theme={theme} latitude={signals.currentLocationLatitude.value} longitude={signals.currentLocationLongitude.value} />
+                    )}
                     <VehicleTireInfo signals={signals} />
 
                     {filteredSignals.map(([signal, data], key) => (
