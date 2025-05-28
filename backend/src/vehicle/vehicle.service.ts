@@ -3,13 +3,13 @@ import { Inject, Injectable } from "@outwalk/firefly";
 
 interface VehicleData {
     data: {
-        signals: {}
+        signals: []
     }
 }
 
 interface VehicleLiveData {
     data: {
-        signalsLatest: {}
+        signalsLatest: []
     }
 }
 
@@ -427,14 +427,14 @@ export class VehicleService {
         }) as unknown as VehicleLiveData;
 
         if (allData?.data && allData.data.signals) {
-            for (const signals of allData.data.signals) {
-                data = Object.assign(data, signals);
+            for (let i = 0; i < allData.data.signals.length; i++) {
+                data = Object.assign(data, allData.data.signals[i]);
             }
         }
 
         if (liveData?.data && liveData.data.signalsLatest) {
-            for (const signals of liveData.data.signalsLatest) {
-                data = Object.assign(data, signals);
+            for (let i = 0; i < liveData.data.signalsLatest.length; i++) {
+                data = Object.assign(data, liveData.data.signalsLatest[i]);
             }
         }
 
