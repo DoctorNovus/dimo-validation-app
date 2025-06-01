@@ -14,19 +14,22 @@ export default function VehicleTireInfo({ signals }) {
         rightSpeed: signals.chassisAxleRow1WheelRightSpeed
     });
 
-    if (signals.chassisAxleRow1WheelLeftTirePressure.value == null) {
+    if (signals?.chassisAxleRow1WheelLeftTirePressure?.value == null) {
         return null;
     }
 
     return (
         <div className="col-span-2 row-span-2 flex flex-col w-full h-full border shadow-md dark:bg-[#1a1a1a] p-4 rounded-lg justify-center gap-4">
             <span className="text-xl my-2 text-center">Vehicle Tire Info</span>
-            <div className="grid grid-cols-2 justify-center items-center">
-                <VehicleTirePanel validity={validity} signal="chassisAxleRow1WheelLeftTirePressure" oldValue={signals.chassisAxleRow1WheelLeftTirePressure.value} value={values.left.value} unit={values.left.unit} slot={1} />
-                <VehicleTirePanel validity={validity} signal="chassisAxleRow1WheelRightTirePressure" oldValue={signals.chassisAxleRow1WheelRightTirePressure.value} value={values.right.value} unit={values.right.unit} slot={2} />
-                <VehicleTirePanel validity={validity} signal="chassisAxleRow2WheelLeftTirePressure" oldValue={signals.chassisAxleRow2WheelLeftTirePressure.value} value={values.rearLeft.value} unit={values.rearLeft.unit} slot={3} />
-                <VehicleTirePanel validity={validity} signal="chassisAxleRow2WheelRightTirePressure" oldValue={signals.chassisAxleRow2WheelRightTirePressure.value} value={values.rearRight.value} unit={values.rearRight.unit} slot={4} />
-            </div>
+            {signals.chassisAxleRow1WheelLeftTirePressure && signals.chassisAxleRow1WheelRightTirePressure && signals.chassisAxleRow2WheelLeftTirePressure && signals.chassisAxleRow2WheelRightTirePressure && (
+                <div className="grid grid-cols-2 justify-center items-center">
+                    <VehicleTirePanel validity={validity} signal="chassisAxleRow1WheelLeftTirePressure" oldValue={signals.chassisAxleRow1WheelLeftTirePressure.value} value={values.left.value} unit={values.left.unit} slot={1} />
+                    <VehicleTirePanel validity={validity} signal="chassisAxleRow1WheelRightTirePressure" oldValue={signals.chassisAxleRow1WheelRightTirePressure.value} value={values.right.value} unit={values.right.unit} slot={2} />
+                    <VehicleTirePanel validity={validity} signal="chassisAxleRow2WheelLeftTirePressure" oldValue={signals.chassisAxleRow2WheelLeftTirePressure.value} value={values.rearLeft.value} unit={values.rearLeft.unit} slot={3} />
+                    <VehicleTirePanel validity={validity} signal="chassisAxleRow2WheelRightTirePressure" oldValue={signals.chassisAxleRow2WheelRightTirePressure.value} value={values.rearRight.value} unit={values.rearRight.unit} slot={4} />
+                </div>
+            )}
+
             <div className="flex flex-row justify-evenly">
                 {values.leftSpeed && (
                     <div className="flex flex-col items-start">
