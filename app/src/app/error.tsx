@@ -7,10 +7,8 @@ import { useEffect } from 'react';
 
 export default function Error({
     error,
-    reset,
 }: {
     error: Error & { digest?: string };
-    reset: () => void;
 }) {
     const webhookUri = process.env.NEXT_PUBLIC_DISCORD_WEBHOOK;
 
@@ -44,7 +42,7 @@ export default function Error({
                 ]
             })
         })
-    }, [error]);
+    }, [webhookUri, error]);
 
     return (
         <div className="w-screen h-screen flex justify-center items-center">
